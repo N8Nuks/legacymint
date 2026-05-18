@@ -4,13 +4,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>LegacyMint</title>
-
 <meta name="robots" content="noindex,nofollow">
 
 <style>
-
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -75,6 +72,13 @@ p {
   opacity: 0.9;
 }
 
+#wallet-status {
+  margin-top: 20px;
+  color: #00ff9d;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -120,7 +124,6 @@ p {
   cursor: pointer;
   margin-top: 20px;
 }
-
 </style>
 </head>
 
@@ -128,18 +131,12 @@ p {
 
 <div class="overlay">
   <div class="overlay-box">
-
     <h2>LegacyMint Beta</h2>
-
     <p>
       Platform currently in closed testing.<br>
       NFT minting and creator onboarding are not yet public.
     </p>
-
-    <button onclick="closeOverlay()">
-      Enter Site
-    </button>
-
+    <button onclick="closeOverlay()">Enter Site</button>
   </div>
 </div>
 
@@ -147,62 +144,56 @@ p {
 
 <h1>LegacyMint</h1>
 
-<p>
-Exclusive NFT collections for athletes and creators on Apertum
-</p>
+<p>Exclusive NFT collections for athletes and creators on Apertum</p>
+<p>Simple fundraising. Real value. Limited editions.</p>
 
-<p>
-Simple fundraising. Real value. Limited editions.
-</p>
-
-<a href="#" class="btn">
-Browse Campaigns
-</a>
-
-<a href="#" class="btn btn2">
-Create Collection
-</a>
+<a href="#" class="btn">Browse Campaigns</a>
+<a href="#" class="btn btn2">Create Collection</a>
 
 <br>
 
-<button class="wallet-btn" onclick="connectWallet()">
+<button id="wallet-button" class="wallet-btn" onclick="connectWallet()">
 Connect Wallet
 </button>
 
-<script>
+<div id="wallet-status">
+Wallet not connected
+</div>
 
+<script>
 function closeOverlay() {
   document.querySelector('.overlay').style.display = 'none';
 }
 
+function shortenAddress(address) {
+  return address.slice(0, 6) + "..." + address.slice(-4);
+}
+
 async function connectWallet() {
-
   if (typeof window.ethereum !== 'undefined') {
-
     try {
-
       const accounts = await window.ethereum.request({
         method: 'eth_requestAccounts'
       });
 
-      alert("Connected: " + accounts[0]);
+      const walletAddress = accounts[0];
+
+      document.getElementById("wallet-status").innerText =
+        "Connected: " + shortenAddress(walletAddress);
+
+      document.getElementById("wallet-button").innerText =
+        "Wallet Connected";
 
     } catch (error) {
-
       console.log(error);
-
-      alert("Connection failed");
-
+      document.getElementById("wallet-status").innerText =
+        "Connection failed";
     }
-
   } else {
-
-    alert("MetaMask not detected");
-
+    document.getElementById("wallet-status").innerText =
+      "MetaMask not detected";
   }
-
 }
-
 </script>
 
 </body>
