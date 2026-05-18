@@ -217,6 +217,8 @@ let userAccount = "";
 
 const CONTRACT_ADDRESS = "0x50B8f3A1990a5866220174304D37ed3723ed8b9c";
 
+const METADATA_URI = "https://gateway.pinata.cloud/ipfs/bafkreihoqvby2fkfnmype4bhpbkzlrx7pnv2qgwukyq4mjni2l5nzcxbpq/{id}.json";
+
 const APTM_CHAIN_ID = "0xae2";
 
 const APTM_NETWORK = {
@@ -437,9 +439,7 @@ async function setMetadataURI() {
         signer
       );
 
-    const tx = await contract.setURI(
-      "https://legacymint.club/{id}.json"
-    );
+    const tx = await contract.setURI(METADATA_URI);
 
     document.getElementById("uri-status").innerText =
       "Setting metadata URI...";
