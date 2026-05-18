@@ -7,6 +7,8 @@
 
 <title>LegacyMint</title>
 
+<meta name="robots" content="noindex,nofollow">
+
 <style>
 
 body {
@@ -73,10 +75,73 @@ p {
   opacity: 0.9;
 }
 
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.92);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.overlay-box {
+  background: #111;
+  padding: 50px;
+  border-radius: 24px;
+  text-align: center;
+  max-width: 500px;
+  border: 1px solid rgba(0,255,157,0.3);
+  box-shadow: 0 0 40px rgba(0,255,157,0.15);
+}
+
+.overlay-box h2 {
+  color: #00ff9d;
+  margin-bottom: 20px;
+  font-size: 2.5em;
+}
+
+.overlay-box p {
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+.overlay-box button {
+  background-color: #00ff9d;
+  color: black;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
 </style>
 </head>
 
 <body>
+
+<div class="overlay">
+  <div class="overlay-box">
+
+    <h2>LegacyMint Beta</h2>
+
+    <p>
+      Platform currently in closed testing.<br>
+      NFT minting and creator onboarding are not yet public.
+    </p>
+
+    <button onclick="closeOverlay()">
+      Enter Site
+    </button>
+
+  </div>
+</div>
 
 <img src="044ada2b-fc5f-4304-8470-a291e0bd96c4.jpg" alt="LegacyMint Logo" class="logo">
 
@@ -105,6 +170,10 @@ Connect Wallet
 </button>
 
 <script>
+
+function closeOverlay() {
+  document.querySelector('.overlay').style.display = 'none';
+}
 
 async function connectWallet() {
 
