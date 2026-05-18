@@ -60,10 +60,13 @@ p {
   box-shadow: 0 0 40px rgba(0,255,157,0.18);
 }
 
-.wallet-btn, .network-btn, .mint-btn {
+.wallet-btn,
+.network-btn,
+.mint-btn,
+.uri-btn {
   color: white;
   padding: 18px 40px;
-  font-size: 1.2em;
+  font-size: 1.1em;
   border: none;
   border-radius: 50px;
   cursor: pointer;
@@ -84,14 +87,24 @@ p {
   color: black;
 }
 
-.wallet-btn:hover, .network-btn:hover, .mint-btn:hover {
+.uri-btn {
+  background-color: #9333ea;
+}
+
+.wallet-btn:hover,
+.network-btn:hover,
+.mint-btn:hover,
+.uri-btn:hover {
   opacity: 0.9;
 }
 
-#wallet-status, #network-status, #mint-status {
+#wallet-status,
+#network-status,
+#mint-status,
+#uri-status {
   margin-top: 15px;
   color: #00ff9d;
-  font-size: 1.1em;
+  font-size: 1.05em;
   font-weight: bold;
 }
 
@@ -148,11 +161,15 @@ p {
 <div class="overlay">
   <div class="overlay-box">
     <h2>LegacyMint Beta</h2>
+
     <p>
       Platform currently in closed testing.<br>
       NFT minting and creator onboarding are not yet public.
     </p>
-    <button onclick="closeOverlay()">Enter Site</button>
+
+    <button onclick="closeOverlay()">
+      Enter Site
+    </button>
   </div>
 </div>
 
@@ -160,8 +177,13 @@ p {
 
 <h1>LegacyMint</h1>
 
-<p>Exclusive NFT collections for athletes and creators on Apertum</p>
-<p>Simple fundraising. Real value. Limited editions.</p>
+<p>
+Exclusive NFT collections for athletes and creators on Apertum
+</p>
+
+<p>
+Simple fundraising. Real value. Limited editions.
+</p>
 
 <a href="#" class="btn">Browse Campaigns</a>
 <a href="#" class="btn btn2">Create Collection</a>
@@ -180,11 +202,17 @@ Switch to Apertum
 Mint NFT
 </button>
 
+<button class="uri-btn" onclick="setMetadataURI()">
+Set Metadata URI
+</button>
+
 <div id="wallet-status">Wallet not connected</div>
 <div id="network-status">Network not checked</div>
 <div id="mint-status">Mint not started</div>
+<div id="uri-status">Metadata URI not set</div>
 
 <script>
+
 let userAccount = "";
 
 const CONTRACT_ADDRESS = "0x50B8f3A1990a5866220174304D37ed3723ed8b9c";
@@ -202,10 +230,25 @@ const APTM_NETWORK = {
   rpcUrls: [
     "https://rpc.apertum.io/ext/bc/YDJ1r9RMkewATmA7B35q1bdV18aywzmdiXwd9zGBq3uQjsCnn/rpc"
   ],
-  blockExplorerUrls: ["https://explorer.apertum.io/"]
+  blockExplorerUrls: [
+    "https://explorer.apertum.io/"
+  ]
 };
 
 const CONTRACT_ABI = [
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "newuri",
+        "type": "string"
+      }
+    ],
+    "name": "setURI",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
   {
     "inputs": [
       {
@@ -245,65 +288,66 @@ function shortenAddress(address) {
 }
 
 async function connectWallet() {
-  if (typeof window.ethereum !== 'undefined') {
-    try {
-      const accounts = await window.ethereum.request({
-        method: 'eth_requestAccounts'
-      });
 
-      userAccount = accounts[0];
-
-      document.getElementById("wallet-status").innerText =
-        "Connected: " + shortenAddress(userAccount);
-
-      document.getElementById("wallet-button").innerText =
-        "Wallet Connected";
-
-      await checkNetwork();
-
-    } catch (error) {
-      console.log(error);
-      document.getElementById("wallet-status").innerText =
-        "Connection failed";
-    }
-  } else {
+  if (typeof window.ethereum === 'undefined') {
     document.getElementById("wallet-status").innerText =
       "MetaMask not detected";
+    return;
+  }
+
+  try {
+
+    const accounts = await window.ethereum.request({
+      method: 'eth_requestAccounts'
+    });
+
+    userAccount = accounts[0];
+
+    document.getElementById("wallet-status").innerText =
+      "Connected: " + shortenAddress(userAccount);
+
+    document.getElementById("wallet-button").innerText =
+      "Wallet Connected";
+
+    await checkNetwork();
+
+  } catch (error) {
+
+    console.log(error);
+
+    document.getElementById("wallet-status").innerText =
+      "Connection failed";
   }
 }
 
 async function checkNetwork() {
-  if (typeof window.ethereum === 'undefined') {
-    document.getElementById("network-status").innerText =
-      "MetaMask not detected";
-    return;
-  }
 
   const chainId = await window.ethereum.request({
     method: 'eth_chainId'
   });
 
   if (chainId === APTM_CHAIN_ID) {
+
     document.getElementById("network-status").innerText =
       "Network: Apertum ✅";
 
-    document.getElementById("network-button").style.display = "none";
+    document.getElementById("network-button").style.display =
+      "none";
+
   } else {
+
     document.getElementById("network-status").innerText =
       "Wrong network ❌";
 
-    document.getElementById("network-button").style.display = "inline-block";
+    document.getElementById("network-button").style.display =
+      "inline-block";
   }
 }
 
 async function switchToApertum() {
-  if (typeof window.ethereum === 'undefined') {
-    document.getElementById("network-status").innerText =
-      "MetaMask not detected";
-    return;
-  }
 
   try {
+
     await window.ethereum.request({
       method: 'wallet_switchEthereumChain',
       params: [{ chainId: APTM_CHAIN_ID }]
@@ -312,34 +356,20 @@ async function switchToApertum() {
     await checkNetwork();
 
   } catch (switchError) {
+
     if (switchError.code === 4902) {
-      try {
-        await window.ethereum.request({
-          method: 'wallet_addEthereumChain',
-          params: [APTM_NETWORK]
-        });
 
-        await checkNetwork();
+      await window.ethereum.request({
+        method: 'wallet_addEthereumChain',
+        params: [APTM_NETWORK]
+      });
 
-      } catch (addError) {
-        console.log(addError);
-        document.getElementById("network-status").innerText =
-          "Could not add Apertum";
-      }
-    } else {
-      console.log(switchError);
-      document.getElementById("network-status").innerText =
-        "Could not switch network";
+      await checkNetwork();
     }
   }
 }
 
 async function mintNFT() {
-  if (typeof window.ethereum === 'undefined') {
-    document.getElementById("mint-status").innerText =
-      "MetaMask not detected";
-    return;
-  }
 
   if (!userAccount) {
     document.getElementById("mint-status").innerText =
@@ -348,29 +378,18 @@ async function mintNFT() {
   }
 
   try {
-    await checkNetwork();
 
-    const currentChainId = await window.ethereum.request({
-      method: 'eth_chainId'
-    });
+    const provider =
+      new ethers.providers.Web3Provider(window.ethereum);
 
-    if (currentChainId !== APTM_CHAIN_ID) {
-      document.getElementById("mint-status").innerText =
-        "Switch to Apertum first";
-      return;
-    }
-
-    document.getElementById("mint-status").innerText =
-      "Preparing mint transaction...";
-
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
 
-    const contract = new ethers.Contract(
-      CONTRACT_ADDRESS,
-      CONTRACT_ABI,
-      signer
-    );
+    const contract =
+      new ethers.Contract(
+        CONTRACT_ADDRESS,
+        CONTRACT_ABI,
+        signer
+      );
 
     const tx = await contract.mint(
       userAccount,
@@ -380,7 +399,7 @@ async function mintNFT() {
     );
 
     document.getElementById("mint-status").innerText =
-      "Minting NFT... Waiting for confirmation.";
+      "Minting NFT...";
 
     await tx.wait();
 
@@ -388,45 +407,84 @@ async function mintNFT() {
       "NFT Minted Successfully ✅";
 
   } catch (error) {
+
     console.log(error);
 
-    if (error.message && error.message.includes("OwnableUnauthorizedAccount")) {
-      document.getElementById("mint-status").innerText =
-        "Mint failed: only contract owner can mint.";
-    } else {
-      document.getElementById("mint-status").innerText =
-        "Mint failed ❌ Check MetaMask or console.";
-    }
+    document.getElementById("mint-status").innerText =
+      "Mint failed ❌";
+  }
+}
+
+async function setMetadataURI() {
+
+  if (!userAccount) {
+    document.getElementById("uri-status").innerText =
+      "Connect wallet first";
+    return;
+  }
+
+  try {
+
+    const provider =
+      new ethers.providers.Web3Provider(window.ethereum);
+
+    const signer = provider.getSigner();
+
+    const contract =
+      new ethers.Contract(
+        CONTRACT_ADDRESS,
+        CONTRACT_ABI,
+        signer
+      );
+
+    const tx = await contract.setURI(
+      "https://legacymint.club/{id}.json"
+    );
+
+    document.getElementById("uri-status").innerText =
+      "Setting metadata URI...";
+
+    await tx.wait();
+
+    document.getElementById("uri-status").innerText =
+      "Metadata URI Set Successfully ✅";
+
+  } catch (error) {
+
+    console.log(error);
+
+    document.getElementById("uri-status").innerText =
+      "Metadata URI failed ❌";
   }
 }
 
 if (typeof window.ethereum !== 'undefined') {
+
   window.ethereum.on('chainChanged', function () {
     checkNetwork();
   });
 
   window.ethereum.on('accountsChanged', function (accounts) {
+
     if (accounts.length > 0) {
+
       userAccount = accounts[0];
 
       document.getElementById("wallet-status").innerText =
         "Connected: " + shortenAddress(userAccount);
 
-      document.getElementById("wallet-button").innerText =
-        "Wallet Connected";
-
       checkNetwork();
+
     } else {
+
       userAccount = "";
 
       document.getElementById("wallet-status").innerText =
         "Wallet not connected";
-
-      document.getElementById("wallet-button").innerText =
-        "Connect Wallet";
     }
   });
 }
+
 </script>
 
 </body>
