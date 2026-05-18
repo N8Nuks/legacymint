@@ -1,0 +1,19 @@
+{
+  "name": "LegacyMint Genesis Pass #1",
+  "description": "The first test NFT minted through the LegacyMint platform on Apertum.",
+  "image": "https://legacymint.club/044ada2b-fc5f-4304-8470-a291e0bd96c4.jpg",
+  "attributes": [
+    {
+      "trait_type": "Collection",
+      "value": "Genesis"
+    },
+    {
+      "trait_type": "Network",
+      "value": "Apertum"
+    },
+    {
+      "trait_type": "Platform",
+      "value": "LegacyMint"
+    }
+  ]
+}
