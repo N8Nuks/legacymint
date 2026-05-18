@@ -25,7 +25,7 @@ p {
   max-width: 700px;
   margin: 30px auto;
 }
-
+  
 .btn {
   background-color: #00ff9d;
   color: black;
@@ -52,6 +52,43 @@ p {
   border-radius: 24px;
   box-shadow: 0 0 40px rgba(0,255,157,0.18);
 }
+
+.wallet-btn {
+  background-color: #f6851b;
+  color: white;
+  padding: 18px 40px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.wallet-btn:hover {
+  opacity: 0.9;
+}
+
+<script>
+async function connectWallet() {
+  if (typeof window.ethereum !== 'undefined') {
+    try {
+      const accounts = await window.ethereum.request({
+        method: 'eth_requestAccounts'
+      });
+      alert("Connected: " + accounts[0]);
+    } catch (error) {
+      console.log(error);
+      alert("Connection failed");
+    }
+  } else {
+    alert("MetaMask not detected");
+  }
+}
+</script>
+
+</body>
+</html>
 </style>
 </head>
 <body>
@@ -63,5 +100,8 @@ p {
 <p>Simple fundraising. Real value. Limited editions.</p>
 <a href="#" class="btn">Browse Campaigns</a>
 <a href="#" class="btn btn2">Create Collection</a>
+<button class="wallet-btn" onclick="connectWallet()">
+  Connect Wallet
+</button>
 </body>
 </html>
