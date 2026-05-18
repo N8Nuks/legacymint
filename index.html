@@ -4,8 +4,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>LegacyMint</title>
+
 <meta name="robots" content="noindex,nofollow">
+
+<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
 
 <style>
 body {
@@ -181,6 +185,10 @@ Mint NFT
 <div id="mint-status">Mint not started</div>
 
 <script>
+let userAccount = "";
+
+const CONTRACT_ADDRESS = "0x50B8f3A1990a5866220174304D37ed3723ed8b9c";
+
 const APTM_CHAIN_ID = "0xae2";
 
 const APTM_NETWORK = {
@@ -194,8 +202,39 @@ const APTM_NETWORK = {
   rpcUrls: [
     "https://rpc.apertum.io/ext/bc/YDJ1r9RMkewATmA7B35q1bdV18aywzmdiXwd9zGBq3uQjsCnn/rpc"
   ],
-  blockExplorerUrls: []
+  blockExplorerUrls: ["https://explorer.apertum.io/"]
 };
+
+const CONTRACT_ABI = [
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes",
+        "name": "data",
+        "type": "bytes"
+      }
+    ],
+    "name": "mint",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+];
 
 function closeOverlay() {
   document.querySelector('.overlay').style.display = 'none';
@@ -212,10 +251,10 @@ async function connectWallet() {
         method: 'eth_requestAccounts'
       });
 
-      const walletAddress = accounts[0];
+      userAccount = accounts[0];
 
       document.getElementById("wallet-status").innerText =
-        "Connected: " + shortenAddress(walletAddress);
+        "Connected: " + shortenAddress(userAccount);
 
       document.getElementById("wallet-button").innerText =
         "Wallet Connected";
@@ -296,8 +335,69 @@ async function switchToApertum() {
 }
 
 async function mintNFT() {
-  document.getElementById("mint-status").innerText =
-    "Mint button ready. Contract connection is next.";
+  if (typeof window.ethereum === 'undefined') {
+    document.getElementById("mint-status").innerText =
+      "MetaMask not detected";
+    return;
+  }
+
+  if (!userAccount) {
+    document.getElementById("mint-status").innerText =
+      "Connect wallet first";
+    return;
+  }
+
+  try {
+    await checkNetwork();
+
+    const currentChainId = await window.ethereum.request({
+      method: 'eth_chainId'
+    });
+
+    if (currentChainId !== APTM_CHAIN_ID) {
+      document.getElementById("mint-status").innerText =
+        "Switch to Apertum first";
+      return;
+    }
+
+    document.getElementById("mint-status").innerText =
+      "Preparing mint transaction...";
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+
+    const contract = new ethers.Contract(
+      CONTRACT_ADDRESS,
+      CONTRACT_ABI,
+      signer
+    );
+
+    const tx = await contract.mint(
+      userAccount,
+      1,
+      1,
+      "0x"
+    );
+
+    document.getElementById("mint-status").innerText =
+      "Minting NFT... Waiting for confirmation.";
+
+    await tx.wait();
+
+    document.getElementById("mint-status").innerText =
+      "NFT Minted Successfully ✅";
+
+  } catch (error) {
+    console.log(error);
+
+    if (error.message && error.message.includes("OwnableUnauthorizedAccount")) {
+      document.getElementById("mint-status").innerText =
+        "Mint failed: only contract owner can mint.";
+    } else {
+      document.getElementById("mint-status").innerText =
+        "Mint failed ❌ Check MetaMask or console.";
+    }
+  }
 }
 
 if (typeof window.ethereum !== 'undefined') {
@@ -305,8 +405,26 @@ if (typeof window.ethereum !== 'undefined') {
     checkNetwork();
   });
 
-  window.ethereum.on('accountsChanged', function () {
-    connectWallet();
+  window.ethereum.on('accountsChanged', function (accounts) {
+    if (accounts.length > 0) {
+      userAccount = accounts[0];
+
+      document.getElementById("wallet-status").innerText =
+        "Connected: " + shortenAddress(userAccount);
+
+      document.getElementById("wallet-button").innerText =
+        "Wallet Connected";
+
+      checkNetwork();
+    } else {
+      userAccount = "";
+
+      document.getElementById("wallet-status").innerText =
+        "Wallet not connected";
+
+      document.getElementById("wallet-button").innerText =
+        "Connect Wallet";
+    }
   });
 }
 </script>
