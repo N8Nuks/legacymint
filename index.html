@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>LegacyMint</title>
+
 <style>
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -25,7 +29,7 @@ p {
   max-width: 700px;
   margin: 30px auto;
 }
-  
+
 .btn {
   background-color: #00ff9d;
   color: black;
@@ -69,39 +73,68 @@ p {
   opacity: 0.9;
 }
 
-<script>
-async function connectWallet() {
-  if (typeof window.ethereum !== 'undefined') {
-    try {
-      const accounts = await window.ethereum.request({
-        method: 'eth_requestAccounts'
-      });
-      alert("Connected: " + accounts[0]);
-    } catch (error) {
-      console.log(error);
-      alert("Connection failed");
-    }
-  } else {
-    alert("MetaMask not detected");
-  }
-}
-</script>
-
-</body>
-</html>
 </style>
 </head>
+
 <body>
-  
+
 <img src="044ada2b-fc5f-4304-8470-a291e0bd96c4.jpg" alt="LegacyMint Logo" class="logo">
 
 <h1>LegacyMint</h1>
-<p>Exclusive NFT collections for athletes and creators on Apertum</p>
-<p>Simple fundraising. Real value. Limited editions.</p>
-<a href="#" class="btn">Browse Campaigns</a>
-<a href="#" class="btn btn2">Create Collection</a>
+
+<p>
+Exclusive NFT collections for athletes and creators on Apertum
+</p>
+
+<p>
+Simple fundraising. Real value. Limited editions.
+</p>
+
+<a href="#" class="btn">
+Browse Campaigns
+</a>
+
+<a href="#" class="btn btn2">
+Create Collection
+</a>
+
+<br>
+
 <button class="wallet-btn" onclick="connectWallet()">
-  Connect Wallet
+Connect Wallet
 </button>
+
+<script>
+
+async function connectWallet() {
+
+  if (typeof window.ethereum !== 'undefined') {
+
+    try {
+
+      const accounts = await window.ethereum.request({
+        method: 'eth_requestAccounts'
+      });
+
+      alert("Connected: " + accounts[0]);
+
+    } catch (error) {
+
+      console.log(error);
+
+      alert("Connection failed");
+
+    }
+
+  } else {
+
+    alert("MetaMask not detected");
+
+  }
+
+}
+
+</script>
+
 </body>
 </html>
