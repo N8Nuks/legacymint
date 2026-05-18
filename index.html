@@ -3,43 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>LegacyMint</title>
+
 <meta name="robots" content="noindex,nofollow">
 
 <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
 
 <style>
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #0a0a0a;
   color: white;
   text-align: center;
   padding: 60px 20px;
+
+  background-image: url("PASTE_NEW_PINATA_BACKGROUND_URL_HERE");
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.72);
+  z-index: -1;
 }
 
 h1 {
   font-size: 5em;
-  margin: 0;
+  margin-bottom: 10px;
   color: #00ff9d;
+
+  text-shadow:
+    0 0 10px rgba(0,255,157,0.25),
+    0 0 30px rgba(0,255,157,0.12);
 }
 
-p {
-  font-size: 1.5em;
-  max-width: 750px;
-  margin: 25px auto;
+.subtitle {
+  font-size: 1.4em;
+  max-width: 850px;
+  margin: 20px auto 40px;
+  line-height: 1.5;
 }
 
-.btn, .wallet-btn, .network-btn, .mint-btn, .uri-btn {
-  padding: 18px 40px;
-  font-size: 1.1em;
+.btn,
+.wallet-btn,
+.network-btn,
+.mint-btn,
+.uri-btn {
+  padding: 16px 34px;
+  font-size: 1em;
   border-radius: 50px;
   cursor: pointer;
-  margin: 12px;
+  margin: 10px;
   font-weight: bold;
   border: none;
-  text-decoration: none;
-  display: inline-block;
+  transition: 0.2s ease;
+}
+
+.btn:hover,
+.wallet-btn:hover,
+.network-btn:hover,
+.mint-btn:hover,
+.uri-btn:hover {
+  transform: scale(1.03);
 }
 
 .btn {
@@ -48,7 +81,7 @@ p {
 }
 
 .btn2 {
-  background-color: transparent;
+  background: transparent;
   border: 2px solid #00ff9d;
   color: #00ff9d;
 }
@@ -73,51 +106,54 @@ p {
   color: white;
 }
 
-.logo {
-  width: 280px;
-  max-width: 85%;
-  height: auto;
-  margin-bottom: 35px;
-  border-radius: 24px;
-  box-shadow: 0 0 40px rgba(0,255,157,0.18);
-}
-
 .preview-card {
-  max-width: 420px;
-  margin: 50px auto 30px;
-  padding: 28px;
-  border-radius: 24px;
-  background: #111;
-  border: 1px solid rgba(0,255,157,0.25);
-  box-shadow: 0 0 40px rgba(0,255,157,0.12);
+  max-width: 520px;
+  margin: 60px auto 40px;
+
+  padding: 40px;
+
+  border-radius: 28px;
+
+  background: rgba(15,15,15,0.78);
+
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255,255,255,0.06);
+
+  box-shadow:
+    0 0 50px rgba(0,0,0,0.65),
+    0 0 30px rgba(0,255,157,0.08);
 }
 
 .preview-card img {
-  width: 100%;
-  border-radius: 18px;
-  margin-bottom: 20px;
+  width: 75%;
+  border-radius: 24px;
+  margin-bottom: 28px;
+
+  box-shadow:
+    0 0 35px rgba(0,0,0,0.6);
 }
 
 .preview-card h2 {
+  font-size: 2.1em;
   color: #00ff9d;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .preview-card p {
-  font-size: 1em;
-  margin: 12px auto;
+  font-size: 1.08em;
+  line-height: 1.5;
 }
 
 .token-id {
-  color: #f6851b;
+  color: #f6c15b;
   font-weight: bold;
+  font-size: 1.3em;
+  margin-top: 18px;
 }
 
-#wallet-status,
-#network-status,
-#mint-status,
-#uri-status {
-  margin-top: 15px;
+.status {
+  margin-top: 14px;
   color: #00ff9d;
   font-size: 1.05em;
   font-weight: bold;
@@ -125,25 +161,31 @@ p {
 
 .overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
+
   background: rgba(0,0,0,0.92);
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   z-index: 9999;
 }
 
 .overlay-box {
-  background: #111;
+  background: rgba(15,15,15,0.95);
+
   padding: 50px;
-  border-radius: 24px;
-  text-align: center;
-  max-width: 500px;
-  border: 1px solid rgba(0,255,157,0.3);
-  box-shadow: 0 0 40px rgba(0,255,157,0.15);
+
+  border-radius: 30px;
+
+  max-width: 520px;
+
+  border: 1px solid rgba(255,255,255,0.06);
+
+  box-shadow:
+    0 0 50px rgba(0,0,0,0.8),
+    0 0 25px rgba(0,255,157,0.08);
 }
 
 .overlay-box h2 {
@@ -153,18 +195,25 @@ p {
 
 .overlay-box p {
   font-size: 1.1em;
+  line-height: 1.6;
 }
 
 .overlay-box button {
   background-color: #00ff9d;
   color: black;
+
   border: none;
-  padding: 14px 28px;
+
+  padding: 16px 30px;
+
   border-radius: 50px;
+
   font-size: 1em;
   font-weight: bold;
+
   cursor: pointer;
 }
+
 </style>
 </head>
 
@@ -172,27 +221,48 @@ p {
 
 <div class="overlay">
   <div class="overlay-box">
+
     <h2>LegacyMint Beta</h2>
+
     <p>
-      Platform currently in closed testing.<br>
-      NFT minting and creator onboarding are not yet public.
+      Exclusive NFT minting platform for athletes, creators and communities on Apertum.
+      <br><br>
+      Currently in closed beta testing.
     </p>
-    <button onclick="closeOverlay()">Enter Site</button>
+
+    <button onclick="closeOverlay()">
+      Enter Site
+    </button>
+
   </div>
 </div>
 
-<img src="044ada2b-fc5f-4304-8470-a291e0bd96c4.jpg" alt="LegacyMint Logo" class="logo">
-
 <h1>LegacyMint</h1>
 
-<p>Exclusive NFT collections for Athletes and Creators on Apertum</p>
-<p>Simple Fundraising. Real Value. Limited Editions.</p>
+<div class="subtitle">
+  Exclusive NFT collections for athletes and creators on Apertum.
+  <br>
+  Simple fundraising. Real value. Limited editions.
+</div>
 
-<a href="#" class="btn">Browse Campaigns</a>
-<a href="#" class="btn btn2">Create Collection</a>
+<div>
+
+  <a href="#" class="btn">
+    Browse Campaigns
+  </a>
+
+  <a href="#" class="btn btn2">
+    Create Collection
+  </a>
+
+</div>
 
 <div class="preview-card">
-  <img src="https://gateway.pinata.cloud/ipfs/bafkreiaougl7sklr5hfyyk3fyumrke5ga3sbdwq4kgadyhdkrpwvqhee2a" alt="LegacyMint Genesis NFT">
+
+  <img
+    src="https://gateway.pinata.cloud/ipfs/bafkreiaougl7sklr5hfyyk3fyumrke5ga3sbdwq4kgadyhdkrpwvqhee2a"
+    alt="LegacyMint Genesis NFT"
+  >
 
   <h2>LegacyMint Genesis NFT #8</h2>
 
@@ -200,40 +270,77 @@ p {
     The next NFT minted through the LegacyMint platform on Apertum.
   </p>
 
-  <p class="token-id">
+  <div class="token-id">
     Token ID: 8
-  </p>
+  </div>
 
-  <button id="mint-button" class="mint-btn" onclick="mintNFT()">
+  <br>
+
+  <button
+    id="mint-button"
+    class="mint-btn"
+    onclick="mintNFT()"
+  >
     Mint NFT #8
   </button>
+
 </div>
 
-<button id="wallet-button" class="wallet-btn" onclick="connectWallet()">
-Connect Wallet
-</button>
+<div>
 
-<button id="network-button" class="network-btn" onclick="switchToApertum()" style="display:none;">
-Switch to Apertum
-</button>
+  <button
+    id="wallet-button"
+    class="wallet-btn"
+    onclick="connectWallet()"
+  >
+    Connect Wallet
+  </button>
 
-<button class="uri-btn" onclick="setMetadataURI()">
-Set Metadata URI
-</button>
+  <button
+    id="network-button"
+    class="network-btn"
+    onclick="switchToApertum()"
+    style="display:none;"
+  >
+    Switch to Apertum
+  </button>
 
-<div id="wallet-status">Wallet not connected</div>
-<div id="network-status">Network not checked</div>
-<div id="mint-status">Mint not started</div>
-<div id="uri-status">Metadata URI not set</div>
+  <button
+    class="uri-btn"
+    onclick="setMetadataURI()"
+  >
+    Set Metadata URI
+  </button>
+
+</div>
+
+<div id="wallet-status" class="status">
+  Wallet not connected
+</div>
+
+<div id="network-status" class="status">
+  Network not checked
+</div>
+
+<div id="mint-status" class="status">
+  Mint not started
+</div>
+
+<div id="uri-status" class="status">
+  Metadata URI not set
+</div>
 
 <script>
+
 let userAccount = "";
 
-const CONTRACT_ADDRESS = "0x50B8f3A1990a5866220174304D37ed3723ed8b9c";
+const CONTRACT_ADDRESS =
+  "0x50B8f3A1990a5866220174304D37ed3723ed8b9c";
 
 const TOKEN_ID_TO_MINT = 8;
 
-const METADATA_URI = "https://gateway.pinata.cloud/ipfs/bafybeiftsibenblz2wp5htulhcktffizq3aoue76vmcgx2mcp6pzy6hv3m/{id}.json";
+const METADATA_URI =
+  "https://gateway.pinata.cloud/ipfs/bafybeiftsibenblz2wp5htulhcktffizq3aoue76vmcgx2mcp6pzy6hv3m/{id}.json";
 
 const APTM_CHAIN_ID = "0xae2";
 
@@ -255,45 +362,45 @@ const APTM_NETWORK = {
 
 const CONTRACT_ABI = [
   {
-    "inputs": [
+    "inputs":[
       {
-        "internalType": "string",
-        "name": "newuri",
-        "type": "string"
+        "internalType":"string",
+        "name":"newuri",
+        "type":"string"
       }
     ],
-    "name": "setURI",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
+    "name":"setURI",
+    "outputs":[],
+    "stateMutability":"nonpayable",
+    "type":"function"
   },
   {
-    "inputs": [
+    "inputs":[
       {
-        "internalType": "address",
-        "name": "account",
-        "type": "address"
+        "internalType":"address",
+        "name":"account",
+        "type":"address"
       },
       {
-        "internalType": "uint256",
-        "name": "id",
-        "type": "uint256"
+        "internalType":"uint256",
+        "name":"id",
+        "type":"uint256"
       },
       {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
+        "internalType":"uint256",
+        "name":"amount",
+        "type":"uint256"
       },
       {
-        "internalType": "bytes",
-        "name": "data",
-        "type": "bytes"
+        "internalType":"bytes",
+        "name":"data",
+        "type":"bytes"
       }
     ],
-    "name": "mint",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
+    "name":"mint",
+    "outputs":[],
+    "stateMutability":"nonpayable",
+    "type":"function"
   }
 ];
 
@@ -302,16 +409,19 @@ function closeOverlay() {
 }
 
 function shortenAddress(address) {
-  return address.slice(0, 6) + "..." + address.slice(-4);
+  return address.slice(0,6) + "..." + address.slice(-4);
 }
 
 async function connectWallet() {
-  if (typeof window.ethereum === 'undefined') {
-    document.getElementById("wallet-status").innerText = "MetaMask not detected";
+
+  if (!window.ethereum) {
+    document.getElementById("wallet-status").innerText =
+      "MetaMask not detected";
     return;
   }
 
   try {
+
     const accounts = await window.ethereum.request({
       method: 'eth_requestAccounts'
     });
@@ -326,28 +436,43 @@ async function connectWallet() {
 
     await checkNetwork();
 
-  } catch (error) {
+  } catch(error) {
+
     console.log(error);
-    document.getElementById("wallet-status").innerText = "Connection failed";
+
+    document.getElementById("wallet-status").innerText =
+      "Connection failed";
   }
 }
 
 async function checkNetwork() {
+
   const chainId = await window.ethereum.request({
     method: 'eth_chainId'
   });
 
   if (chainId === APTM_CHAIN_ID) {
-    document.getElementById("network-status").innerText = "Network: Apertum ✅";
-    document.getElementById("network-button").style.display = "none";
+
+    document.getElementById("network-status").innerText =
+      "Network: Apertum ✅";
+
+    document.getElementById("network-button").style.display =
+      "none";
+
   } else {
-    document.getElementById("network-status").innerText = "Wrong network ❌";
-    document.getElementById("network-button").style.display = "inline-block";
+
+    document.getElementById("network-status").innerText =
+      "Wrong network ❌";
+
+    document.getElementById("network-button").style.display =
+      "inline-block";
   }
 }
 
 async function switchToApertum() {
+
   try {
+
     await window.ethereum.request({
       method: 'wallet_switchEthereumChain',
       params: [{ chainId: APTM_CHAIN_ID }]
@@ -356,7 +481,9 @@ async function switchToApertum() {
     await checkNetwork();
 
   } catch (switchError) {
+
     if (switchError.code === 4902) {
+
       await window.ethereum.request({
         method: 'wallet_addEthereumChain',
         params: [APTM_NETWORK]
@@ -368,7 +495,10 @@ async function switchToApertum() {
 }
 
 async function getContract() {
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+  const provider =
+    new ethers.providers.Web3Provider(window.ethereum);
+
   const signer = provider.getSigner();
 
   return new ethers.Contract(
@@ -379,16 +509,21 @@ async function getContract() {
 }
 
 async function mintNFT() {
+
   if (!userAccount) {
-    document.getElementById("mint-status").innerText = "Connect wallet first";
+
+    document.getElementById("mint-status").innerText =
+      "Connect wallet first";
+
     return;
   }
 
   try {
+
     const contract = await getContract();
 
     document.getElementById("mint-status").innerText =
-      "Minting LegacyMint Genesis NFT #" + TOKEN_ID_TO_MINT + "...";
+      "Minting NFT #" + TOKEN_ID_TO_MINT + "...";
 
     const tx = await contract.mint(
       userAccount,
@@ -402,20 +537,27 @@ async function mintNFT() {
     document.getElementById("mint-status").innerText =
       "NFT #" + TOKEN_ID_TO_MINT + " Minted Successfully ✅";
 
-  } catch (error) {
+  } catch(error) {
+
     console.log(error);
+
     document.getElementById("mint-status").innerText =
       "Mint failed ❌";
   }
 }
 
 async function setMetadataURI() {
+
   if (!userAccount) {
-    document.getElementById("uri-status").innerText = "Connect wallet first";
+
+    document.getElementById("uri-status").innerText =
+      "Connect wallet first";
+
     return;
   }
 
   try {
+
     const contract = await getContract();
 
     document.getElementById("uri-status").innerText =
@@ -428,20 +570,25 @@ async function setMetadataURI() {
     document.getElementById("uri-status").innerText =
       "Metadata URI Set Successfully ✅";
 
-  } catch (error) {
+  } catch(error) {
+
     console.log(error);
+
     document.getElementById("uri-status").innerText =
       "Metadata URI failed ❌";
   }
 }
 
-if (typeof window.ethereum !== 'undefined') {
+if (window.ethereum) {
+
   window.ethereum.on('chainChanged', function () {
     checkNetwork();
   });
 
-  window.ethereum.on('accountsChanged', function (accounts) {
+  window.ethereum.on('accountsChanged', function(accounts) {
+
     if (accounts.length > 0) {
+
       userAccount = accounts[0];
 
       document.getElementById("wallet-status").innerText =
@@ -450,12 +597,15 @@ if (typeof window.ethereum !== 'undefined') {
       checkNetwork();
 
     } else {
+
       userAccount = "";
+
       document.getElementById("wallet-status").innerText =
         "Wallet not connected";
     }
   });
 }
+
 </script>
 
 </body>
