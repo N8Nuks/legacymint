@@ -56,24 +56,36 @@ p {
   box-shadow: 0 0 40px rgba(0,255,157,0.18);
 }
 
-.wallet-btn {
-  background-color: #f6851b;
+.wallet-btn, .network-btn, .mint-btn {
   color: white;
   padding: 18px 40px;
   font-size: 1.2em;
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  margin-top: 20px;
+  margin: 12px;
   font-weight: bold;
 }
 
-.wallet-btn:hover {
+.wallet-btn {
+  background-color: #f6851b;
+}
+
+.network-btn {
+  background-color: #2563eb;
+}
+
+.mint-btn {
+  background-color: #00ff9d;
+  color: black;
+}
+
+.wallet-btn:hover, .network-btn:hover, .mint-btn:hover {
   opacity: 0.9;
 }
 
-#wallet-status {
-  margin-top: 20px;
+#wallet-status, #network-status, #mint-status {
+  margin-top: 15px;
   color: #00ff9d;
   font-size: 1.1em;
   font-weight: bold;
@@ -156,11 +168,35 @@ p {
 Connect Wallet
 </button>
 
-<div id="wallet-status">
-Wallet not connected
-</div>
+<button id="network-button" class="network-btn" onclick="switchToApertum()" style="display:none;">
+Switch to Apertum
+</button>
+
+<button id="mint-button" class="mint-btn" onclick="mintNFT()">
+Mint NFT
+</button>
+
+<div id="wallet-status">Wallet not connected</div>
+<div id="network-status">Network not checked</div>
+<div id="mint-status">Mint not started</div>
 
 <script>
+const APTM_CHAIN_ID = "0xae2";
+
+const APTM_NETWORK = {
+  chainId: "0xae2",
+  chainName: "Apertum",
+  nativeCurrency: {
+    name: "APTM",
+    symbol: "APTM",
+    decimals: 18
+  },
+  rpcUrls: [
+    "https://rpc.apertum.io/ext/bc/YDJ1r9RMkewATmA7B35q1bdV18aywzmdiXwd9zGBq3uQjsCnn/rpc"
+  ],
+  blockExplorerUrls: []
+};
+
 function closeOverlay() {
   document.querySelector('.overlay').style.display = 'none';
 }
@@ -184,6 +220,8 @@ async function connectWallet() {
       document.getElementById("wallet-button").innerText =
         "Wallet Connected";
 
+      await checkNetwork();
+
     } catch (error) {
       console.log(error);
       document.getElementById("wallet-status").innerText =
@@ -193,6 +231,83 @@ async function connectWallet() {
     document.getElementById("wallet-status").innerText =
       "MetaMask not detected";
   }
+}
+
+async function checkNetwork() {
+  if (typeof window.ethereum === 'undefined') {
+    document.getElementById("network-status").innerText =
+      "MetaMask not detected";
+    return;
+  }
+
+  const chainId = await window.ethereum.request({
+    method: 'eth_chainId'
+  });
+
+  if (chainId === APTM_CHAIN_ID) {
+    document.getElementById("network-status").innerText =
+      "Network: Apertum ✅";
+
+    document.getElementById("network-button").style.display = "none";
+  } else {
+    document.getElementById("network-status").innerText =
+      "Wrong network ❌";
+
+    document.getElementById("network-button").style.display = "inline-block";
+  }
+}
+
+async function switchToApertum() {
+  if (typeof window.ethereum === 'undefined') {
+    document.getElementById("network-status").innerText =
+      "MetaMask not detected";
+    return;
+  }
+
+  try {
+    await window.ethereum.request({
+      method: 'wallet_switchEthereumChain',
+      params: [{ chainId: APTM_CHAIN_ID }]
+    });
+
+    await checkNetwork();
+
+  } catch (switchError) {
+    if (switchError.code === 4902) {
+      try {
+        await window.ethereum.request({
+          method: 'wallet_addEthereumChain',
+          params: [APTM_NETWORK]
+        });
+
+        await checkNetwork();
+
+      } catch (addError) {
+        console.log(addError);
+        document.getElementById("network-status").innerText =
+          "Could not add Apertum";
+      }
+    } else {
+      console.log(switchError);
+      document.getElementById("network-status").innerText =
+        "Could not switch network";
+    }
+  }
+}
+
+async function mintNFT() {
+  document.getElementById("mint-status").innerText =
+    "Mint button ready. Contract connection is next.";
+}
+
+if (typeof window.ethereum !== 'undefined') {
+  window.ethereum.on('chainChanged', function () {
+    checkNetwork();
+  });
+
+  window.ethereum.on('accountsChanged', function () {
+    connectWallet();
+  });
 }
 </script>
 
