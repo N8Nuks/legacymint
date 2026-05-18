@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <title>LegacyMint</title>
 
@@ -19,7 +21,7 @@ body {
   text-align: center;
   padding: 60px 20px;
 
-  background-image: url("PASTE_NEW_PINATA_BACKGROUND_URL_HERE");
+  background-image: url("https://gateway.pinata.cloud/ipfs/bafkreifbbbh3ibc6ftx2guipqtgayry6i224dctbgilojnclk7u4jsle3a");
 
   background-size: cover;
   background-position: center;
@@ -38,6 +40,7 @@ body::before {
 h1 {
   font-size: 5em;
   margin-bottom: 10px;
+
   color: #00ff9d;
 
   text-shadow:
@@ -107,7 +110,9 @@ h1 {
 }
 
 .preview-card {
+
   max-width: 520px;
+
   margin: 60px auto 40px;
 
   padding: 40px;
@@ -126,8 +131,11 @@ h1 {
 }
 
 .preview-card img {
+
   width: 75%;
+
   border-radius: 24px;
+
   margin-bottom: 28px;
 
   box-shadow:
@@ -173,6 +181,7 @@ h1 {
 }
 
 .overlay-box {
+
   background: rgba(15,15,15,0.95);
 
   padding: 50px;
@@ -199,7 +208,9 @@ h1 {
 }
 
 .overlay-box button {
+
   background-color: #00ff9d;
+
   color: black;
 
   border: none;
@@ -209,17 +220,20 @@ h1 {
   border-radius: 50px;
 
   font-size: 1em;
+
   font-weight: bold;
 
   cursor: pointer;
 }
 
 </style>
+
 </head>
 
 <body>
 
 <div class="overlay">
+
   <div class="overlay-box">
 
     <h2>LegacyMint Beta</h2>
@@ -235,14 +249,17 @@ h1 {
     </button>
 
   </div>
+
 </div>
 
 <h1>LegacyMint</h1>
 
 <div class="subtitle">
+
   Exclusive NFT collections for athletes and creators on Apertum.
   <br>
   Simple fundraising. Real value. Limited editions.
+
 </div>
 
 <div>
@@ -345,22 +362,28 @@ const METADATA_URI =
 const APTM_CHAIN_ID = "0xae2";
 
 const APTM_NETWORK = {
+
   chainId: "0xae2",
+
   chainName: "Apertum",
+
   nativeCurrency: {
     name: "APTM",
     symbol: "APTM",
     decimals: 18
   },
+
   rpcUrls: [
     "https://rpc.apertum.io/ext/bc/YDJ1r9RMkewATmA7B35q1bdV18aywzmdiXwd9zGBq3uQjsCnn/rpc"
   ],
+
   blockExplorerUrls: [
     "https://explorer.apertum.io/"
   ]
 };
 
 const CONTRACT_ABI = [
+
   {
     "inputs":[
       {
@@ -369,11 +392,16 @@ const CONTRACT_ABI = [
         "type":"string"
       }
     ],
+
     "name":"setURI",
+
     "outputs":[],
+
     "stateMutability":"nonpayable",
+
     "type":"function"
   },
+
   {
     "inputs":[
       {
@@ -381,25 +409,32 @@ const CONTRACT_ABI = [
         "name":"account",
         "type":"address"
       },
+
       {
         "internalType":"uint256",
         "name":"id",
         "type":"uint256"
       },
+
       {
         "internalType":"uint256",
         "name":"amount",
         "type":"uint256"
       },
+
       {
         "internalType":"bytes",
         "name":"data",
         "type":"bytes"
       }
     ],
+
     "name":"mint",
+
     "outputs":[],
+
     "stateMutability":"nonpayable",
+
     "type":"function"
   }
 ];
@@ -415,8 +450,10 @@ function shortenAddress(address) {
 async function connectWallet() {
 
   if (!window.ethereum) {
+
     document.getElementById("wallet-status").innerText =
       "MetaMask not detected";
+
     return;
   }
 
