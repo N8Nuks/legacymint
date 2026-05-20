@@ -6,7 +6,7 @@
 <title>LegacyMint</title>
 <meta name="robots" content="noindex,nofollow">
 
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
 
 <style>
@@ -40,37 +40,42 @@ body::before {
 
 .main-logo {
   margin: 0;
-  line-height: 0.95;
+  line-height: 1;
+}
+
+.legacy-text,
+.mint-text {
+  font-family: 'Monoton', cursive;
+  font-size: clamp(2.8rem, 13vw, 5.8rem);
+  letter-spacing: 1px;
 }
 
 .legacy-text {
-  font-family: 'Anton', sans-serif;
-  font-size: clamp(3.2rem, 15vw, 6rem);
-  letter-spacing: 1px;
   background: linear-gradient(
     180deg,
     #fff6cc 0%,
-    #ffd700 20%,
-    #f5c542 40%,
-    #d89b00 58%,
+    #ffd700 18%,
+    #f5c542 38%,
+    #d89b00 55%,
     #fff1a8 72%,
     #b87900 100%
   );
+
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
   text-shadow:
-    0 2px 0 rgba(255,255,255,0.12),
-    0 4px 12px rgba(255,215,0,0.18);
+    0 0 8px rgba(255,215,0,0.14),
+    0 0 18px rgba(255,215,0,0.10);
 }
 
 .mint-text {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: clamp(2.1rem, 8.5vw, 4.2rem);
   color: #00ff9d;
-  margin-left: 4px;
-  text-shadow: 0 0 10px rgba(0,255,157,0.16);
-}
 
+  text-shadow:
+    0 0 10px rgba(0,255,157,0.16),
+    0 0 20px rgba(0,255,157,0.08);
+}
 .subtitle {
   font-size: 1rem;
   line-height: 1.5;
@@ -348,8 +353,8 @@ body::before {
 
   <section>
     <h1 class="main-logo">
-      <span class="legacy-text">Legacy</span><span class="mint-text">Mint</span>
-    </h1>
+  <span class="legacy-text">Legacy</span><span class="mint-text">Mint</span>
+</h1>
 
     <div class="subtitle">
       Support athletes. Create collections. Mint digital legacy on Apertum.
