@@ -81,6 +81,164 @@ body::before {
   line-height: 1.5;
   color: #e8e8e8;
   margin: 14px auto 22px;
+  .featured-athlete-card {
+  margin-top: 26px;
+}
+
+.featured-label {
+  color: #f6c15b;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+
+.athlete-card-frame {
+  position: relative;
+  overflow: hidden;
+
+  border-radius: 34px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,215,0,0.14),
+      rgba(0,255,157,0.08)
+    );
+
+  border: 1px solid rgba(255,255,255,0.10);
+
+  box-shadow:
+    0 0 30px rgba(0,0,0,0.45),
+    0 0 12px rgba(255,215,0,0.10);
+
+  backdrop-filter: blur(12px);
+}
+
+.rarity-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+
+  z-index: 10;
+
+  background: linear-gradient(
+    180deg,
+    #fff4b0,
+    #ffd700,
+    #c79200
+  );
+
+  color: black;
+
+  padding: 8px 14px;
+
+  border-radius: 999px;
+
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+.athlete-image {
+  width: 100%;
+  display: block;
+}
+
+.athlete-content {
+  padding: 22px 18px 24px;
+}
+
+.athlete-series {
+  color: #f6c15b;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.athlete-name {
+  margin: 10px 0 6px;
+
+  font-size: 2rem;
+  font-weight: 900;
+
+  color: white;
+}
+
+.athlete-role {
+  color: #00ff9d;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.athlete-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.10);
+  margin: 20px 0;
+}
+
+.athlete-stats {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 10px;
+}
+
+.stat-box {
+  background: rgba(0,0,0,0.35);
+
+  border-radius: 18px;
+
+  padding: 14px 10px;
+
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.stat-number {
+  color: #f6c15b;
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.stat-label {
+  color: #bdbdbd;
+  font-size: 0.68rem;
+  margin-top: 6px;
+}
+
+.athlete-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  margin-top: 22px;
+}
+
+.view-btn {
+  background: rgba(255,255,255,0.06);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  color: white;
+
+  border-radius: 18px;
+
+  padding: 14px;
+
+  font-weight: 900;
+}
+
+.support-btn {
+  background: #00ff9d;
+
+  color: black;
+
+  border: none;
+
+  border-radius: 18px;
+
+  padding: 14px;
+
+  font-weight: 900;
+}
 }
 
 .action-row,
@@ -364,7 +522,76 @@ body::before {
       <a href="#marketplace" class="btn">Browse</a>
       <a href="#create" class="btn btn2">Create</a>
     </div>
-  </section>
+  <section class="featured-athlete-card">
+
+  <div class="featured-label">
+    FEATURED ATHLETE COLLECTION
+  </div>
+
+  <div class="athlete-card-frame">
+
+    <div class="rarity-badge">
+      FOUNDING EDITION
+    </div>
+
+    <img
+      class="athlete-image"
+      src="https://gateway.pinata.cloud/ipfs/bafkreih6ybxj3m4ln2r2nvvf2f5q3lf4htg6p7v7bl8qx5u3r3q6j5v3qy"
+      alt="Thomas Enoka"
+    >
+
+    <div class="athlete-content">
+
+      <div class="athlete-series">
+        LEGEND SERIES #001
+      </div>
+
+      <h2 class="athlete-name">
+        Thomas Enoka
+      </h2>
+
+      <div class="athlete-role">
+        Black Sox Vice-Captain
+      </div>
+
+      <div class="athlete-divider"></div>
+
+      <div class="athlete-stats">
+
+        <div class="stat-box">
+          <div class="stat-number">25</div>
+          <div class="stat-label">SUPPLY</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-number">7.5%</div>
+          <div class="stat-label">ROYALTY</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-number">ERC1155</div>
+          <div class="stat-label">TYPE</div>
+        </div>
+
+      </div>
+
+      <div class="athlete-buttons">
+
+        <button class="view-btn">
+          View Collection
+        </button>
+
+        <button class="support-btn">
+          Mint Supporter NFT
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
   <section class="card">
     <img
