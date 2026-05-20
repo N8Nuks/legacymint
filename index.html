@@ -346,6 +346,7 @@ body::before {
   margin-top: 12px;
 }
 
+/* Beta overlay */
 .overlay {
   position: fixed;
   inset: 0;
@@ -388,6 +389,112 @@ body::before {
   font-weight: 900;
 }
 
+/* Collection popup */
+.collection-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.94);
+  display: none;
+  z-index: 9998;
+  padding: 18px 14px 110px;
+  overflow-y: auto;
+}
+
+.collection-modal.active {
+  display: block;
+}
+
+.collection-box {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.collection-header {
+  text-align: left;
+  padding: 18px;
+  border-radius: 26px;
+  background: rgba(12,12,12,0.92);
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 16px;
+}
+
+.collection-topline {
+  color: #f6c15b;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.collection-header h2 {
+  margin: 8px 0;
+  color: #00ff9d;
+  font-size: 1.7rem;
+}
+
+.collection-header p {
+  color: #e7e7e7;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.close-modal {
+  width: 100%;
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 999px;
+  border: none;
+  background: #f6851b;
+  color: white;
+  font-weight: 900;
+}
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.collection-item {
+  padding: 14px;
+  border-radius: 26px;
+  background: rgba(12,12,12,0.9);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 26px rgba(0,0,0,0.45);
+}
+
+.collection-item img {
+  width: 100%;
+  border-radius: 20px;
+  display: block;
+}
+
+.collection-item h3 {
+  margin: 14px 0 6px;
+  color: #f6c15b;
+}
+
+.collection-item p {
+  margin: 0 0 12px;
+  color: #dcdcdc;
+  font-size: 0.88rem;
+}
+
+.collection-meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.collection-meta div {
+  padding: 10px 6px;
+  border-radius: 16px;
+  background: rgba(0,0,0,0.42);
+  color: #00ff9d;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+/* Bottom nav */
 .bottom-nav {
   position: fixed;
   left: 0;
@@ -423,6 +530,11 @@ body::before {
   .app { max-width: 760px; }
   .card { padding: 28px; }
   .nft-img { width: 48%; }
+
+  .collection-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .bottom-nav {
     max-width: 560px;
     left: 50%;
@@ -444,6 +556,63 @@ body::before {
       Currently in closed beta testing.
     </p>
     <button onclick="closeOverlay()">Enter Site</button>
+  </div>
+</div>
+
+<!-- Thomas Collection Popup -->
+<div id="collection-modal" class="collection-modal">
+  <div class="collection-box">
+
+    <div class="collection-header">
+      <div class="collection-topline">THOMAS ENOKA VERIFIED COLLECTION</div>
+
+      <h2>Elite Series Collection</h2>
+
+      <p>
+        A premium ERC1155 athlete collection featuring limited edition Thomas Enoka digital collectibles.
+        Each card can represent a unique rarity, supply and supporter utility.
+      </p>
+
+      <button class="close-modal" onclick="closeCollection()">
+        Close Collection
+      </button>
+    </div>
+
+    <div class="collection-grid">
+
+      <div class="collection-item">
+        <img
+          src="https://gateway.pinata.cloud/ipfs/bafybeigiu67t4k7e3zidnpj77nziqqnzi2frjgknba6zmzi3ei3vjch6dy"
+          alt="Thomas Enoka Elite Series #001"
+        >
+
+        <h3>Elite Series #001</h3>
+        <p>Founding Edition collectible card.</p>
+
+        <div class="collection-meta">
+          <div>Supply 25</div>
+          <div>7.5%</div>
+          <div>ERC1155</div>
+        </div>
+      </div>
+
+      <div class="collection-item">
+        <img
+          src="https://gateway.pinata.cloud/ipfs/bafybeid33djahua3gzwj4ioy6ja46gv2lrwadh24ulvhxt2nf6bvikipfe"
+          alt="Thomas Enoka Elite Series #002"
+        >
+
+        <h3>Elite Series #002</h3>
+        <p>Limited high-energy action variant.</p>
+
+        <div class="collection-meta">
+          <div>Supply 10</div>
+          <div>7.5%</div>
+          <div>ERC1155</div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 
@@ -470,11 +639,11 @@ body::before {
     <div class="athlete-card-frame">
       <div class="rarity-badge">FOUNDING EDITION</div>
 
-     <img
-  class="athlete-image"
-  src="https://gateway.pinata.cloud/ipfs/bafybeigiu67t4k7e3zidnpj77nziqqnzi2frjgknba6zmzi3ei3vjch6dy"
-  alt="Thomas Enoka"
->
+      <img
+        class="athlete-image"
+        src="https://gateway.pinata.cloud/ipfs/bafybeigiu67t4k7e3zidnpj77nziqqnzi2frjgknba6zmzi3ei3vjch6dy"
+        alt="Thomas Enoka Elite Series #001"
+      >
 
       <div class="athlete-content">
         <div class="athlete-series">ELITE SERIES #001</div>
@@ -503,7 +672,7 @@ body::before {
         </div>
 
         <div class="athlete-buttons">
-          <button class="view-btn">View Collection</button>
+          <button class="view-btn" onclick="openCollection()">View Collection</button>
           <button class="support-btn">Mint Supporter NFT</button>
         </div>
       </div>
@@ -751,6 +920,14 @@ const CONTRACT_ABI = [
 
 function closeOverlay() {
   document.querySelector(".overlay").style.display = "none";
+}
+
+function openCollection() {
+  document.getElementById("collection-modal").classList.add("active");
+}
+
+function closeCollection() {
+  document.getElementById("collection-modal").classList.remove("active");
 }
 
 function shortenAddress(address) {
