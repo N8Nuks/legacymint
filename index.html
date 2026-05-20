@@ -10,7 +10,9 @@
 <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
 
 <style>
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -25,11 +27,14 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
+
   background:
     linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.92)),
     url("https://gateway.pinata.cloud/ipfs/bafkreifbbbh3ibc6ftx2guipqtgayry6i224dctbgilojnclk7u4jsle3a");
+
   background-size: cover;
   background-position: center;
+
   z-index: -1;
 }
 
@@ -63,26 +68,97 @@ body::before {
 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
-  text-shadow:
-    0 0 8px rgba(255,215,0,0.14),
-    0 0 18px rgba(255,215,0,0.10);
 }
 
 .mint-text {
   color: #00ff9d;
 
   text-shadow:
-    0 0 10px rgba(0,255,157,0.16),
-    0 0 20px rgba(0,255,157,0.08);
+    0 0 12px rgba(0,255,157,0.16),
+    0 0 24px rgba(0,255,157,0.08);
 }
+
 .subtitle {
   font-size: 1rem;
   line-height: 1.5;
   color: #e8e8e8;
   margin: 14px auto 22px;
-  .featured-athlete-card {
-  margin-top: 26px;
+}
+
+.action-row,
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.btn,
+.wallet-btn,
+.network-btn,
+.mint-btn,
+.uri-btn,
+.view-btn,
+.support-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 900;
+  font-size: 0.92rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn {
+  background: #00ff9d;
+  color: black;
+}
+
+.btn2 {
+  background: rgba(0,0,0,0.35);
+  border: 1.5px solid #00ff9d;
+  color: #00ff9d;
+}
+
+.wallet-btn {
+  background: #f6851b;
+  color: white;
+}
+
+.network-btn {
+  background: #2563eb;
+  color: white;
+  margin-top: 10px;
+}
+
+.mint-btn {
+  background: #00ff9d;
+  color: black;
+}
+
+.uri-btn {
+  background: #9333ea;
+  color: white;
+  margin-top: 10px;
+}
+
+.card {
+  margin: 20px auto;
+  padding: 18px;
+  border-radius: 28px;
+
+  background: rgba(12,12,12,0.86);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    0 0 34px rgba(0,0,0,0.55);
+
+  backdrop-filter: blur(10px);
+}
+
+.featured-athlete-card {
+  margin-top: 28px;
 }
 
 .featured-label {
@@ -102,7 +178,7 @@ body::before {
   background:
     linear-gradient(
       145deg,
-      rgba(255,215,0,0.14),
+      rgba(255,215,0,0.12),
       rgba(0,255,157,0.08)
     );
 
@@ -239,61 +315,14 @@ body::before {
 
   font-weight: 900;
 }
-}
-
-.action-row,
-.grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-
-.btn,
-.wallet-btn,
-.network-btn,
-.mint-btn,
-.uri-btn {
-  width: 100%;
-  padding: 14px;
-  border-radius: 999px;
-  border: none;
-  font-weight: 900;
-  font-size: 0.92rem;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.btn {
-  background: #00ff9d;
-  color: black;
-}
-
-.btn2 {
-  background: rgba(0,0,0,0.35);
-  border: 1.5px solid #00ff9d;
-  color: #00ff9d;
-}
-
-.wallet-btn { background: #f6851b; color: white; }
-.network-btn { background: #2563eb; color: white; margin-top: 10px; }
-.mint-btn { background: #00ff9d; color: black; }
-.uri-btn { background: #9333ea; color: white; margin-top: 10px; }
-
-.card {
-  margin: 20px auto;
-  padding: 18px;
-  border-radius: 28px;
-  background: rgba(12,12,12,0.86);
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 0 34px rgba(0,0,0,0.55);
-  backdrop-filter: blur(10px);
-}
 
 .nft-img {
   width: 64%;
   max-width: 250px;
   border-radius: 22px;
-  box-shadow: 0 0 28px rgba(0,0,0,0.65);
+
+  box-shadow:
+    0 0 28px rgba(0,0,0,0.65);
 }
 
 .card h2 {
@@ -327,9 +356,13 @@ body::before {
   margin: 12px 0 16px;
   padding: 9px 14px;
   border-radius: 999px;
+
   background: rgba(246,193,91,0.12);
+
   color: #f6c15b;
+
   border: 1px solid rgba(246,193,91,0.35);
+
   font-weight: 900;
 }
 
@@ -343,7 +376,9 @@ body::before {
 .impact-box {
   padding: 14px 8px;
   border-radius: 20px;
+
   background: rgba(0,0,0,0.42);
+
   border: 1px solid rgba(255,255,255,0.07);
 }
 
@@ -363,7 +398,9 @@ body::before {
   text-align: left;
   padding: 16px;
   border-radius: 22px;
+
   background: rgba(0,0,0,0.42);
+
   border: 1px solid rgba(255,255,255,0.07);
 }
 
@@ -386,7 +423,9 @@ body::before {
   margin-top: 16px;
   padding: 14px;
   border-radius: 22px;
+
   background: rgba(0,0,0,0.52);
+
   border: 1px solid rgba(255,255,255,0.08);
 }
 
@@ -405,21 +444,30 @@ body::before {
 .overlay {
   position: fixed;
   inset: 0;
+
   background: rgba(0,0,0,0.94);
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   padding: 22px;
+
   z-index: 9999;
 }
 
 .overlay-box {
   max-width: 420px;
   padding: 30px 22px;
+
   border-radius: 28px;
+
   background: rgba(14,14,14,0.96);
+
   border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 0 42px rgba(0,0,0,0.8);
+
+  box-shadow:
+    0 0 42px rgba(0,0,0,0.8);
 }
 
 .overlay-box h2 {
@@ -436,11 +484,17 @@ body::before {
 
 .overlay-box button {
   margin-top: 12px;
+
   background: #00ff9d;
+
   color: black;
+
   border: none;
+
   padding: 14px 26px;
+
   border-radius: 999px;
+
   font-weight: 900;
 }
 
@@ -449,22 +503,34 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
+
   padding: 9px 10px 12px;
+
   background: rgba(3,3,3,0.96);
+
   border-top: 1px solid rgba(255,255,255,0.08);
+
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+
   gap: 7px;
+
   z-index: 900;
+
   backdrop-filter: blur(14px);
 }
 
 .bottom-nav button {
   padding: 11px 5px;
+
   border-radius: 16px;
+
   border: none;
+
   background: rgba(255,255,255,0.06);
+
   color: white;
+
   font-size: 0.75rem;
   font-weight: 900;
 }
@@ -475,18 +541,29 @@ body::before {
 }
 
 @media (min-width: 769px) {
-  body { padding: 48px 20px 125px; }
 
-  .app { max-width: 760px; }
+  body {
+    padding: 48px 20px 125px;
+  }
 
-  .card { padding: 28px; }
+  .app {
+    max-width: 760px;
+  }
 
-  .nft-img { width: 48%; }
+  .card {
+    padding: 28px;
+  }
+
+  .nft-img {
+    width: 48%;
+  }
 
   .bottom-nav {
     max-width: 560px;
+
     left: 50%;
     transform: translateX(-50%);
+
     border-radius: 26px 26px 0 0;
   }
 }
@@ -497,32 +574,40 @@ body::before {
 
 <div class="overlay">
   <div class="overlay-box">
+
     <h2>LegacyMint Beta</h2>
+
     <p>
       A mobile-first NFT platform for athletes, creators, clubs and communities on Apertum.
       <br><br>
       Currently in closed beta testing.
     </p>
-    <button onclick="closeOverlay()">Enter Site</button>
+
+    <button onclick="closeOverlay()">
+      Enter Site
+    </button>
+
   </div>
 </div>
 
 <main class="app">
 
-  <section>
-    <h1 class="main-logo">
+<section>
+
+<h1 class="main-logo">
   <span class="legacy-text">Legacy</span><span class="mint-text">Mint</span>
 </h1>
 
-    <div class="subtitle">
-      Support athletes. Create collections. Mint digital legacy on Apertum.
-    </div>
+<div class="subtitle">
+  Support athletes. Create collections. Mint digital legacy on Apertum.
+</div>
 
-    <div class="action-row">
-      <a href="#marketplace" class="btn">Browse</a>
-      <a href="#create" class="btn btn2">Create</a>
-    </div>
-  <section class="featured-athlete-card">
+<div class="action-row">
+  <a href="#marketplace" class="btn">Browse</a>
+  <a href="#create" class="btn btn2">Create</a>
+</div>
+
+<section class="featured-athlete-card">
 
   <div class="featured-label">
     FEATURED ATHLETE COLLECTION
@@ -536,7 +621,7 @@ body::before {
 
     <img
       class="athlete-image"
-      src="https://gateway.pinata.cloud/ipfs/bafkreih6ybxj3m4ln2r2nvvf2f5q3lf4htg6p7v7bl8qx5u3r3q6j5v3qy"
+      src="https://gateway.pinata.cloud/ipfs/bafkreibl4ydrn65etjxmd2yxt6teblfzqsii2rjnbpvt7bsgzwtyykwhku"
       alt="Thomas Enoka"
     >
 
@@ -593,428 +678,20 @@ body::before {
 
 </section>
 
-  <section class="card">
-    <img
-      class="nft-img"
-      src="https://gateway.pinata.cloud/ipfs/bafkreiaougl7sklr5hfyyk3fyumrke5ga3sbdwq4kgadyhdkrpwvqhee2a"
-      alt="LegacyMint Genesis NFT"
-    >
-
-    <h2>Genesis NFT #8</h2>
-
-    <p>
-      Preview before minting. This Genesis NFT is minted directly through LegacyMint on Apertum.
-    </p>
-
-    <div class="token-pill">Token ID: 8</div>
-
-    <button id="mint-button" class="mint-btn" onclick="mintNFT()">
-      Mint NFT #8
-    </button>
-  </section>
-
-  <section id="fund" class="card section-card">
-    <h3>LegacyMint Foundation</h3>
-
-    <p>
-      The LegacyMint Foundation exists to support youth and elite athletes through community-powered NFT fundraising.
-    </p>
-
-    <p>
-      Funds raised through Genesis collections, supporter NFTs and premium drops will contribute toward:
-    </p>
-
-    <ul>
-      <li>Tournament travel assistance</li>
-      <li>Youth athlete development</li>
-      <li>Elite competition support</li>
-      <li>Uniforms and equipment</li>
-      <li>Community sports initiatives</li>
-    </ul>
-
-    <p>
-      Funding distributions will operate through milestone-based pools and athlete application systems.
-    </p>
-
-    <div class="impact-grid">
-      <div class="impact-box">
-        <div class="impact-number">$0</div>
-        <div class="impact-label">Raised</div>
-      </div>
-      <div class="impact-box">
-        <div class="impact-number">0</div>
-        <div class="impact-label">Athletes Funded</div>
-      </div>
-      <div class="impact-box">
-        <div class="impact-number">Beta</div>
-        <div class="impact-label">Platform Stage</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="card section-card">
-    <h3>ERC1155 Collection Model</h3>
-
-    <p>
-      LegacyMint uses ERC1155 architecture so one collection can hold multiple NFT types, editions and rarity levels.
-    </p>
-
-    <p>
-      Example trading card structure:
-    </p>
-
-    <ul>
-      <li>Token ID 1: Athlete Common Card</li>
-      <li>Token ID 2: Athlete Rare Card</li>
-      <li>Token ID 3: Athlete Holographic Card</li>
-      <li>Token ID 4: Signed Premium Edition</li>
-    </ul>
-
-    <p>
-      This allows creator collections, trading cards, raffle NFTs, supporter passes and premium drops to stay organised inside one scalable collection system.
-    </p>
-  </section>
-
-  <section id="marketplace" class="card section-card">
-    <h3>Marketplace</h3>
-
-    <p>
-      Browse verified athlete collections, supporter NFTs, fundraising campaigns and premium digital collectibles.
-    </p>
-
-    <div class="grid-2">
-      <div class="category-card">
-        <h4>Foundation</h4>
-        <p>LegacyMint Genesis NFTs supporting athlete funding initiatives.</p>
-      </div>
-
-      <div class="category-card">
-        <h4>Athlete Drops</h4>
-        <p>Verified athlete cards, legacy moments and exclusive content.</p>
-      </div>
-
-      <div class="category-card">
-        <h4>Club Fundraisers</h4>
-        <p>Raffle-style NFTs for clubs, schools and teams.</p>
-      </div>
-
-      <div class="category-card">
-        <h4>Premium NFTs</h4>
-        <p>Limited edition high-value collectibles and exclusive releases.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="create" class="card section-card">
-    <h3>Create Collection</h3>
-
-    <p>
-      LegacyMint is building simple mobile-first creator tools allowing athletes, clubs and creators to launch ERC1155 collections directly from their phone.
-    </p>
-
-    <p>
-      Future creator tools will include:
-    </p>
-
-    <ul>
-      <li>Artwork uploads</li>
-      <li>Collection setup</li>
-      <li>Card type and rarity setup</li>
-      <li>Supply and pricing controls</li>
-      <li>Raffle-style fundraising campaigns</li>
-      <li>Creator royalties</li>
-      <li>Premium collection launches</li>
-    </ul>
-
-    <button class="btn btn2">
-      Creator Tools Coming Soon
-    </button>
-  </section>
-
-  <section class="card section-card">
-    <h3>Upcoming Verified Collections</h3>
-
-    <p>
-      LegacyMint has already secured initial athlete and creator partnerships for future verified collection launches.
-    </p>
-
-    <div class="grid-2">
-      <div class="category-card">
-        <h4>Verified Athlete</h4>
-        <p>Premium athlete legacy collection coming soon.</p>
-      </div>
-
-      <div class="category-card">
-        <h4>Club Campaign</h4>
-        <p>Community fundraising collection in development.</p>
-      </div>
-
-      <div class="category-card">
-        <h4>Genesis Pass</h4>
-        <p>Early supporter access and ecosystem rewards.</p>
-      </div>
-
-      <div class="category-card">
-        <h4>Trading Cards</h4>
-        <p>Common, rare, holographic and signed variants.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="card">
-    <button id="wallet-button" class="wallet-btn" onclick="connectWallet()">
-      Connect Wallet
-    </button>
-
-    <button id="network-button" class="network-btn" onclick="switchToApertum()" style="display:none;">
-      Switch to Apertum
-    </button>
-
-    <div class="admin-tools">
-      <button class="uri-btn" onclick="setMetadataURI()">
-        Set Metadata URI
-      </button>
-    </div>
-
-    <div class="status-panel">
-      <div id="wallet-status" class="status">Wallet not connected</div>
-      <div id="network-status" class="status">Network not checked</div>
-      <div id="mint-status" class="status">Mint not started</div>
-      <div id="uri-status" class="status">Metadata URI not set</div>
-    </div>
-  </section>
+</section>
 
 </main>
 
 <nav class="bottom-nav">
-  <button onclick="window.location.href='#top'">Home</button>
-  <button onclick="window.location.href='#marketplace'">Browse</button>
-  <button onclick="window.location.href='#create'">Create</button>
-  <button class="primary-nav" onclick="connectWallet()">Wallet</button>
+  <button>Home</button>
+  <button>Browse</button>
+  <button>Create</button>
+  <button class="primary-nav">Wallet</button>
 </nav>
 
 <script>
-let userAccount = "";
-
-const CONTRACT_ADDRESS =
-  "0x50B8f3A1990a5866220174304D37ed3723ed8b9c";
-
-const TOKEN_ID_TO_MINT = 8;
-
-const METADATA_URI =
-  "https://gateway.pinata.cloud/ipfs/bafybeiftsibenblz2wp5htulhcktffizq3aoue76vmcgx2mcp6pzy6hv3m/{id}.json";
-
-const APTM_CHAIN_ID = "0xae2";
-
-const APTM_NETWORK = {
-  chainId: "0xae2",
-  chainName: "Apertum",
-  nativeCurrency: {
-    name: "APTM",
-    symbol: "APTM",
-    decimals: 18
-  },
-  rpcUrls: [
-    "https://rpc.apertum.io/ext/bc/YDJ1r9RMkewATmA7B35q1bdV18aywzmdiXwd9zGBq3uQjsCnn/rpc"
-  ],
-  blockExplorerUrls: [
-    "https://explorer.apertum.io/"
-  ]
-};
-
-const CONTRACT_ABI = [
-  {
-    "inputs": [
-      {"internalType": "string", "name": "newuri", "type": "string"}
-    ],
-    "name": "setURI",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {"internalType": "address", "name": "account", "type": "address"},
-      {"internalType": "uint256", "name": "id", "type": "uint256"},
-      {"internalType": "uint256", "name": "amount", "type": "uint256"},
-      {"internalType": "bytes", "name": "data", "type": "bytes"}
-    ],
-    "name": "mint",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  }
-];
-
 function closeOverlay() {
   document.querySelector(".overlay").style.display = "none";
-}
-
-function shortenAddress(address) {
-  return address.slice(0, 6) + "..." + address.slice(-4);
-}
-
-async function connectWallet() {
-  if (!window.ethereum) {
-    document.getElementById("wallet-status").innerText =
-      "MetaMask not detected";
-    return;
-  }
-
-  try {
-    const accounts = await window.ethereum.request({
-      method: "eth_requestAccounts"
-    });
-
-    userAccount = accounts[0];
-
-    document.getElementById("wallet-status").innerText =
-      "Connected: " + shortenAddress(userAccount);
-
-    document.getElementById("wallet-button").innerText =
-      "Wallet Connected";
-
-    await checkNetwork();
-
-  } catch (error) {
-    console.log(error);
-    document.getElementById("wallet-status").innerText =
-      "Connection failed";
-  }
-}
-
-async function checkNetwork() {
-  const chainId = await window.ethereum.request({
-    method: "eth_chainId"
-  });
-
-  if (chainId === APTM_CHAIN_ID) {
-    document.getElementById("network-status").innerText =
-      "Network: Apertum ✅";
-
-    document.getElementById("network-button").style.display =
-      "none";
-  } else {
-    document.getElementById("network-status").innerText =
-      "Wrong network ❌";
-
-    document.getElementById("network-button").style.display =
-      "inline-block";
-  }
-}
-
-async function switchToApertum() {
-  try {
-    await window.ethereum.request({
-      method: "wallet_switchEthereumChain",
-      params: [{ chainId: APTM_CHAIN_ID }]
-    });
-
-    await checkNetwork();
-
-  } catch (switchError) {
-    if (switchError.code === 4902) {
-      await window.ethereum.request({
-        method: "wallet_addEthereumChain",
-        params: [APTM_NETWORK]
-      });
-
-      await checkNetwork();
-    }
-  }
-}
-
-async function getContract() {
-  const provider =
-    new ethers.providers.Web3Provider(window.ethereum);
-
-  const signer = provider.getSigner();
-
-  return new ethers.Contract(
-    CONTRACT_ADDRESS,
-    CONTRACT_ABI,
-    signer
-  );
-}
-
-async function mintNFT() {
-  if (!userAccount) {
-    document.getElementById("mint-status").innerText =
-      "Connect wallet first";
-    return;
-  }
-
-  try {
-    const contract = await getContract();
-
-    document.getElementById("mint-status").innerText =
-      "Minting NFT #" + TOKEN_ID_TO_MINT + "...";
-
-    const tx = await contract.mint(
-      userAccount,
-      TOKEN_ID_TO_MINT,
-      1,
-      "0x"
-    );
-
-    await tx.wait();
-
-    document.getElementById("mint-status").innerText =
-      "NFT #" + TOKEN_ID_TO_MINT + " Minted Successfully ✅";
-
-  } catch (error) {
-    console.log(error);
-    document.getElementById("mint-status").innerText =
-      "Mint failed ❌";
-  }
-}
-
-async function setMetadataURI() {
-  if (!userAccount) {
-    document.getElementById("uri-status").innerText =
-      "Connect wallet first";
-    return;
-  }
-
-  try {
-    const contract = await getContract();
-
-    document.getElementById("uri-status").innerText =
-      "Setting metadata URI...";
-
-    const tx = await contract.setURI(METADATA_URI);
-
-    await tx.wait();
-
-    document.getElementById("uri-status").innerText =
-      "Metadata URI Set Successfully ✅";
-
-  } catch (error) {
-    console.log(error);
-    document.getElementById("uri-status").innerText =
-      "Metadata URI failed ❌";
-  }
-}
-
-if (window.ethereum) {
-  window.ethereum.on("chainChanged", checkNetwork);
-
-  window.ethereum.on("accountsChanged", function(accounts) {
-    if (accounts.length > 0) {
-      userAccount = accounts[0];
-
-      document.getElementById("wallet-status").innerText =
-        "Connected: " + shortenAddress(userAccount);
-
-      checkNetwork();
-
-    } else {
-      userAccount = "";
-
-      document.getElementById("wallet-status").innerText =
-        "Wallet not connected";
-    }
-  });
 }
 </script>
 
