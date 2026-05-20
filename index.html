@@ -17,7 +17,7 @@ body {
   color: white;
   background: #050505;
   text-align: center;
-  padding: 24px 14px 96px;
+  padding: 24px 14px 110px;
 }
 
 body::before {
@@ -25,7 +25,7 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.9)),
+    linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.92)),
     url("https://gateway.pinata.cloud/ipfs/bafkreifbbbh3ibc6ftx2guipqtgayry6i224dctbgilojnclk7u4jsle3a");
   background-size: cover;
   background-position: center;
@@ -33,16 +33,12 @@ body::before {
 }
 
 .app {
-  max-width: 520px;
+  max-width: 560px;
   margin: 0 auto;
 }
 
-.hero {
-  padding-top: 18px;
-}
-
 h1 {
-  font-size: clamp(2.4rem, 12vw, 4.5rem);
+  font-size: clamp(2.5rem, 12vw, 4.6rem);
   margin: 0;
   color: #00ff9d;
   text-shadow: 0 0 18px rgba(0,255,157,0.25);
@@ -55,7 +51,8 @@ h1 {
   margin: 14px auto 22px;
 }
 
-.action-row {
+.action-row,
+.grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
@@ -67,10 +64,10 @@ h1 {
 .mint-btn,
 .uri-btn {
   width: 100%;
-  padding: 14px 14px;
+  padding: 14px;
   border-radius: 999px;
   border: none;
-  font-weight: 800;
+  font-weight: 900;
   font-size: 0.92rem;
   text-decoration: none;
   cursor: pointer;
@@ -87,8 +84,13 @@ h1 {
   color: #00ff9d;
 }
 
+.wallet-btn { background: #f6851b; color: white; }
+.network-btn { background: #2563eb; color: white; margin-top: 10px; }
+.mint-btn { background: #00ff9d; color: black; }
+.uri-btn { background: #9333ea; color: white; margin-top: 10px; }
+
 .card {
-  margin: 22px auto;
+  margin: 20px auto;
   padding: 18px;
   border-radius: 28px;
   background: rgba(12,12,12,0.86);
@@ -98,8 +100,8 @@ h1 {
 }
 
 .nft-img {
-  width: 66%;
-  max-width: 260px;
+  width: 64%;
+  max-width: 250px;
   border-radius: 22px;
   box-shadow: 0 0 28px rgba(0,0,0,0.65);
 }
@@ -110,9 +112,15 @@ h1 {
   margin: 16px 0 8px;
 }
 
+.card h3 {
+  color: #f6c15b;
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+}
+
 .card p {
   color: #e7e7e7;
-  font-size: 0.95rem;
+  font-size: 0.94rem;
   line-height: 1.45;
   margin: 8px 0;
 }
@@ -125,33 +133,60 @@ h1 {
   background: rgba(246,193,91,0.12);
   color: #f6c15b;
   border: 1px solid rgba(246,193,91,0.35);
-  font-weight: 800;
+  font-weight: 900;
 }
 
-.mint-btn {
-  background: #00ff9d;
-  color: black;
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px;
+  margin-top: 14px;
 }
 
-.wallet-btn {
-  background: #f6851b;
-  color: white;
+.impact-box {
+  padding: 14px 8px;
+  border-radius: 20px;
+  background: rgba(0,0,0,0.42);
+  border: 1px solid rgba(255,255,255,0.07);
 }
 
-.network-btn {
-  background: #2563eb;
-  color: white;
-  margin-top: 10px;
+.impact-number {
+  color: #00ff9d;
+  font-weight: 900;
+  font-size: 1.05rem;
 }
 
-.uri-btn {
-  background: #9333ea;
-  color: white;
-  margin-top: 10px;
+.impact-label {
+  color: #cfcfcf;
+  font-size: 0.72rem;
+  margin-top: 5px;
+}
+
+.category-card {
+  text-align: left;
+  padding: 16px;
+  border-radius: 22px;
+  background: rgba(0,0,0,0.42);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+.category-card h4 {
+  color: #00ff9d;
+  margin: 0 0 7px;
+  font-size: 0.98rem;
+}
+
+.category-card p {
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.section-card {
+  text-align: left;
 }
 
 .status-panel {
-  margin-top: 18px;
+  margin-top: 16px;
   padding: 14px;
   border-radius: 22px;
   background: rgba(0,0,0,0.52);
@@ -161,49 +196,13 @@ h1 {
 .status {
   margin: 7px 0;
   color: #00ff9d;
-  font-size: 0.83rem;
-  font-weight: 800;
+  font-size: 0.82rem;
+  font-weight: 900;
   word-break: break-word;
-}
-
-.section-card {
-  text-align: left;
-}
-
-.section-card h3 {
-  color: #f6c15b;
-  margin: 0 0 8px;
-}
-
-.section-card p {
-  font-size: 0.92rem;
 }
 
 .admin-tools {
   margin-top: 12px;
-}
-
-.bottom-bar {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 10px 12px 14px;
-  background: rgba(3,3,3,0.95);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  z-index: 900;
-  backdrop-filter: blur(14px);
-}
-
-.bottom-bar button {
-  padding: 14px 10px;
-  border-radius: 999px;
-  border: none;
-  font-weight: 900;
-  font-size: 0.9rem;
 }
 
 .overlay {
@@ -248,25 +247,47 @@ h1 {
   font-weight: 900;
 }
 
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 9px 10px 12px;
+  background: rgba(3,3,3,0.96);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+  z-index: 900;
+  backdrop-filter: blur(14px);
+}
+
+.bottom-nav button {
+  padding: 11px 5px;
+  border-radius: 16px;
+  border: none;
+  background: rgba(255,255,255,0.06);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.bottom-nav .primary-nav {
+  background: #00ff9d;
+  color: black;
+}
+
 @media (min-width: 769px) {
-  body {
-    padding: 48px 20px 120px;
-  }
+  body { padding: 48px 20px 125px; }
 
-  .app {
-    max-width: 720px;
-  }
+  .app { max-width: 760px; }
 
-  .card {
-    padding: 28px;
-  }
+  .card { padding: 28px; }
 
-  .nft-img {
-    width: 52%;
-  }
+  .nft-img { width: 48%; }
 
-  .bottom-bar {
-    max-width: 520px;
+  .bottom-nav {
+    max-width: 560px;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 26px 26px 0 0;
@@ -291,15 +312,15 @@ h1 {
 
 <main class="app">
 
-  <section class="hero">
+  <section>
     <h1>LegacyMint</h1>
     <div class="subtitle">
       Support athletes. Create collections. Mint digital legacy on Apertum.
     </div>
 
     <div class="action-row">
-      <a href="#" class="btn">Browse</a>
-      <a href="#" class="btn btn2">Create</a>
+      <a href="#marketplace" class="btn">Browse</a>
+      <a href="#create" class="btn btn2">Create</a>
     </div>
   </section>
 
@@ -323,18 +344,64 @@ h1 {
     </button>
   </section>
 
-  <section class="card section-card">
+  <section id="fund" class="card section-card">
     <h3>Athlete Fund</h3>
     <p>
-      LegacyMint Foundation NFTs will support youth and elite athletes through milestone-based funding.
+      LegacyMint Foundation NFTs will support youth and elite athletes through milestone-based funding and applications.
     </p>
+
+    <div class="impact-grid">
+      <div class="impact-box">
+        <div class="impact-number">$0</div>
+        <div class="impact-label">Raised</div>
+      </div>
+      <div class="impact-box">
+        <div class="impact-number">0</div>
+        <div class="impact-label">Funded</div>
+      </div>
+      <div class="impact-box">
+        <div class="impact-number">Beta</div>
+        <div class="impact-label">Stage</div>
+      </div>
+    </div>
   </section>
 
-  <section class="card section-card">
-    <h3>Creator Collections</h3>
+  <section id="marketplace" class="card section-card">
+    <h3>Marketplace</h3>
+    <p>Browse collections by purpose, creator and campaign type.</p>
+
+    <div class="grid-2">
+      <div class="category-card">
+        <h4>Foundation</h4>
+        <p>Support LegacyMint and athlete funding.</p>
+      </div>
+
+      <div class="category-card">
+        <h4>Athlete Drops</h4>
+        <p>Verified athlete collections and moments.</p>
+      </div>
+
+      <div class="category-card">
+        <h4>Club Fundraisers</h4>
+        <p>Raffle-style NFTs for teams and clubs.</p>
+      </div>
+
+      <div class="category-card">
+        <h4>Premium NFTs</h4>
+        <p>High-value legacy and limited editions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="create" class="card section-card">
+    <h3>Create Collection</h3>
     <p>
-      Athletes, clubs and creators will be able to launch collections, fundraising campaigns and premium drops.
+      Soon, creators, clubs and athletes will be able to upload artwork, set supply, launch campaigns and publish collections from mobile.
     </p>
+
+    <button class="btn btn2">
+      Creator Tools Coming Soon
+    </button>
   </section>
 
   <section class="card">
@@ -362,10 +429,12 @@ h1 {
 
 </main>
 
-<div class="bottom-bar">
-  <button class="wallet-btn" onclick="connectWallet()">Wallet</button>
-  <button class="mint-btn" onclick="mintNFT()">Mint #8</button>
-</div>
+<nav class="bottom-nav">
+  <button onclick="window.location.href='#top'">Home</button>
+  <button onclick="window.location.href='#marketplace'">Browse</button>
+  <button onclick="window.location.href='#create'">Create</button>
+  <button class="primary-nav" onclick="connectWallet()">Wallet</button>
+</nav>
 
 <script>
 let userAccount = "";
