@@ -357,7 +357,28 @@ body::before {
   background: #00ff9d;
   box-shadow: 0 0 10px rgba(0,255,157,0.5);
 }
+.side-controls {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 14px;
+}
 
+.side-controls button {
+  padding: 10px 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(0,0,0,0.48);
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.side-controls button.active {
+  background: #00ff9d;
+  color: black;
+}
+  
 .card {
   margin: 20px auto;
   padding: 18px;
@@ -838,12 +859,12 @@ body::before {
         </div>
       </div>
 
-      <div class="side-indicator">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </div>
+     <div class="side-controls">
+  <button onclick="setHeroSide(0)">Front</button>
+  <button onclick="setHeroSide(1)">Stats</button>
+  <button onclick="setHeroSide(2)">Badges</button>
+  <button onclick="setHeroSide(3)">Utility</button>
+</div>
     </div>
   </div>
 </section>
@@ -955,20 +976,26 @@ const CONTRACT_ABI = [
 ];
 
 function updateHeroSide() {
-  document.querySelectorAll(".card-side").forEach(side => side.classList.remove("active"));
-  document.getElementById(heroSides[heroSideIndex]).classList.add("active");
+  document.querySelectorAll(".card-side").forEach(side => {
+    side.classList.remove("active");
+  });
 
-  document.querySelectorAll(".dot").forEach((dot, index) => {
-    dot.classList.toggle("active", index === heroSideIndex);
+  document
+    .getElementById(heroSides[heroSideIndex])
+    .classList.add("active");
+
+  document.querySelectorAll(".side-controls button").forEach((btn, index) => {
+    btn.classList.toggle("active", index === heroSideIndex);
   });
 }
 
-function nextHeroSide() {
-  heroSideIndex = (heroSideIndex + 1) % heroSides.length;
+function setHeroSide(index) {
+  heroSideIndex = index;
   updateHeroSide();
 }
+}
 
-setInterval(nextHeroSide, 4000);
+setInterval(nextHeroSide, 8500);
 
 function showTab(tabId, button) {
   document.querySelectorAll(".tab-section").forEach(section => section.classList.remove("active"));
