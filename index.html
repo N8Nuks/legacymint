@@ -262,6 +262,7 @@ body::before {
   color: #e7e7e7;
   line-height: 1.45;
 }
+
 .star-rating-box {
   margin: 18px 0;
   padding: 16px;
@@ -290,6 +291,7 @@ body::before {
   font-weight: 900;
   margin-top: 8px;
 }
+
 .skill-grid {
   display: grid;
   gap: 12px;
@@ -366,24 +368,6 @@ body::before {
   color: #f6c15b;
 }
 
-.side-indicator {
-  display: flex;
-  justify-content: center;
-  gap: 7px;
-  margin-top: 14px;
-}
-
-.dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.25);
-}
-
-.dot.active {
-  background: #00ff9d;
-  box-shadow: 0 0 10px rgba(0,255,157,0.5);
-}
 .side-controls {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -405,7 +389,7 @@ body::before {
   background: #00ff9d;
   color: black;
 }
-  
+
 .card {
   margin: 20px auto;
   padding: 18px;
@@ -624,6 +608,7 @@ body::before {
   align-items: center;
   padding: 22px;
   z-index: 9999;
+  transition: opacity 0.3s ease;
 }
 
 .overlay-box {
@@ -646,6 +631,17 @@ body::before {
   border: none;
   padding: 14px 26px;
   border-radius: 999px;
+  font-weight: 900;
+}
+
+.beta-warning {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(246,193,91,0.12);
+  border: 1px solid rgba(246,193,91,0.28);
+  color: #f6c15b;
+  font-size: 0.82rem;
   font-weight: 900;
 }
 
@@ -733,9 +729,22 @@ body::before {
 
 <div class="overlay">
   <div class="overlay-box">
+
     <h2>LegacyMint Beta</h2>
-    <p>A mobile-first NFT platform for athletes, creators, clubs and communities on Apertum.</p>
-    <button onclick="closeOverlay()">Enter Site</button>
+
+    <p>
+      A premium mobile-first NFT platform for athletes,
+      creators, clubs and communities on Apertum.
+    </p>
+
+    <div class="beta-warning">
+      Platform currently undergoing Beta Testing.
+    </div>
+
+    <button onclick="closeOverlay()">
+      Enter Site
+    </button>
+
   </div>
 </div>
 
@@ -763,7 +772,7 @@ body::before {
       <div class="collection-item">
         <img src="https://gateway.pinata.cloud/ipfs/bafybeid33djahua3gzwj4ioy6ja46gv2lrwadh24ulvhxt2nf6bvikipfe">
         <h3>Elite Series #002</h3>
-        <p>High-energy Action Multiplier Variant.</p>
+        <p>Limited high-energy action variant.</p>
         <div class="collection-meta">
           <div><span class="meta-title">SUPPLY</span><span class="meta-value">10</span></div>
           <div><span class="meta-title">ROYALTY</span><span class="meta-value green">7.5% Creator</span></div>
@@ -795,20 +804,20 @@ body::before {
       </h1>
 
       <div class="subtitle">
-        Support Athletes and Students. Create collections. Mint Digital Legacy on Apertum.
+        Support athletes. Create collections. Mint digital legacy on Apertum.
       </div>
 
       <div class="card">
         <h3>Premium Athlete Collectibles</h3>
         <p>
-          Featured Cards now support multi-side collectible views including Stats,
-          Verification badges, Utility and future Fantasy game Attributes.
+          Featured cards now support multi-side collectible views including stats,
+          verification badges, utility and future fantasy game attributes.
         </p>
       </div>
     </div>
 
     <div class="hero-card-wrap">
-      <div class="featured-label">FEATURED ATHLETE COLLECTION</div>
+      <div class="hero-card-header">FEATURED ATHLETE COLLECTION</div>
 
       <div class="flip-card" onclick="nextHeroSide()">
         <div class="rarity-badge">FOUNDING EDITION</div>
@@ -841,11 +850,19 @@ body::before {
             <div class="hero-series">PLAYER STATS / FANTASY LAYER</div>
             <h2>Thomas Enoka</h2>
             <p>Future fantasy game attributes for skill-based collectible utility.</p>
-<div class="star-rating-box">
-  <div class="star-title">FANTASY STAR RATING</div>
-  <div class="stars">★★★★★★★★★★☆☆</div>
-  <div class="star-subtitle">10 / 12 Star Player</div>
-</div>
+
+            <div class="star-rating-box">
+              <div class="star-title">FANTASY STAR RATING</div>
+
+              <div class="stars">
+                ★★★★★★★★★★☆☆
+              </div>
+
+              <div class="star-subtitle">
+                Elite Tier • 10 / 12 Star Player
+              </div>
+            </div>
+
             <div class="skill-grid">
               <div class="skill-row"><div class="skill-label"><span>Batting</span><span>92</span></div><div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
               <div class="skill-row"><div class="skill-label"><span>Power</span><span>88</span></div><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
@@ -890,12 +907,12 @@ body::before {
         </div>
       </div>
 
-     <div class="side-controls">
-  <button onclick="setHeroSide(0)">Front</button>
-  <button onclick="setHeroSide(1)">Stats</button>
-  <button onclick="setHeroSide(2)">Badges</button>
-  <button onclick="setHeroSide(3)">Utility</button>
-</div>
+      <div class="side-controls">
+        <button class="active" onclick="setHeroSide(0)">Front</button>
+        <button onclick="setHeroSide(1)">Stats</button>
+        <button onclick="setHeroSide(2)">Badges</button>
+        <button onclick="setHeroSide(3)">Utility</button>
+      </div>
     </div>
   </div>
 </section>
@@ -1020,13 +1037,17 @@ function updateHeroSide() {
   });
 }
 
+function nextHeroSide() {
+  heroSideIndex = (heroSideIndex + 1) % heroSides.length;
+  updateHeroSide();
+}
+
 function setHeroSide(index) {
   heroSideIndex = index;
   updateHeroSide();
 }
-}
 
-setInterval(nextHeroSide, 8500);
+setInterval(nextHeroSide, 8000);
 
 function showTab(tabId, button) {
   document.querySelectorAll(".tab-section").forEach(section => section.classList.remove("active"));
@@ -1039,7 +1060,15 @@ function showTab(tabId, button) {
 }
 
 function closeOverlay() {
-  document.querySelector(".overlay").style.display = "none";
+  const overlay = document.querySelector(".overlay");
+
+  overlay.style.opacity = "0";
+  overlay.style.pointerEvents = "none";
+
+  setTimeout(() => {
+    overlay.style.display = "none";
+  }, 300);
+
   window.scrollTo(0, 0);
 }
 
