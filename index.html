@@ -231,6 +231,27 @@ body::before {
   margin-top: 6px;
 }
 
+.meta-title {
+  display: block;
+  color: #8d8d8d;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.meta-value {
+  display: block;
+  color: #f6c15b;
+  font-size: 0.9rem;
+  font-weight: 900;
+}
+
+.meta-value.green {
+  color: #00ff9d;
+  text-shadow: 0 0 10px rgba(0,255,157,0.25);
+}
+
 .athlete-buttons {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -260,15 +281,11 @@ body::before {
   border: 1px solid rgba(255,255,255,0.07);
 }
 
-.category-card h4 {
+.category-card h4,
+.safety-card h4 {
   color: #00ff9d;
   margin: 0 0 7px;
-}
-
-.safety-card h4 {
-  color: #ff2b2b;
-  margin: 0 0 7px;
-  text-shadow: 0 0 10px rgba(255,43,43,0.35);
+  text-shadow: 0 0 10px rgba(0,255,157,0.20);
 }
 
 .category-card p,
@@ -311,7 +328,13 @@ body::before {
   word-break: break-word;
 }
 
-/* Collection popup */
+.full-img {
+  width: 100%;
+  border-radius: 22px;
+  margin-top: 16px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.45);
+}
+
 .collection-modal {
   position: fixed;
   inset: 0;
@@ -384,7 +407,6 @@ body::before {
   color: #f6c15b;
 }
 
-/* Beta overlay */
 .overlay {
   position: fixed;
   inset: 0;
@@ -419,7 +441,6 @@ body::before {
   font-weight: 900;
 }
 
-/* Bottom nav */
 .bottom-nav {
   position: fixed;
   left: 0;
@@ -429,7 +450,7 @@ body::before {
   background: rgba(3,3,3,0.96);
   border-top: 1px solid rgba(255,255,255,0.08);
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 6px;
   z-index: 900;
   backdrop-filter: blur(14px);
@@ -441,7 +462,7 @@ body::before {
   border: none;
   background: rgba(255,255,255,0.06);
   color: white;
-  font-size: 0.68rem;
+  font-size: 0.64rem;
   font-weight: 900;
 }
 
@@ -458,7 +479,7 @@ body::before {
 @media (min-width: 769px) {
   .collection-grid { grid-template-columns: 1fr 1fr; }
   .bottom-nav {
-    max-width: 620px;
+    max-width: 680px;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 26px 26px 0 0;
@@ -487,12 +508,15 @@ body::before {
     </div>
 
     <div class="collection-grid">
+
       <div class="collection-item">
         <img src="https://gateway.pinata.cloud/ipfs/bafybeigiu67t4k7e3zidnpj77nziqqnzi2frjgknba6zmzi3ei3vjch6dy">
         <h3>Elite Series #001</h3>
         <p>Founding Edition collectible card.</p>
         <div class="collection-meta">
-          <div>Supply 25</div><div>7.5%</div><div>ERC1155</div>
+          <div><span class="meta-title">SUPPLY</span><span class="meta-value">25</span></div>
+          <div><span class="meta-title">ROYALTY</span><span class="meta-value green">7.5% Creator</span></div>
+          <div><span class="meta-title">STANDARD</span><span class="meta-value green">ERC1155</span></div>
         </div>
       </div>
 
@@ -501,7 +525,9 @@ body::before {
         <h3>Elite Series #002</h3>
         <p>Limited high-energy action variant.</p>
         <div class="collection-meta">
-          <div>Supply 10</div><div>7.5%</div><div>ERC1155</div>
+          <div><span class="meta-title">SUPPLY</span><span class="meta-value">10</span></div>
+          <div><span class="meta-title">ROYALTY</span><span class="meta-value green">7.5% Creator</span></div>
+          <div><span class="meta-title">STANDARD</span><span class="meta-value green">ERC1155</span></div>
         </div>
       </div>
 
@@ -510,9 +536,12 @@ body::before {
         <h3>Elite Series #003</h3>
         <p>Emerald Action Edition collectible card.</p>
         <div class="collection-meta">
-          <div>Supply 15</div><div>7.5%</div><div>ERC1155</div>
+          <div><span class="meta-title">SUPPLY</span><span class="meta-value">15</span></div>
+          <div><span class="meta-title">ROYALTY</span><span class="meta-value green">7.5% Creator</span></div>
+          <div><span class="meta-title">STANDARD</span><span class="meta-value green">ERC1155</span></div>
         </div>
       </div>
+
     </div>
   </div>
 </div>
@@ -543,8 +572,8 @@ body::before {
 
         <div class="athlete-stats">
           <div class="stat-box"><div class="stat-number">25</div><div class="stat-label">SUPPLY</div></div>
-          <div class="stat-box"><div class="stat-number">7.5%</div><div class="stat-label">ROYALTY</div></div>
-          <div class="stat-box"><div class="stat-number">ERC1155</div><div class="stat-label">TYPE</div></div>
+          <div class="stat-box"><div class="stat-number">7.5%</div><div class="stat-label">CREATOR ROYALTY</div></div>
+          <div class="stat-box"><div class="stat-number">ERC1155</div><div class="stat-label">STANDARD</div></div>
         </div>
 
         <div class="athlete-buttons">
@@ -583,6 +612,41 @@ body::before {
         <li>Creator royalties</li>
       </ul>
       <button class="btn btn2">Creator Tools Coming Soon</button>
+    </div>
+  </section>
+
+  <section id="verify" class="tab-section">
+    <div class="card">
+      <h3>LegacyMint Verification</h3>
+      <p>Verification badges help users identify trusted athletes, verified collections, fundraising campaigns and premium releases.</p>
+
+      <img
+        class="full-img"
+        src="https://gateway.pinata.cloud/ipfs/bafybeiaj26sjyqgtc634ih4fqbeessep5ct3j4reuiog3cn5jizcozdvhm"
+        alt="LegacyMint Verification Badges"
+      >
+
+      <h3 style="margin-top:24px;">Rarity Badges</h3>
+      <p>Rarity badges identify the collectible tier, scarcity and significance of each NFT within a LegacyMint collection.</p>
+
+      <img
+        class="full-img"
+        src="https://gateway.pinata.cloud/ipfs/bafybeihqzbhuu4johuawlizweb7ukeqo3oat4yxcvetwwynrj4ahc256tu"
+        alt="LegacyMint Rarity Badges"
+      >
+    </div>
+
+    <div class="card">
+      <h3>Verification Process</h3>
+
+      <div class="grid-2">
+        <div class="safety-card"><h4>Identity Verification</h4><p>Athlete or creator identity manually reviewed.</p></div>
+        <div class="safety-card"><h4>Official Approval</h4><p>Licensed or approved directly through LegacyMint.</p></div>
+        <div class="safety-card"><h4>Wallet Verification</h4><p>Official creator wallet confirmed before launch.</p></div>
+        <div class="safety-card"><h4>Manual Review</h4><p>Collections reviewed before verification is issued.</p></div>
+        <div class="safety-card"><h4>Impact Tracking</h4><p>Fundraising wallets and impact distributions tracked publicly.</p></div>
+        <div class="safety-card"><h4>Badge Issuance</h4><p>Verified collections receive official LegacyMint trust badges.</p></div>
+      </div>
     </div>
   </section>
 
@@ -625,6 +689,7 @@ body::before {
   <button class="active" onclick="showTab('home', this)">Home</button>
   <button onclick="showTab('collections', this)">Collect</button>
   <button onclick="showTab('create', this)">Create</button>
+  <button onclick="showTab('verify', this)">Verify</button>
   <button onclick="showTab('safety', this)">Safety</button>
   <button class="wallet-tab" onclick="showTab('wallet', this)">Wallet</button>
 </nav>
@@ -671,7 +736,6 @@ function showTab(tabId, button) {
   });
 
   button.classList.add("active");
-
   window.scrollTo(0, 0);
 }
 
