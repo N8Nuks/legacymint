@@ -33,7 +33,7 @@ body::before {
   z-index: -1;
 }
 
-.app { max-width: 560px; margin: 0 auto; }
+.app { max-width: 760px; margin: 0 auto; }
 
 .main-logo { margin: 0; line-height: 1; }
 
@@ -62,7 +62,45 @@ body::before {
   margin: 14px auto 22px;
 }
 
-.action-row,
+.tab-section { display: none; }
+.tab-section.active { display: block; }
+
+.card {
+  margin: 20px auto;
+  padding: 18px;
+  border-radius: 28px;
+  background: rgba(12,12,12,0.86);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 34px rgba(0,0,0,0.55);
+  backdrop-filter: blur(10px);
+}
+
+.card h2 {
+  color: #00ff9d;
+  font-size: 1.45rem;
+  margin: 16px 0 8px;
+}
+
+.card h3 {
+  color: #f6c15b;
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+}
+
+.card p {
+  color: #e7e7e7;
+  font-size: 0.94rem;
+  line-height: 1.45;
+}
+
+.card ul {
+  padding-left: 20px;
+  line-height: 1.6;
+  color: #e7e7e7;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
 .grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -99,51 +137,6 @@ body::before {
 .mint-btn { background: #00ff9d; color: black; }
 .uri-btn { background: #9333ea; color: white; margin-top: 10px; }
 
-.card {
-  margin: 20px auto;
-  padding: 18px;
-  border-radius: 28px;
-  background: rgba(12,12,12,0.86);
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 0 34px rgba(0,0,0,0.55);
-  backdrop-filter: blur(10px);
-}
-
-.nft-img {
-  width: 64%;
-  max-width: 250px;
-  border-radius: 22px;
-  box-shadow: 0 0 28px rgba(0,0,0,0.65);
-}
-
-.card h2 {
-  color: #00ff9d;
-  font-size: 1.45rem;
-  margin: 16px 0 8px;
-}
-
-.card h3 {
-  color: #f6c15b;
-  margin: 0 0 8px;
-  font-size: 1.15rem;
-}
-
-.card p {
-  color: #e7e7e7;
-  font-size: 0.94rem;
-  line-height: 1.45;
-  margin: 8px 0;
-}
-
-.card ul {
-  padding-left: 20px;
-  line-height: 1.6;
-  color: #e7e7e7;
-  font-size: 0.9rem;
-}
-
-.featured-athlete-card { margin: 28px auto 20px; }
-
 .featured-label {
   color: #f6c15b;
   font-size: 0.72rem;
@@ -159,7 +152,6 @@ body::before {
   background: linear-gradient(145deg, rgba(255,215,0,0.12), rgba(0,255,157,0.08));
   border: 1px solid rgba(255,255,255,0.10);
   box-shadow: 0 0 30px rgba(0,0,0,0.45), 0 0 12px rgba(255,215,0,0.10);
-  backdrop-filter: blur(12px);
 }
 
 .rarity-badge {
@@ -208,26 +200,32 @@ body::before {
   margin: 20px 0;
 }
 
-.athlete-stats {
+.athlete-stats,
+.impact-grid,
+.collection-meta {
   display: grid;
   grid-template-columns: repeat(3,1fr);
   gap: 10px;
 }
 
-.stat-box {
-  background: rgba(0,0,0,0.35);
+.stat-box,
+.impact-box,
+.collection-meta div {
+  background: rgba(0,0,0,0.42);
   border-radius: 18px;
   padding: 14px 10px;
   border: 1px solid rgba(255,255,255,0.06);
 }
 
-.stat-number {
+.stat-number,
+.impact-number {
   color: #f6c15b;
   font-size: 1rem;
   font-weight: 900;
 }
 
-.stat-label {
+.stat-label,
+.impact-label {
   color: #bdbdbd;
   font-size: 0.68rem;
   margin-top: 6px;
@@ -253,6 +251,38 @@ body::before {
   border-radius: 18px;
 }
 
+.category-card,
+.safety-card {
+  text-align: left;
+  padding: 16px;
+  border-radius: 22px;
+  background: rgba(0,0,0,0.42);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+.category-card h4 {
+  color: #00ff9d;
+  margin: 0 0 7px;
+}
+
+.safety-card h4 {
+  color: #ff2b2b;
+  margin: 0 0 7px;
+  text-shadow: 0 0 10px rgba(255,43,43,0.35);
+}
+
+.category-card p,
+.safety-card p {
+  font-size: 0.82rem;
+  margin: 0;
+}
+
+.nft-img {
+  width: 64%;
+  max-width: 250px;
+  border-radius: 22px;
+}
+
 .token-pill,
 .safety-pill {
   display: inline-block;
@@ -264,57 +294,6 @@ body::before {
   border: 1px solid rgba(246,193,91,0.35);
   font-weight: 900;
 }
-
-.impact-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 9px;
-  margin-top: 14px;
-}
-
-.impact-box {
-  padding: 14px 8px;
-  border-radius: 20px;
-  background: rgba(0,0,0,0.42);
-  border: 1px solid rgba(255,255,255,0.07);
-}
-
-.impact-number {
-  color: #00ff9d;
-  font-weight: 900;
-  font-size: 1.05rem;
-}
-
-.impact-label {
-  color: #cfcfcf;
-  font-size: 0.72rem;
-  margin-top: 5px;
-}
-
-.category-card,
-.safety-card {
-  text-align: left;
-  padding: 16px;
-  border-radius: 22px;
-  background: rgba(0,0,0,0.42);
-  border: 1px solid rgba(255,255,255,0.07);
-}
-
-.category-card h4,
-.safety-card h4 {
-  color: #ff2b2b;
-  margin: 0 0 7px;
-  font-size: 0.98rem;
-  text-shadow: 0 0 10px rgba(255, 43, 43, 0.35);
-}
-
-.category-card p,
-.safety-card p {
-  font-size: 0.8rem;
-  margin: 0;
-}
-
-.section-card { text-align: left; }
 
 .status-panel {
   margin-top: 16px;
@@ -332,50 +311,7 @@ body::before {
   word-break: break-word;
 }
 
-.admin-tools { margin-top: 12px; }
-
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.94);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 22px;
-  z-index: 9999;
-}
-
-.overlay-box {
-  max-width: 420px;
-  padding: 30px 22px;
-  border-radius: 28px;
-  background: rgba(14,14,14,0.96);
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 0 42px rgba(0,0,0,0.8);
-}
-
-.overlay-box h2 {
-  color: #00ff9d;
-  font-size: 2.2rem;
-  margin: 0 0 14px;
-}
-
-.overlay-box p {
-  color: #e7e7e7;
-  font-size: 0.96rem;
-  line-height: 1.5;
-}
-
-.overlay-box button {
-  margin-top: 12px;
-  background: #00ff9d;
-  color: black;
-  border: none;
-  padding: 14px 26px;
-  border-radius: 999px;
-  font-weight: 900;
-}
-
+/* Collection popup */
 .collection-modal {
   position: fixed;
   inset: 0;
@@ -412,13 +348,6 @@ body::before {
 .collection-header h2 {
   margin: 8px 0;
   color: #00ff9d;
-  font-size: 1.7rem;
-}
-
-.collection-header p {
-  color: #e7e7e7;
-  font-size: 0.92rem;
-  line-height: 1.45;
 }
 
 .close-modal {
@@ -443,7 +372,6 @@ body::before {
   border-radius: 26px;
   background: rgba(12,12,12,0.9);
   border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 0 26px rgba(0,0,0,0.45);
 }
 
 .collection-item img {
@@ -453,31 +381,45 @@ body::before {
 }
 
 .collection-item h3 {
-  margin: 14px 0 6px;
   color: #f6c15b;
 }
 
-.collection-item p {
-  margin: 0 0 12px;
-  color: #dcdcdc;
-  font-size: 0.88rem;
+/* Beta overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.94);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 22px;
+  z-index: 9999;
 }
 
-.collection-meta {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+.overlay-box {
+  max-width: 420px;
+  padding: 30px 22px;
+  border-radius: 28px;
+  background: rgba(14,14,14,0.96);
+  border: 1px solid rgba(255,255,255,0.08);
 }
 
-.collection-meta div {
-  padding: 10px 6px;
-  border-radius: 16px;
-  background: rgba(0,0,0,0.42);
+.overlay-box h2 {
   color: #00ff9d;
-  font-size: 0.78rem;
+  font-size: 2.2rem;
+}
+
+.overlay-box button {
+  margin-top: 12px;
+  background: #00ff9d;
+  color: black;
+  border: none;
+  padding: 14px 26px;
+  border-radius: 999px;
   font-weight: 900;
 }
 
+/* Bottom nav */
 .bottom-nav {
   position: fixed;
   left: 0;
@@ -503,21 +445,18 @@ body::before {
   font-weight: 900;
 }
 
-.bottom-nav .primary-nav {
+.bottom-nav button.active {
+  background: #00ff9d;
+  color: black;
+}
+
+.bottom-nav .wallet-tab {
   background: #f6851b;
   color: white;
 }
 
 @media (min-width: 769px) {
-  body { padding: 48px 20px 125px; }
-  .app { max-width: 760px; }
-  .card { padding: 28px; }
-  .nft-img { width: 48%; }
-
-  .collection-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
+  .collection-grid { grid-template-columns: 1fr 1fr; }
   .bottom-nav {
     max-width: 620px;
     left: 50%;
@@ -533,11 +472,7 @@ body::before {
 <div class="overlay">
   <div class="overlay-box">
     <h2>LegacyMint Beta</h2>
-    <p>
-      A mobile-first NFT platform for athletes, creators, clubs and communities on Apertum.
-      <br><br>
-      Currently in closed beta testing.
-    </p>
+    <p>A mobile-first NFT platform for athletes, creators, clubs and communities on Apertum.</p>
     <button onclick="closeOverlay()">Enter Site</button>
   </div>
 </div>
@@ -547,33 +482,35 @@ body::before {
     <div class="collection-header">
       <div class="collection-topline">THOMAS ENOKA VERIFIED COLLECTION</div>
       <h2>Elite Series Collection</h2>
-      <p>
-        A premium ERC1155 athlete collection featuring limited edition Black Sox Superstar Thomas Enoka digital collectibles.
-        Each card may represent a unique rarity, supply and supporter utility.
-      </p>
+      <p>Premium ERC1155 athlete collectibles featuring limited edition Thomas Enoka cards.</p>
       <button class="close-modal" onclick="closeCollection()">Close Collection</button>
     </div>
 
     <div class="collection-grid">
       <div class="collection-item">
-        <img src="https://gateway.pinata.cloud/ipfs/bafybeigiu67t4k7e3zidnpj77nziqqnzi2frjgknba6zmzi3ei3vjch6dy" alt="Thomas Enoka Elite Series #001">
+        <img src="https://gateway.pinata.cloud/ipfs/bafybeigiu67t4k7e3zidnpj77nziqqnzi2frjgknba6zmzi3ei3vjch6dy">
         <h3>Elite Series #001</h3>
         <p>Founding Edition collectible card.</p>
         <div class="collection-meta">
-          <div>Supply 25</div>
-          <div>7.5%</div>
-          <div>ERC1155</div>
+          <div>Supply 25</div><div>7.5%</div><div>ERC1155</div>
         </div>
       </div>
 
       <div class="collection-item">
-        <img src="https://gateway.pinata.cloud/ipfs/bafybeid33djahua3gzwj4ioy6ja46gv2lrwadh24ulvhxt2nf6bvikipfe" alt="Thomas Enoka Elite Series #002">
+        <img src="https://gateway.pinata.cloud/ipfs/bafybeid33djahua3gzwj4ioy6ja46gv2lrwadh24ulvhxt2nf6bvikipfe">
         <h3>Elite Series #002</h3>
         <p>Limited high-energy action variant.</p>
         <div class="collection-meta">
-          <div>Supply 10</div>
-          <div>7.5%</div>
-          <div>ERC1155</div>
+          <div>Supply 10</div><div>7.5%</div><div>ERC1155</div>
+        </div>
+      </div>
+
+      <div class="collection-item">
+        <img src="https://gateway.pinata.cloud/ipfs/bafybeidorylrziwwax35ds7iuedxfoyjqvwld63tjyobnx52ypt4kd3vxq">
+        <h3>Elite Series #003</h3>
+        <p>Emerald Action Edition collectible card.</p>
+        <div class="collection-meta">
+          <div>Supply 15</div><div>7.5%</div><div>ERC1155</div>
         </div>
       </div>
     </div>
@@ -582,7 +519,7 @@ body::before {
 
 <main class="app">
 
-  <section id="top">
+  <section id="home" class="tab-section active">
     <h1 class="main-logo">
       <span class="legacy-text">Legacy</span><span class="mint-text">Mint</span>
     </h1>
@@ -591,23 +528,12 @@ body::before {
       Support athletes. Create collections. Mint digital legacy on Apertum.
     </div>
 
-    <div class="action-row">
-      <a href="#marketplace" class="btn">Browse</a>
-      <a href="#create" class="btn btn2">Create</a>
-    </div>
-  </section>
-
-  <section class="featured-athlete-card">
     <div class="featured-label">FEATURED ATHLETE COLLECTION</div>
 
     <div class="athlete-card-frame">
       <div class="rarity-badge">FOUNDING EDITION</div>
 
-      <img
-        class="athlete-image"
-        src="https://gateway.pinata.cloud/ipfs/bafybeigiu67t4k7e3zidnpj77nziqqnzi2frjgknba6zmzi3ei3vjch6dy"
-        alt="Thomas Enoka Elite Series #001"
-      >
+      <img class="athlete-image" src="https://gateway.pinata.cloud/ipfs/bafybeigiu67t4k7e3zidnpj77nziqqnzi2frjgknba6zmzi3ei3vjch6dy">
 
       <div class="athlete-content">
         <div class="athlete-series">ELITE SERIES #001</div>
@@ -616,18 +542,9 @@ body::before {
         <div class="athlete-divider"></div>
 
         <div class="athlete-stats">
-          <div class="stat-box">
-            <div class="stat-number">25</div>
-            <div class="stat-label">SUPPLY</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-number">7.5%</div>
-            <div class="stat-label">ROYALTY</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-number">ERC1155</div>
-            <div class="stat-label">TYPE</div>
-          </div>
+          <div class="stat-box"><div class="stat-number">25</div><div class="stat-label">SUPPLY</div></div>
+          <div class="stat-box"><div class="stat-number">7.5%</div><div class="stat-label">ROYALTY</div></div>
+          <div class="stat-box"><div class="stat-number">ERC1155</div><div class="stat-label">TYPE</div></div>
         </div>
 
         <div class="athlete-buttons">
@@ -638,212 +555,129 @@ body::before {
     </div>
   </section>
 
-  <section class="card">
-    <img class="nft-img" src="https://gateway.pinata.cloud/ipfs/bafkreiaougl7sklr5hfyyk3fyumrke5ga3sbdwq4kgadyhdkrpwvqhee2a" alt="LegacyMint Genesis NFT">
-    <h2>Genesis NFT #8</h2>
-    <p>Preview before minting. This Genesis NFT is minted directly through LegacyMint on Apertum.</p>
-    <div class="token-pill">Token ID: 8</div>
-    <button id="mint-button" class="mint-btn" onclick="mintNFT()">Mint NFT #8</button>
-  </section>
+  <section id="collections" class="tab-section">
+    <div class="card">
+      <h3>Collections</h3>
+      <p>Explore verified athlete, club and foundation collections.</p>
+      <button class="btn" onclick="openCollection()">Thomas Enoka Elite Series</button>
+    </div>
 
-  <section id="fund" class="card section-card">
-    <h3>LegacyMint Foundation</h3>
-    <p>The LegacyMint Foundation exists to support youth and elite athletes through community-powered NFT fundraising.</p>
-    <p>Funds raised through Genesis collections, supporter NFTs and premium drops will contribute toward:</p>
-    <ul>
-      <li>Tournament travel assistance</li>
-      <li>Youth athlete development</li>
-      <li>Elite competition support</li>
-      <li>Uniforms and equipment</li>
-      <li>Community sports initiatives</li>
-    </ul>
-    <p>Funding distributions will operate through milestone-based pools and athlete application systems.</p>
-
-    <div class="impact-grid">
-      <div class="impact-box">
-        <div class="impact-number">$0</div>
-        <div class="impact-label">Raised</div>
-      </div>
-      <div class="impact-box">
-        <div class="impact-number">0</div>
-        <div class="impact-label">Athletes Funded</div>
-      </div>
-      <div class="impact-box">
-        <div class="impact-number">Beta</div>
-        <div class="impact-label">Platform Stage</div>
-      </div>
+    <div class="card">
+      <img class="nft-img" src="https://gateway.pinata.cloud/ipfs/bafkreiaougl7sklr5hfyyk3fyumrke5ga3sbdwq4kgadyhdkrpwvqhee2a">
+      <h2>Genesis NFT #8</h2>
+      <p>LegacyMint Genesis test collectible.</p>
+      <div class="token-pill">Token ID: 8</div>
+      <button class="mint-btn" onclick="mintNFT()">Mint NFT #8</button>
     </div>
   </section>
 
-  <section id="safety" class="card section-card">
-    <h3>LegacyMint Safety Online</h3>
-
-    <p>
-      LegacyMint is being built for athletes, clubs, families and supporters who may be new to crypto.
-      Safety, trust and clear information are core parts of the platform.
-    </p>
-
-    <div class="safety-pill">Safety First</div>
-
-    <div class="grid-2">
-      <div class="safety-card">
-        <h4>Never Share Seed Phrases</h4>
-        <p>LegacyMint will NEVER ask for your recovery phrase, private key or password.</p>
-      </div>
-
-      <div class="safety-card">
-        <h4>Use Official Links</h4>
-        <p>Only mint through OFFICIAL LegacyMint pages and verified collection links.</p>
-      </div>
-
-      <div class="safety-card">
-        <h4>Check Before Minting</h4>
-        <p>CONFIRM the NFT image, price, collection name and wallet transaction before approving.</p>
-      </div>
-
-      <div class="safety-card">
-        <h4>Verified Collections</h4>
-        <p>Official athlete, club and creator collections will be clearly marked as VERIFIED.</p>
-      </div>
-    </div>
-
-    <p>
-      Beware of fake DMs, copycat collections, fake support accounts and links claiming to offer free NFTs.
-      If unsure, stop and verify before connecting your wallet. LegacyMint will never request a link be clicked in an email.
-    </p>
-  </section>
-
-  <section class="card section-card">
-    <h3>ERC1155 Collection Model</h3>
-    <p>LegacyMint uses ERC1155 architecture so one collection can hold multiple NFT types, editions and rarity levels.</p>
-    <ul>
-      <li>Token ID 1: Athlete Common Card</li>
-      <li>Token ID 2: Athlete Rare Card</li>
-      <li>Token ID 3: Athlete Holographic Card</li>
-      <li>Token ID 4: Signed Premium Edition</li>
-    </ul>
-  </section>
-
-  <section id="marketplace" class="card section-card">
-    <h3>Marketplace</h3>
-    <p>Browse verified athlete collections, supporter NFTs, fundraising campaigns and premium digital collectibles.</p>
-
-    <div class="grid-2">
-      <div class="category-card">
-        <h4>Foundation</h4>
-        <p>LegacyMint Genesis NFTs supporting athlete funding initiatives.</p>
-      </div>
-      <div class="category-card">
-        <h4>Athlete Drops</h4>
-        <p>Verified athlete cards, legacy moments and exclusive content.</p>
-      </div>
-      <div class="category-card">
-        <h4>Club Fundraisers</h4>
-        <p>Raffle-style NFTs for clubs, schools and teams.</p>
-      </div>
-      <div class="category-card">
-        <h4>Premium NFTs</h4>
-        <p>Limited edition high-value collectibles and exclusive releases.</p>
-      </div>
+  <section id="create" class="tab-section">
+    <div class="card">
+      <h3>Create Collection</h3>
+      <p>Launch ERC1155 collections from mobile with artwork, pricing, royalties and supply controls.</p>
+      <ul>
+        <li>Artwork uploads</li>
+        <li>Collection setup</li>
+        <li>Card type and rarity setup</li>
+        <li>Supply and pricing controls</li>
+        <li>Creator royalties</li>
+      </ul>
+      <button class="btn btn2">Creator Tools Coming Soon</button>
     </div>
   </section>
 
-  <section id="create" class="card section-card">
-    <h3>Create Collection</h3>
-    <p>LegacyMint is building simple mobile-first creator tools allowing athletes, clubs and creators to launch ERC1155 collections directly from their phone.</p>
-    <ul>
-      <li>Artwork uploads</li>
-      <li>Collection setup</li>
-      <li>Card type and rarity setup</li>
-      <li>Supply and pricing controls</li>
-      <li>Raffle-style fundraising campaigns</li>
-      <li>Creator royalties</li>
-      <li>Premium collection launches</li>
-    </ul>
-    <button class="btn btn2">Creator Tools Coming Soon</button>
+  <section id="safety" class="tab-section">
+    <div class="card">
+      <h3>LegacyMint Safety Online</h3>
+      <p>Safety, trust and clear information are core parts of the platform.</p>
+
+      <div class="safety-pill">Safety First</div>
+
+      <div class="grid-2">
+        <div class="safety-card"><h4>Never Share Seed Phrases</h4><p>LegacyMint will never ask for your recovery phrase, private key or password.</p></div>
+        <div class="safety-card"><h4>Use Official Links</h4><p>Only mint through official LegacyMint pages and verified collection links.</p></div>
+        <div class="safety-card"><h4>Check Before Minting</h4><p>Confirm the NFT image, price, collection name and wallet transaction before approving.</p></div>
+        <div class="safety-card"><h4>Verified Collections</h4><p>Official athlete, club and creator collections will be clearly marked as verified.</p></div>
+      </div>
+
+      <p>Beware of fake DMs, copycat collections, fake support accounts and links claiming to offer free NFTs.</p>
+    </div>
   </section>
 
-  <section class="card">
-    <button id="wallet-button" class="wallet-btn" onclick="connectWallet()">Connect Wallet</button>
-    <button id="network-button" class="network-btn" onclick="switchToApertum()" style="display:none;">Switch to Apertum</button>
+  <section id="wallet" class="tab-section">
+    <div class="card">
+      <h3>Wallet</h3>
 
-    <div class="admin-tools">
-      <button class="uri-btn" onclick="setMetadataURI()">Set Metadata URI</button>
-    </div>
+      <button id="wallet-button" class="wallet-btn" onclick="connectWallet()">Connect Wallet</button>
+      <button id="network-button" class="network-btn" onclick="switchToApertum()" style="display:none;">Switch to Apertum</button>
 
-    <div class="status-panel">
-      <div id="wallet-status" class="status">Wallet not connected</div>
-      <div id="network-status" class="status">Network not checked</div>
-      <div id="mint-status" class="status">Mint not started</div>
-      <div id="uri-status" class="status">Metadata URI not set</div>
+      <div class="status-panel">
+        <div id="wallet-status" class="status">Wallet not connected</div>
+        <div id="network-status" class="status">Network not checked</div>
+        <div id="mint-status" class="status">Mint not started</div>
+      </div>
     </div>
   </section>
 
 </main>
 
 <nav class="bottom-nav">
-  <button onclick="window.location.href='#top'">Home</button>
-  <button onclick="window.location.href='#marketplace'">Browse</button>
-  <button onclick="window.location.href='#create'">Create</button>
-  <button onclick="window.location.href='#safety'">Safety</button>
-  <button class="primary-nav" onclick="connectWallet()">Wallet</button>
+  <button class="active" onclick="showTab('home', this)">Home</button>
+  <button onclick="showTab('collections', this)">Collect</button>
+  <button onclick="showTab('create', this)">Create</button>
+  <button onclick="showTab('safety', this)">Safety</button>
+  <button class="wallet-tab" onclick="showTab('wallet', this)">Wallet</button>
 </nav>
 
 <script>
 let userAccount = "";
 
-const CONTRACT_ADDRESS =
-  "0x50B8f3A1990a5866220174304D37ed3723ed8b9c";
-
+const CONTRACT_ADDRESS = "0x50B8f3A1990a5866220174304D37ed3723ed8b9c";
 const TOKEN_ID_TO_MINT = 8;
-
-const METADATA_URI =
-  "https://gateway.pinata.cloud/ipfs/bafybeiftsibenblz2wp5htulhcktffizq3aoue76vmcgx2mcp6pzy6hv3m/{id}.json";
-
 const APTM_CHAIN_ID = "0xae2";
 
 const APTM_NETWORK = {
   chainId: "0xae2",
   chainName: "Apertum",
-  nativeCurrency: {
-    name: "APTM",
-    symbol: "APTM",
-    decimals: 18
-  },
-  rpcUrls: [
-    "https://rpc.apertum.io/ext/bc/YDJ1r9RMkewATmA7B35q1bdV18aywzmdiXwd9zGBq3uQjsCnn/rpc"
-  ],
-  blockExplorerUrls: [
-    "https://explorer.apertum.io/"
-  ]
+  nativeCurrency: { name: "APTM", symbol: "APTM", decimals: 18 },
+  rpcUrls: ["https://rpc.apertum.io/ext/bc/YDJ1r9RMkewATmA7B35q1bdV18aywzmdiXwd9zGBq3uQjsCnn/rpc"],
+  blockExplorerUrls: ["https://explorer.apertum.io/"]
 };
 
 const CONTRACT_ABI = [
   {
     "inputs": [
-      {"internalType": "string", "name": "newuri", "type": "string"}
+      {"internalType":"address","name":"account","type":"address"},
+      {"internalType":"uint256","name":"id","type":"uint256"},
+      {"internalType":"uint256","name":"amount","type":"uint256"},
+      {"internalType":"bytes","name":"data","type":"bytes"}
     ],
-    "name": "setURI",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {"internalType": "address", "name": "account", "type": "address"},
-      {"internalType": "uint256", "name": "id", "type": "uint256"},
-      {"internalType": "uint256", "name": "amount", "type": "uint256"},
-      {"internalType": "bytes", "name": "data", "type": "bytes"}
-    ],
-    "name": "mint",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
+    "name":"mint",
+    "outputs":[],
+    "stateMutability":"nonpayable",
+    "type":"function"
   }
 ];
 
+function showTab(tabId, button) {
+  document.querySelectorAll(".tab-section").forEach(section => {
+    section.classList.remove("active");
+  });
+
+  document.getElementById(tabId).classList.add("active");
+
+  document.querySelectorAll(".bottom-nav button").forEach(btn => {
+    btn.classList.remove("active");
+  });
+
+  button.classList.add("active");
+
+  window.scrollTo(0, 0);
+}
+
 function closeOverlay() {
   document.querySelector(".overlay").style.display = "none";
+  window.scrollTo(0, 0);
 }
 
 function openCollection() {
@@ -860,50 +694,28 @@ function shortenAddress(address) {
 
 async function connectWallet() {
   if (!window.ethereum) {
-    document.getElementById("wallet-status").innerText =
-      "MetaMask not detected";
+    document.getElementById("wallet-status").innerText = "MetaMask not detected";
     return;
   }
 
-  try {
-    const accounts = await window.ethereum.request({
-      method: "eth_requestAccounts"
-    });
+  const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+  userAccount = accounts[0];
 
-    userAccount = accounts[0];
+  document.getElementById("wallet-status").innerText = "Connected: " + shortenAddress(userAccount);
+  document.getElementById("wallet-button").innerText = "Wallet Connected";
 
-    document.getElementById("wallet-status").innerText =
-      "Connected: " + shortenAddress(userAccount);
-
-    document.getElementById("wallet-button").innerText =
-      "Wallet Connected";
-
-    await checkNetwork();
-
-  } catch (error) {
-    console.log(error);
-    document.getElementById("wallet-status").innerText =
-      "Connection failed";
-  }
+  await checkNetwork();
 }
 
 async function checkNetwork() {
-  const chainId = await window.ethereum.request({
-    method: "eth_chainId"
-  });
+  const chainId = await window.ethereum.request({ method: "eth_chainId" });
 
   if (chainId === APTM_CHAIN_ID) {
-    document.getElementById("network-status").innerText =
-      "Network: Apertum ✅";
-
-    document.getElementById("network-button").style.display =
-      "none";
+    document.getElementById("network-status").innerText = "Network: Apertum ✅";
+    document.getElementById("network-button").style.display = "none";
   } else {
-    document.getElementById("network-status").innerText =
-      "Wrong network ❌";
-
-    document.getElementById("network-button").style.display =
-      "inline-block";
+    document.getElementById("network-status").innerText = "Wrong network ❌";
+    document.getElementById("network-button").style.display = "inline-block";
   }
 }
 
@@ -913,112 +725,43 @@ async function switchToApertum() {
       method: "wallet_switchEthereumChain",
       params: [{ chainId: APTM_CHAIN_ID }]
     });
-
-    await checkNetwork();
-
   } catch (switchError) {
     if (switchError.code === 4902) {
       await window.ethereum.request({
         method: "wallet_addEthereumChain",
         params: [APTM_NETWORK]
       });
-
-      await checkNetwork();
     }
   }
+
+  await checkNetwork();
 }
 
 async function getContract() {
-  const provider =
-    new ethers.providers.Web3Provider(window.ethereum);
-
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
-
-  return new ethers.Contract(
-    CONTRACT_ADDRESS,
-    CONTRACT_ABI,
-    signer
-  );
+  return new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
 }
 
 async function mintNFT() {
   if (!userAccount) {
-    document.getElementById("mint-status").innerText =
-      "Connect wallet first";
+    document.getElementById("mint-status").innerText = "Connect wallet first";
     return;
   }
 
   try {
     const contract = await getContract();
 
-    document.getElementById("mint-status").innerText =
-      "Minting NFT #" + TOKEN_ID_TO_MINT + "...";
+    document.getElementById("mint-status").innerText = "Minting NFT #" + TOKEN_ID_TO_MINT + "...";
 
-    const tx = await contract.mint(
-      userAccount,
-      TOKEN_ID_TO_MINT,
-      1,
-      "0x"
-    );
-
+    const tx = await contract.mint(userAccount, TOKEN_ID_TO_MINT, 1, "0x");
     await tx.wait();
 
-    document.getElementById("mint-status").innerText =
-      "NFT #" + TOKEN_ID_TO_MINT + " Minted Successfully ✅";
-
+    document.getElementById("mint-status").innerText = "NFT #" + TOKEN_ID_TO_MINT + " Minted Successfully ✅";
   } catch (error) {
     console.log(error);
-    document.getElementById("mint-status").innerText =
-      "Mint failed ❌";
+    document.getElementById("mint-status").innerText = "Mint failed ❌";
   }
-}
-
-async function setMetadataURI() {
-  if (!userAccount) {
-    document.getElementById("uri-status").innerText =
-      "Connect wallet first";
-    return;
-  }
-
-  try {
-    const contract = await getContract();
-
-    document.getElementById("uri-status").innerText =
-      "Setting metadata URI...";
-
-    const tx = await contract.setURI(METADATA_URI);
-
-    await tx.wait();
-
-    document.getElementById("uri-status").innerText =
-      "Metadata URI Set Successfully ✅";
-
-  } catch (error) {
-    console.log(error);
-    document.getElementById("uri-status").innerText =
-      "Metadata URI failed ❌";
-  }
-}
-
-if (window.ethereum) {
-  window.ethereum.on("chainChanged", checkNetwork);
-
-  window.ethereum.on("accountsChanged", function(accounts) {
-    if (accounts.length > 0) {
-      userAccount = accounts[0];
-
-      document.getElementById("wallet-status").innerText =
-        "Connected: " + shortenAddress(userAccount);
-
-      checkNetwork();
-
-    } else {
-      userAccount = "";
-
-      document.getElementById("wallet-status").innerText =
-        "Wallet not connected";
-    }
-  });
 }
 
 window.onload = function () {
