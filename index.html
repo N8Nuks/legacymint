@@ -548,7 +548,423 @@ body::before{
 .bottom-nav .wallet-tab{
   background:var(--orange);
 }
+/* =========================
+V3 HERO PREMIUM EXPERIENCE
+========================= */
 
+.v3-hero{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:center;
+  min-height:100vh;
+}
+
+.hero-left{
+  position:relative;
+  z-index:2;
+}
+
+.hero-logo-wrap{
+  margin-bottom:28px;
+}
+
+.hero-slogan{
+  margin-top:18px;
+  font-size:1.2rem;
+  line-height:1.3;
+  color:white;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.hero-slogan span{
+  color:var(--green);
+}
+
+.hero-description{
+  max-width:620px;
+  line-height:1.8;
+  color:#d8d8d8;
+  font-size:1rem;
+}
+
+.hero-buttons-v3{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:34px;
+}
+
+.hero-primary-btn,
+.hero-secondary-btn,
+.hero-wallet-btn{
+  border:none;
+  border-radius:999px;
+  padding:16px 22px;
+  font-weight:900;
+  cursor:pointer;
+  transition:0.25s;
+}
+
+.hero-primary-btn{
+  background:var(--green);
+  color:black;
+}
+
+.hero-primary-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 20px rgba(0,255,157,0.35);
+}
+
+.hero-secondary-btn{
+  background:rgba(255,255,255,0.08);
+  color:white;
+}
+
+.hero-wallet-btn{
+  background:var(--orange);
+  color:white;
+}
+
+.trust-strip{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:34px;
+}
+
+.trust-item{
+  background:rgba(0,255,157,0.08);
+  border:1px solid rgba(0,255,157,0.18);
+  color:var(--green);
+  padding:10px 14px;
+  border-radius:999px;
+  font-size:0.74rem;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.hero-right{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.floating-glow{
+  position:absolute;
+  width:620px;
+  height:620px;
+  border-radius:50%;
+  background:
+  radial-gradient(
+    circle,
+    rgba(0,255,157,0.18),
+    transparent 70%
+  );
+  filter:blur(40px);
+  animation:glowPulse 5s ease-in-out infinite;
+}
+
+@keyframes glowPulse{
+
+  0%{
+    transform:scale(1);
+    opacity:0.7;
+  }
+
+  50%{
+    transform:scale(1.08);
+    opacity:1;
+  }
+
+  100%{
+    transform:scale(1);
+    opacity:0.7;
+  }
+
+}
+
+.premium-card-wrap{
+  position:relative;
+  z-index:2;
+}
+
+.premium-card{
+  width:440px;
+  min-height:760px;
+  border-radius:38px;
+  overflow:hidden;
+  position:relative;
+  border:1px solid rgba(255,255,255,0.12);
+  background:
+  linear-gradient(
+    145deg,
+    rgba(255,215,0,0.10),
+    rgba(0,255,157,0.08)
+  );
+  box-shadow:
+    0 0 60px rgba(0,0,0,0.55),
+    0 0 22px rgba(0,255,157,0.14);
+  animation:floatCard 6s ease-in-out infinite;
+}
+
+@keyframes floatCard{
+
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-10px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
+
+}
+
+.premium-side{
+  display:none;
+  min-height:760px;
+  position:relative;
+}
+
+.premium-side.active{
+  display:block;
+}
+
+.premium-series{
+  position:absolute;
+  top:18px;
+  left:18px;
+  z-index:10;
+  padding:8px 14px;
+  border-radius:999px;
+  color:var(--green);
+  border:1px solid rgba(0,255,157,0.24);
+  background:rgba(0,255,157,0.08);
+  font-size:0.66rem;
+  font-weight:900;
+}
+
+.premium-pioneer{
+  position:absolute;
+  right:18px;
+  top:18px;
+  z-index:10;
+  background:
+  linear-gradient(
+    180deg,
+    #fff4b0,
+    #ffd700,
+    #b87900
+  );
+  color:black;
+  padding:8px 14px;
+  border-radius:999px;
+  font-size:0.66rem;
+  font-weight:900;
+}
+
+.premium-rating{
+  position:absolute;
+  left:18px;
+  bottom:18px;
+  z-index:10;
+  background:black;
+  border:1px solid rgba(255,215,0,0.28);
+  color:var(--gold);
+  padding:10px 16px;
+  border-radius:999px;
+  font-weight:900;
+}
+
+.premium-player-img{
+  width:100%;
+  display:block;
+}
+
+.premium-overlay{
+  position:absolute;
+  inset:0;
+  background:
+  linear-gradient(
+    180deg,
+    transparent 45%,
+    rgba(0,0,0,0.95) 100%
+  );
+}
+
+.premium-content{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:26px;
+  z-index:4;
+}
+
+.premium-small{
+  color:var(--gold);
+  letter-spacing:2px;
+  font-size:0.68rem;
+  font-weight:900;
+}
+
+.premium-name{
+  font-size:2.2rem;
+  margin:10px 0 6px;
+}
+
+.premium-role{
+  color:var(--green);
+  font-weight:700;
+}
+
+.premium-bottom{
+  display:flex;
+  justify-content:space-between;
+  margin-top:22px;
+}
+
+.premium-edition,
+.premium-standard{
+  background:rgba(255,255,255,0.08);
+  padding:10px 14px;
+  border-radius:14px;
+  font-size:0.78rem;
+  font-weight:900;
+}
+
+.stats-panel{
+  padding:34px 30px;
+}
+
+.stats-topline{
+  color:var(--gold);
+  letter-spacing:2px;
+  font-size:0.72rem;
+  font-weight:900;
+}
+
+.stats-name{
+  margin-top:14px;
+  font-size:2rem;
+}
+
+.stats-tier{
+  margin-top:10px;
+  color:var(--green);
+  font-weight:900;
+}
+
+.stats-archetype{
+  margin-top:6px;
+  color:#ccc;
+}
+
+.stats-grid{
+  margin-top:28px;
+  display:grid;
+  gap:18px;
+}
+
+.stat-row{
+  text-align:left;
+}
+
+.stat-label{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:6px;
+  color:var(--gold);
+  font-weight:900;
+}
+
+.stat-bar{
+  height:12px;
+  border-radius:999px;
+  overflow:hidden;
+  background:rgba(255,255,255,0.08);
+}
+
+.stat-fill{
+  height:100%;
+  border-radius:999px;
+  background:
+  linear-gradient(
+    90deg,
+    var(--green),
+    var(--gold)
+  );
+}
+
+.premium-controls{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:18px;
+}
+
+.premium-control{
+  border:none;
+  border-radius:999px;
+  padding:12px 20px;
+  background:rgba(255,255,255,0.08);
+  color:white;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.premium-control.active{
+  background:var(--green);
+  color:black;
+}
+
+@media(max-width:1100px){
+
+  .v3-hero{
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+
+  .hero-left{
+    text-align:center;
+  }
+
+  .hero-description{
+    margin:0 auto;
+  }
+
+  .hero-buttons-v3{
+    justify-content:center;
+  }
+
+  .trust-strip{
+    justify-content:center;
+  }
+
+}
+
+@media(max-width:600px){
+
+  .premium-card{
+    width:100%;
+    min-height:660px;
+  }
+
+  .premium-side{
+    min-height:660px;
+  }
+
+  .premium-name{
+    font-size:1.7rem;
+  }
+
+}
 @media(max-width:900px){
 
 .hero-layout{
