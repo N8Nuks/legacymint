@@ -12,6 +12,14 @@
 <style>
 * { box-sizing: border-box; }
 
+:root {
+  --green:#00ff9d;
+  --gold:#f6c15b;
+  --orange:#f6851b;
+  --red:#ff2b2b;
+  --panel:rgba(12,12,12,0.88);
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -57,7 +65,7 @@ body::before {
 }
 
 .mint-text {
-  color: #00ff9d;
+  color: var(--green);
   text-shadow: 0 0 14px rgba(0,255,157,0.18);
 }
 
@@ -83,14 +91,92 @@ body::before {
   text-align: center;
 }
 
+.card {
+  margin: 20px auto;
+  padding: 18px;
+  border-radius: 28px;
+  background: var(--panel);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 34px rgba(0,0,0,0.55);
+  backdrop-filter: blur(10px);
+}
+
+.card h3 {
+  color: var(--gold);
+  margin: 0 0 8px;
+}
+
+.card p {
+  color: #e7e7e7;
+  font-size: 0.94rem;
+  line-height: 1.45;
+}
+
+.card ul {
+  padding-left: 20px;
+  line-height: 1.6;
+  color: #e7e7e7;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.btn,
+.wallet-btn,
+.network-btn,
+.mint-btn,
+.view-btn,
+.support-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 900;
+  font-size: 0.92rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn,
+.support-btn,
+.mint-btn {
+  background: var(--green);
+  color: black;
+}
+
+.btn2 {
+  background: rgba(0,0,0,0.35);
+  border: 1.5px solid var(--green);
+  color: var(--green);
+}
+
+.wallet-btn {
+  background: var(--orange);
+  color: white;
+}
+
+.network-btn {
+  background: #2563eb;
+  color: white;
+  margin-top: 10px;
+}
+
 .hero-card-wrap {
   width: 100%;
   max-width: 470px;
   margin: 0 auto;
-  perspective: 1200px;
 }
 
-.flip-card {
+.hero-card-header,
+.featured-label {
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+
+.flip-card,
+.swipe-card {
   position: relative;
   min-height: 680px;
   border-radius: 34px;
@@ -106,7 +192,7 @@ body::before {
 .card-side {
   display: none;
   min-height: 680px;
-  animation: fadeIn 0.45s ease;
+  animation: fadeIn 0.35s ease;
 }
 
 .card-side.active {
@@ -118,20 +204,42 @@ body::before {
   to { opacity: 1; transform: scale(1); }
 }
 
-.rarity-badge {
+.series-badge,
+.rarity-badge,
+.pioneer-badge {
   position: absolute;
-  top: 14px;
-  right: 14px;
   z-index: 10;
-  background: linear-gradient(180deg,#fff4b0,#ffd700,#c79200);
-  color: black;
-  padding: 8px 14px;
   border-radius: 999px;
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   font-weight: 900;
+  padding: 8px 12px;
 }
 
-.hero-nft-img {
+.series-badge {
+  top: 14px;
+  left: 14px;
+  background: rgba(0,255,157,0.12);
+  color: var(--green);
+  border: 1px solid rgba(0,255,157,0.35);
+}
+
+.rarity-badge {
+  top: 14px;
+  right: 14px;
+  background: linear-gradient(180deg,#fff4b0,#ffd700,#c79200);
+  color: black;
+}
+
+.pioneer-badge {
+  bottom: 14px;
+  right: 14px;
+  background: linear-gradient(180deg,#fff4b0,#ffd700,#b87900);
+  color: black;
+  box-shadow: 0 0 18px rgba(255,215,0,0.25);
+}
+
+.hero-nft-img,
+.fantasy-front-img {
   width: 100%;
   display: block;
 }
@@ -141,7 +249,7 @@ body::before {
 }
 
 .hero-series {
-  color: #f6c15b;
+  color: var(--gold);
   font-size: 0.72rem;
   font-weight: 900;
   letter-spacing: 2px;
@@ -155,7 +263,7 @@ body::before {
 }
 
 .hero-role {
-  color: #00ff9d;
+  color: var(--green);
   font-size: 1rem;
   font-weight: 700;
 }
@@ -166,13 +274,15 @@ body::before {
   margin: 20px 0;
 }
 
-.hero-stats {
+.hero-stats,
+.collection-meta {
   display: grid;
   grid-template-columns: repeat(3,1fr);
   gap: 10px;
 }
 
-.stat-box {
+.stat-box,
+.collection-meta div {
   background: rgba(0,0,0,0.42);
   border-radius: 18px;
   padding: 14px 10px;
@@ -180,7 +290,7 @@ body::before {
 }
 
 .stat-number {
-  color: #f6c15b;
+  color: var(--gold);
   font-size: 1rem;
   font-weight: 900;
 }
@@ -198,51 +308,11 @@ body::before {
   margin-top: 22px;
 }
 
-.view-btn,
-.support-btn,
-.btn,
-.wallet-btn,
-.network-btn,
-.mint-btn {
-  width: 100%;
-  padding: 14px;
-  border-radius: 999px;
-  border: none;
-  font-weight: 900;
-  font-size: 0.92rem;
-  text-decoration: none;
-  cursor: pointer;
-}
-
 .view-btn {
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.08);
   color: white;
   border-radius: 18px;
-}
-
-.support-btn,
-.btn,
-.mint-btn {
-  background: #00ff9d;
-  color: black;
-}
-
-.btn2 {
-  background: rgba(0,0,0,0.35);
-  border: 1.5px solid #00ff9d;
-  color: #00ff9d;
-}
-
-.wallet-btn {
-  background: #f6851b;
-  color: white;
-}
-
-.network-btn {
-  background: #2563eb;
-  color: white;
-  margin-top: 10px;
 }
 
 .card-panel {
@@ -254,7 +324,7 @@ body::before {
 }
 
 .card-panel h2 {
-  color: #00ff9d;
+  color: var(--green);
   margin: 0 0 10px;
 }
 
@@ -280,13 +350,13 @@ body::before {
 }
 
 .stars {
-  color: #f6c15b;
+  color: var(--gold);
   font-size: 1.35rem;
   letter-spacing: 1px;
 }
 
 .star-subtitle {
-  color: #00ff9d;
+  color: var(--green);
   font-size: 0.85rem;
   font-weight: 900;
   margin-top: 8px;
@@ -307,7 +377,7 @@ body::before {
   justify-content: space-between;
   font-size: 0.85rem;
   font-weight: 900;
-  color: #f6c15b;
+  color: var(--gold);
   margin-bottom: 6px;
 }
 
@@ -320,7 +390,7 @@ body::before {
 
 .skill-fill {
   height: 100%;
-  background: linear-gradient(90deg, #00ff9d, #f6c15b);
+  background: linear-gradient(90deg, var(--green), var(--gold));
   border-radius: 999px;
 }
 
@@ -340,7 +410,7 @@ body::before {
 }
 
 .badge-box h4 {
-  color: #00ff9d;
+  color: var(--green);
   margin: 0 0 6px;
   font-size: 0.9rem;
 }
@@ -365,7 +435,7 @@ body::before {
 }
 
 .utility-item strong {
-  color: #f6c15b;
+  color: var(--gold);
 }
 
 .side-controls {
@@ -386,37 +456,8 @@ body::before {
 }
 
 .side-controls button.active {
-  background: #00ff9d;
+  background: var(--green);
   color: black;
-}
-
-.card {
-  margin: 20px auto;
-  padding: 18px;
-  border-radius: 28px;
-  background: rgba(12,12,12,0.86);
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 0 34px rgba(0,0,0,0.55);
-  backdrop-filter: blur(10px);
-}
-
-.card h3 {
-  color: #f6c15b;
-  margin: 0 0 8px;
-}
-
-.card p {
-  color: #e7e7e7;
-  font-size: 0.94rem;
-  line-height: 1.45;
-}
-
-.card ul {
-  padding-left: 20px;
-  line-height: 1.6;
-  color: #e7e7e7;
-  font-size: 0.9rem;
-  text-align: left;
 }
 
 .grid-2 {
@@ -436,13 +477,13 @@ body::before {
 
 .category-card h4,
 .safety-card h4 {
-  color: #00ff9d;
+  color: var(--green);
   margin: 0 0 7px;
   text-shadow: 0 0 10px rgba(0,255,157,0.20);
 }
 
 .safety-card.warning h4 {
-  color: #ff2b2b;
+  color: var(--red);
   text-shadow: 0 0 10px rgba(255,43,43,0.35);
 }
 
@@ -452,12 +493,6 @@ body::before {
   margin: 0;
 }
 
-.nft-img {
-  width: 64%;
-  max-width: 250px;
-  border-radius: 22px;
-}
-
 .token-pill,
 .safety-pill {
   display: inline-block;
@@ -465,7 +500,7 @@ body::before {
   padding: 9px 14px;
   border-radius: 999px;
   background: rgba(246,193,91,0.12);
-  color: #f6c15b;
+  color: var(--gold);
   border: 1px solid rgba(246,193,91,0.35);
   font-weight: 900;
 }
@@ -480,7 +515,7 @@ body::before {
 
 .status {
   margin: 7px 0;
-  color: #00ff9d;
+  color: var(--green);
   font-size: 0.82rem;
   font-weight: 900;
   word-break: break-word;
@@ -493,7 +528,8 @@ body::before {
   box-shadow: 0 0 30px rgba(0,0,0,0.45);
 }
 
-.collection-modal {
+.collection-modal,
+.fantasy-modal {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.94);
@@ -503,14 +539,19 @@ body::before {
   overflow-y: auto;
 }
 
-.collection-modal.active { display: block; }
+.collection-modal.active,
+.fantasy-modal.active {
+  display: block;
+}
 
-.collection-box {
-  max-width: 900px;
+.collection-box,
+.fantasy-box {
+  max-width: 950px;
   margin: 0 auto;
 }
 
-.collection-header {
+.collection-header,
+.fantasy-header {
   text-align: left;
   padding: 18px;
   border-radius: 26px;
@@ -519,16 +560,18 @@ body::before {
   margin-bottom: 16px;
 }
 
-.collection-topline {
-  color: #f6c15b;
+.collection-topline,
+.fantasy-topline {
+  color: var(--gold);
   font-size: 0.72rem;
   font-weight: 900;
   letter-spacing: 2px;
 }
 
-.collection-header h2 {
+.collection-header h2,
+.fantasy-header h2 {
   margin: 8px 0;
-  color: #00ff9d;
+  color: var(--green);
 }
 
 .close-modal {
@@ -537,7 +580,7 @@ body::before {
   padding: 14px;
   border-radius: 999px;
   border: none;
-  background: #f6851b;
+  background: var(--orange);
   color: white;
   font-weight: 900;
 }
@@ -562,20 +605,11 @@ body::before {
 }
 
 .collection-item h3 {
-  color: #f6c15b;
+  color: var(--gold);
 }
 
 .collection-meta {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 10px;
-}
-
-.collection-meta div {
-  background: rgba(0,0,0,0.42);
-  border-radius: 18px;
-  padding: 14px 10px;
-  border: 1px solid rgba(255,255,255,0.06);
+  margin-top: 12px;
 }
 
 .meta-title {
@@ -589,13 +623,13 @@ body::before {
 
 .meta-value {
   display: block;
-  color: #f6c15b;
+  color: var(--gold);
   font-size: 0.9rem;
   font-weight: 900;
 }
 
 .meta-value.green {
-  color: #00ff9d;
+  color: var(--green);
   text-shadow: 0 0 10px rgba(0,255,157,0.25);
 }
 
@@ -620,13 +654,13 @@ body::before {
 }
 
 .overlay-box h2 {
-  color: #00ff9d;
+  color: var(--green);
   font-size: 2.2rem;
 }
 
 .overlay-box button {
   margin-top: 12px;
-  background: #00ff9d;
+  background: var(--green);
   color: black;
   border: none;
   padding: 14px 26px;
@@ -640,7 +674,7 @@ body::before {
   border-radius: 16px;
   background: rgba(246,193,91,0.12);
   border: 1px solid rgba(246,193,91,0.28);
-  color: #f6c15b;
+  color: var(--gold);
   font-size: 0.82rem;
   font-weight: 900;
 }
@@ -671,12 +705,12 @@ body::before {
 }
 
 .bottom-nav button.active {
-  background: #00ff9d;
+  background: var(--green);
   color: black;
 }
 
 .bottom-nav .wallet-tab {
-  background: #f6851b;
+  background: var(--orange);
   color: white;
 }
 
@@ -712,6 +746,7 @@ body::before {
 
 @media (max-width: 560px) {
   .flip-card,
+  .swipe-card,
   .card-side,
   .card-panel {
     min-height: 620px;
@@ -729,22 +764,15 @@ body::before {
 
 <div class="overlay">
   <div class="overlay-box">
-
     <h2>LegacyMint Beta</h2>
-
     <p>
       A premium mobile-first NFT platform for athletes,
       creators, clubs and communities on Apertum.
     </p>
-
     <div class="beta-warning">
       Platform currently undergoing Beta Testing.
     </div>
-
-    <button onclick="closeOverlay()">
-      Enter Site
-    </button>
-
+    <button onclick="closeOverlay()">Enter Site</button>
   </div>
 </div>
 
@@ -752,43 +780,156 @@ body::before {
   <div class="collection-box">
     <div class="collection-header">
       <div class="collection-topline">THOMAS ENOKA VERIFIED COLLECTION</div>
-      <h2>Elite Series Collection</h2>
-      <p>Premium ERC1155 athlete collectibles featuring limited edition Thomas Enoka cards.</p>
+      <h2>Legacy Pioneer Series</h2>
+      <p>
+        Premium ERC1155 athlete collectibles featuring Thomas Enoka as LegacyMint Pioneer #1.
+        Open each card to view front, stats, badges and fantasy card utility.
+      </p>
       <button class="close-modal" onclick="closeCollection()">Close Collection</button>
     </div>
 
     <div class="collection-grid">
+
       <div class="collection-item">
         <img src="https://gateway.pinata.cloud/ipfs/bafybeigiu67t4k7e3zidnpj77nziqqnzi2frjgknba6zmzi3ei3vjch6dy">
-        <h3>Elite Series #001</h3>
-        <p>Founding Edition collectible card.</p>
+        <h3>Legacy Pioneer #001</h3>
+        <p>Pioneer 1 Founding Edition collectible card.</p>
         <div class="collection-meta">
           <div><span class="meta-title">SUPPLY</span><span class="meta-value">25</span></div>
           <div><span class="meta-title">ROYALTY</span><span class="meta-value green">7.5% Creator</span></div>
           <div><span class="meta-title">STANDARD</span><span class="meta-value green">ERC1155</span></div>
         </div>
+        <button class="btn" style="margin-top:12px;" onclick="openFantasyCard(0)">View Fantasy Card</button>
       </div>
 
       <div class="collection-item">
         <img src="https://gateway.pinata.cloud/ipfs/bafybeid33djahua3gzwj4ioy6ja46gv2lrwadh24ulvhxt2nf6bvikipfe">
-        <h3>Elite Series #002</h3>
+        <h3>Legacy Pioneer #002</h3>
         <p>Limited high-energy action variant.</p>
         <div class="collection-meta">
           <div><span class="meta-title">SUPPLY</span><span class="meta-value">10</span></div>
           <div><span class="meta-title">ROYALTY</span><span class="meta-value green">7.5% Creator</span></div>
           <div><span class="meta-title">STANDARD</span><span class="meta-value green">ERC1155</span></div>
         </div>
+        <button class="btn" style="margin-top:12px;" onclick="openFantasyCard(1)">View Fantasy Card</button>
       </div>
 
       <div class="collection-item">
         <img src="https://gateway.pinata.cloud/ipfs/bafybeidorylrziwwax35ds7iuedxfoyjqvwld63tjyobnx52ypt4kd3vxq">
-        <h3>Elite Series #003</h3>
+        <h3>Legacy Pioneer #003</h3>
         <p>Emerald Action Edition collectible card.</p>
         <div class="collection-meta">
           <div><span class="meta-title">SUPPLY</span><span class="meta-value">15</span></div>
           <div><span class="meta-title">ROYALTY</span><span class="meta-value green">7.5% Creator</span></div>
           <div><span class="meta-title">STANDARD</span><span class="meta-value green">ERC1155</span></div>
         </div>
+        <button class="btn" style="margin-top:12px;" onclick="openFantasyCard(2)">View Fantasy Card</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="fantasy-modal" class="fantasy-modal">
+  <div class="fantasy-box">
+    <div class="fantasy-header">
+      <div class="fantasy-topline">LEGACYMINT FANTASY CARD VIEWER</div>
+      <h2 id="fantasy-title">Thomas Enoka</h2>
+      <p>Swipe or use the buttons to view the front, fantasy stats, badges and purchase information.</p>
+      <button class="close-modal" onclick="closeFantasyCard()">Close Card</button>
+    </div>
+
+    <div class="hero-card-wrap">
+      <div id="fantasy-card" class="swipe-card">
+
+        <div class="series-badge">LEGACY PIONEER SERIES</div>
+        <div class="rarity-badge">FOUNDING EDITION</div>
+        <div class="pioneer-badge">PIONEER 1</div>
+
+        <div class="card-side active fantasy-side" id="fantasy-front">
+          <img id="fantasy-img" class="fantasy-front-img" src="">
+          <div class="hero-card-content">
+            <div id="fantasy-series" class="hero-series">LEGACY PIONEER #001</div>
+            <h2 class="hero-athlete-name">Thomas Enoka</h2>
+            <div class="hero-role">Black Sox Vice-Captain</div>
+            <div class="hero-divider"></div>
+            <div class="hero-stats">
+              <div class="stat-box"><div class="stat-number">10★</div><div class="stat-label">PLAYER RATING</div></div>
+              <div class="stat-box"><div id="fantasy-supply" class="stat-number">25</div><div class="stat-label">SUPPLY</div></div>
+              <div class="stat-box"><div class="stat-number">ERC1155</div><div class="stat-label">STANDARD</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-side fantasy-side" id="fantasy-stats">
+          <div class="card-panel">
+            <div class="hero-series">PLAYER STATS / FANTASY LAYER</div>
+            <h2>Thomas Enoka</h2>
+            <p>10-star elite current-era player. 11 and 12 stars are reserved for retired legends and immortal icons.</p>
+
+            <div class="star-rating-box">
+              <div class="star-title">FANTASY STAR RATING</div>
+              <div class="stars">★★★★★★★★★★☆☆</div>
+              <div class="star-subtitle">Elite Tier • 10 / 12 Star Player</div>
+            </div>
+
+            <div class="skill-grid">
+              <div class="skill-row"><div class="skill-label"><span>Batting</span><span>92</span></div><div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
+              <div class="skill-row"><div class="skill-label"><span>Power</span><span>88</span></div><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+              <div class="skill-row"><div class="skill-label"><span>Speed</span><span>84</span></div><div class="skill-bar"><div class="skill-fill" style="width:84%"></div></div></div>
+              <div class="skill-row"><div class="skill-label"><span>Fielding</span><span>90</span></div><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+              <div class="skill-row"><div class="skill-label"><span>Leadership</span><span>95</span></div><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div></div>
+              <div class="skill-row"><div class="skill-label"><span>Game IQ</span><span>93</span></div><div class="skill-bar"><div class="skill-fill" style="width:93%"></div></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-side fantasy-side" id="fantasy-badges">
+          <div class="card-panel">
+            <div class="hero-series">PLAYER BADGES</div>
+            <h2>Thomas Enoka Badges</h2>
+            <p>These are the badges this player card currently carries.</p>
+
+            <div class="badge-grid">
+              <div class="badge-box"><h4>Verified Athlete</h4><p>Officially verified athlete profile.</p></div>
+              <div class="badge-box"><h4>Legacy Pioneer</h4><p>One of the first LegacyMint athlete collections.</p></div>
+              <div class="badge-box"><h4>Pioneer 1</h4><p>First Pioneer athlete card position.</p></div>
+              <div class="badge-box"><h4>Black Sox Vice-Captain</h4><p>Leadership status badge.</p></div>
+              <div class="badge-box"><h4>10-Star Elite</h4><p>Elite current-era fantasy rating.</p></div>
+              <div class="badge-box"><h4>Creator Royalty</h4><p>7.5% royalty enabled.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-side fantasy-side" id="fantasy-purchase">
+          <div class="card-panel">
+            <div class="hero-series">PURCHASE / COLLECTION INFO</div>
+            <h2 id="purchase-title">Legacy Pioneer #001</h2>
+            <p>Review card details before minting or purchasing as a fantasy collectible.</p>
+
+            <div class="collection-meta">
+              <div><span class="meta-title">SUPPLY</span><span id="purchase-supply" class="meta-value">25</span></div>
+              <div><span class="meta-title">ROYALTY</span><span class="meta-value green">7.5% Creator</span></div>
+              <div><span class="meta-title">STANDARD</span><span class="meta-value green">ERC1155</span></div>
+            </div>
+
+            <div class="utility-list">
+              <div class="utility-item"><strong>Fantasy Use:</strong> eligible for future team-building and star-cap games.</div>
+              <div class="utility-item"><strong>Collection:</strong> Thomas Enoka Legacy Pioneer Series.</div>
+              <div class="utility-item"><strong>Trust:</strong> verified athlete and official LegacyMint collection.</div>
+            </div>
+
+            <button class="mint-btn" style="margin-top:18px;">Mint / Purchase Coming Soon</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="side-controls">
+        <button class="active" onclick="setFantasySide(0)">Front</button>
+        <button onclick="setFantasySide(1)">Stats</button>
+        <button onclick="setFantasySide(2)">Badges</button>
+        <button onclick="setFantasySide(3)">Buy</button>
       </div>
     </div>
   </div>
@@ -810,8 +951,8 @@ body::before {
       <div class="card">
         <h3>Premium Athlete Collectibles</h3>
         <p>
-          Featured cards now support multi-side collectible views including stats,
-          verification badges, utility and future fantasy game attributes.
+          Featured cards support multi-side collectible views including front art,
+          fantasy stats, verified badges and utility.
         </p>
       </div>
     </div>
@@ -820,27 +961,29 @@ body::before {
       <div class="hero-card-header">FEATURED ATHLETE COLLECTION</div>
 
       <div class="flip-card" onclick="nextHeroSide()">
+        <div class="series-badge">LEGACY PIONEER SERIES</div>
         <div class="rarity-badge">FOUNDING EDITION</div>
+        <div class="pioneer-badge">PIONEER 1</div>
 
         <div class="card-side active" id="side-front">
           <img class="hero-nft-img" src="https://gateway.pinata.cloud/ipfs/bafybeigiu67t4k7e3zidnpj77nziqqnzi2frjgknba6zmzi3ei3vjch6dy">
 
           <div class="hero-card-content">
-            <div class="hero-series">ELITE SERIES #001</div>
+            <div class="hero-series">LEGACY PIONEER #001</div>
             <h2 class="hero-athlete-name">Thomas Enoka</h2>
             <div class="hero-role">Black Sox Vice-Captain</div>
 
             <div class="hero-divider"></div>
 
             <div class="hero-stats">
+              <div class="stat-box"><div class="stat-number">10★</div><div class="stat-label">PLAYER RATING</div></div>
               <div class="stat-box"><div class="stat-number">25</div><div class="stat-label">SUPPLY</div></div>
-              <div class="stat-box"><div class="stat-number">7.5%</div><div class="stat-label">CREATOR ROYALTY</div></div>
               <div class="stat-box"><div class="stat-number">ERC1155</div><div class="stat-label">STANDARD</div></div>
             </div>
 
             <div class="hero-buttons">
               <button class="view-btn" onclick="event.stopPropagation(); openCollection();">View Collection</button>
-              <button class="support-btn" onclick="event.stopPropagation();">Mint Supporter NFT</button>
+              <button class="support-btn" onclick="event.stopPropagation(); openFantasyCard(0);">View Fantasy Card</button>
             </div>
           </div>
         </div>
@@ -849,18 +992,12 @@ body::before {
           <div class="card-panel">
             <div class="hero-series">PLAYER STATS / FANTASY LAYER</div>
             <h2>Thomas Enoka</h2>
-            <p>Future fantasy game attributes for skill-based collectible utility.</p>
+            <p>10-star elite current-era player. 11 and 12 stars are reserved for retired legends and immortal icons.</p>
 
             <div class="star-rating-box">
               <div class="star-title">FANTASY STAR RATING</div>
-
-              <div class="stars">
-                ★★★★★★★★★★☆☆
-              </div>
-
-              <div class="star-subtitle">
-                Elite Tier • 10 / 12 Star Player
-              </div>
+              <div class="stars">★★★★★★★★★★☆☆</div>
+              <div class="star-subtitle">Elite Tier • 10 / 12 Star Player</div>
             </div>
 
             <div class="skill-grid">
@@ -876,16 +1013,16 @@ body::before {
 
         <div class="card-side" id="side-badges">
           <div class="card-panel">
-            <div class="hero-series">BADGES / TRUST LAYER</div>
-            <h2>Verified Collectible</h2>
-            <p>Badges keep the front card clean while preserving trust and rarity information.</p>
+            <div class="hero-series">PLAYER BADGES</div>
+            <h2>Thomas Enoka Badges</h2>
+            <p>Actual current badges assigned to this athlete card.</p>
 
             <div class="badge-grid">
-              <div class="badge-box"><h4>Verified Athlete</h4><p>Approved athlete identity.</p></div>
-              <div class="badge-box"><h4>Elite Series</h4><p>Premium collection tier.</p></div>
-              <div class="badge-box"><h4>Founding Edition</h4><p>Early LegacyMint collectible.</p></div>
-              <div class="badge-box"><h4>Legacy Pioneer</h4><p>Platform founding athlete.</p></div>
-              <div class="badge-box"><h4>ERC1155</h4><p>Multi-card collection standard.</p></div>
+              <div class="badge-box"><h4>Verified Athlete</h4><p>Official athlete identity.</p></div>
+              <div class="badge-box"><h4>Legacy Pioneer</h4><p>Founding platform athlete.</p></div>
+              <div class="badge-box"><h4>Pioneer 1</h4><p>First Pioneer badge.</p></div>
+              <div class="badge-box"><h4>Black Sox Vice-Captain</h4><p>Leadership badge.</p></div>
+              <div class="badge-box"><h4>10-Star Elite</h4><p>Elite fantasy tier.</p></div>
               <div class="badge-box"><h4>Creator Royalty</h4><p>7.5% royalty support.</p></div>
             </div>
           </div>
@@ -899,7 +1036,7 @@ body::before {
 
             <div class="utility-list">
               <div class="utility-item"><strong>Athlete Support:</strong> supports athlete and creator fundraising.</div>
-              <div class="utility-item"><strong>Collection Access:</strong> part of the Thomas Enoka Elite Series.</div>
+              <div class="utility-item"><strong>Collection Access:</strong> Thomas Enoka Legacy Pioneer Series.</div>
               <div class="utility-item"><strong>Fantasy Eligible:</strong> future game-ready attributes and card scoring.</div>
               <div class="utility-item"><strong>Marketplace Ready:</strong> ERC1155 + royalty-aware resale compatibility.</div>
             </div>
@@ -921,7 +1058,7 @@ body::before {
   <div class="card">
     <h3>Collections</h3>
     <p>Explore verified athlete, club and foundation collections.</p>
-    <button class="btn" onclick="openCollection()">Thomas Enoka Elite Series</button>
+    <button class="btn" onclick="openCollection()">Thomas Enoka Legacy Pioneer Series</button>
   </div>
 </section>
 
@@ -993,8 +1130,30 @@ body::before {
 
 <script>
 let userAccount = "";
+
 let heroSideIndex = 0;
 const heroSides = ["side-front", "side-stats", "side-badges", "side-utility"];
+
+let fantasySideIndex = 0;
+const fantasySides = ["fantasy-front", "fantasy-stats", "fantasy-badges", "fantasy-purchase"];
+
+const playerCards = [
+  {
+    title: "Legacy Pioneer #001",
+    image: "https://gateway.pinata.cloud/ipfs/bafybeigiu67t4k7e3zidnpj77nziqqnzi2frjgknba6zmzi3ei3vjch6dy",
+    supply: "25"
+  },
+  {
+    title: "Legacy Pioneer #002",
+    image: "https://gateway.pinata.cloud/ipfs/bafybeid33djahua3gzwj4ioy6ja46gv2lrwadh24ulvhxt2nf6bvikipfe",
+    supply: "10"
+  },
+  {
+    title: "Legacy Pioneer #003",
+    image: "https://gateway.pinata.cloud/ipfs/bafybeidorylrziwwax35ds7iuedxfoyjqvwld63tjyobnx52ypt4kd3vxq",
+    supply: "15"
+  }
+];
 
 const CONTRACT_ADDRESS = "0x50B8f3A1990a5866220174304D37ed3723ed8b9c";
 const TOKEN_ID_TO_MINT = 8;
@@ -1008,31 +1167,14 @@ const APTM_NETWORK = {
   blockExplorerUrls: ["https://explorer.apertum.io/"]
 };
 
-const CONTRACT_ABI = [
-  {
-    "inputs": [
-      {"internalType":"address","name":"account","type":"address"},
-      {"internalType":"uint256","name":"id","type":"uint256"},
-      {"internalType":"uint256","name":"amount","type":"uint256"},
-      {"internalType":"bytes","name":"data","type":"bytes"}
-    ],
-    "name":"mint",
-    "outputs":[],
-    "stateMutability":"nonpayable",
-    "type":"function"
-  }
-];
-
 function updateHeroSide() {
-  document.querySelectorAll(".card-side").forEach(side => {
+  document.querySelectorAll("#home .card-side").forEach(side => {
     side.classList.remove("active");
   });
 
-  document
-    .getElementById(heroSides[heroSideIndex])
-    .classList.add("active");
+  document.getElementById(heroSides[heroSideIndex]).classList.add("active");
 
-  document.querySelectorAll(".side-controls button").forEach((btn, index) => {
+  document.querySelectorAll(".hero-card-wrap > .side-controls button").forEach((btn, index) => {
     btn.classList.toggle("active", index === heroSideIndex);
   });
 }
@@ -1049,6 +1191,43 @@ function setHeroSide(index) {
 
 setInterval(nextHeroSide, 8000);
 
+function updateFantasySide() {
+  document.querySelectorAll("#fantasy-card .card-side").forEach(side => {
+    side.classList.remove("active");
+  });
+
+  document.getElementById(fantasySides[fantasySideIndex]).classList.add("active");
+
+  document.querySelectorAll("#fantasy-modal .side-controls button").forEach((btn, index) => {
+    btn.classList.toggle("active", index === fantasySideIndex);
+  });
+}
+
+function setFantasySide(index) {
+  fantasySideIndex = index;
+  updateFantasySide();
+}
+
+function openFantasyCard(index) {
+  const card = playerCards[index];
+
+  document.getElementById("fantasy-title").innerText = card.title;
+  document.getElementById("fantasy-img").src = card.image;
+  document.getElementById("fantasy-series").innerText = card.title;
+  document.getElementById("purchase-title").innerText = card.title;
+  document.getElementById("fantasy-supply").innerText = card.supply;
+  document.getElementById("purchase-supply").innerText = card.supply;
+
+  fantasySideIndex = 0;
+  updateFantasySide();
+
+  document.getElementById("fantasy-modal").classList.add("active");
+}
+
+function closeFantasyCard() {
+  document.getElementById("fantasy-modal").classList.remove("active");
+}
+
 function showTab(tabId, button) {
   document.querySelectorAll(".tab-section").forEach(section => section.classList.remove("active"));
   document.getElementById(tabId).classList.add("active");
@@ -1061,7 +1240,6 @@ function showTab(tabId, button) {
 
 function closeOverlay() {
   const overlay = document.querySelector(".overlay");
-
   overlay.style.opacity = "0";
   overlay.style.pointerEvents = "none";
 
@@ -1127,32 +1305,6 @@ async function switchToApertum() {
   }
 
   await checkNetwork();
-}
-
-async function getContract() {
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const signer = provider.getSigner();
-  return new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
-}
-
-async function mintNFT() {
-  if (!userAccount) {
-    document.getElementById("mint-status").innerText = "Connect wallet first";
-    return;
-  }
-
-  try {
-    const contract = await getContract();
-    document.getElementById("mint-status").innerText = "Minting NFT #" + TOKEN_ID_TO_MINT + "...";
-
-    const tx = await contract.mint(userAccount, TOKEN_ID_TO_MINT, 1, "0x");
-    await tx.wait();
-
-    document.getElementById("mint-status").innerText = "NFT #" + TOKEN_ID_TO_MINT + " Minted Successfully ✅";
-  } catch (error) {
-    console.log(error);
-    document.getElementById("mint-status").innerText = "Mint failed ❌";
-  }
 }
 
 window.onload = function () {
