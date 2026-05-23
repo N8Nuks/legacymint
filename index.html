@@ -1550,7 +1550,63 @@ function closeOverlay(){
   window.scrollTo(0,0);
 
 }
+/* =========================
+V3 PREMIUM CARD SYSTEM
+========================= */
 
+let premiumSideIndex = 0;
+
+const premiumSides = [
+  "premium-front",
+  "premium-stats"
+];
+
+function updatePremiumSide(){
+
+  document
+  .querySelectorAll(".premium-side")
+  .forEach(side=>{
+    side.classList.remove("active");
+  });
+
+  document
+  .getElementById(
+    premiumSides[premiumSideIndex]
+  )
+  .classList.add("active");
+
+  document
+  .querySelectorAll(".premium-control")
+  .forEach((btn,index)=>{
+
+    btn.classList.toggle(
+      "active",
+      index===premiumSideIndex
+    );
+
+  });
+
+}
+
+function nextPremiumSide(){
+
+  premiumSideIndex =
+  (premiumSideIndex + 1)
+  % premiumSides.length;
+
+  updatePremiumSide();
+
+}
+
+function setPremiumSide(index){
+
+  premiumSideIndex = index;
+
+  updatePremiumSide();
+
+}
+
+setInterval(nextPremiumSide,8000);
 window.onload = function(){
   window.scrollTo(0,0);
 };
