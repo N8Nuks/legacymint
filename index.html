@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 <title>LegacyMint</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
@@ -10,6 +11,8 @@
 <style>
 
 *{
+  margin:0;
+  padding:0;
   box-sizing:border-box;
 }
 
@@ -18,15 +21,16 @@
   --gold:#f6c15b;
   --orange:#f6851b;
   --red:#ff2b2b;
-  --panel:rgba(12,12,12,0.9);
+  --dark:#050505;
+  --panel:rgba(12,12,12,0.92);
 }
 
 body{
-  margin:0;
   font-family:Arial,sans-serif;
   background:#050505;
   color:white;
-  padding:24px 14px 120px;
+  overflow-x:hidden;
+  padding-bottom:120px;
 }
 
 body::before{
@@ -34,54 +38,17 @@ body::before{
   position:fixed;
   inset:0;
   background:
-  linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.92)),
-  url("https://gateway.pinata.cloud/ipfs/bafkreifbbbh3ibc6ftx2guipqtgayry6i224dctbgilojnclk7u4jsle3a");
+    linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.94)),
+    url("https://gateway.pinata.cloud/ipfs/bafkreifbbbh3ibc6ftx2guipqtgayry6i224dctbgilojnclk7u4jsle3a");
   background-size:cover;
   background-position:center;
   z-index:-1;
 }
 
 .app{
-  max-width:1280px;
+  max-width:1400px;
   margin:0 auto;
-}
-
-.main-logo{
-  margin:0;
-  line-height:1;
-  text-align:center;
-}
-
-.legacy-text,
-.mint-text{
-  font-family:'Monoton',cursive;
-  font-size:clamp(3rem,10vw,6rem);
-}
-
-.legacy-text{
-  background:linear-gradient(
-    180deg,
-    #fff6cc 0%,
-    #ffd700 20%,
-    #f5c542 40%,
-    #d89b00 60%,
-    #fff1a8 80%,
-    #b87900 100%
-  );
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.mint-text{
-  color:var(--green);
-}
-
-.subtitle{
-  text-align:center;
-  color:#ddd;
-  max-width:700px;
-  margin:18px auto 28px;
-  line-height:1.6;
+  padding:24px 18px 100px;
 }
 
 .tab-section{
@@ -92,44 +59,83 @@ body::before{
   display:block;
 }
 
+.main-logo{
+  text-align:center;
+  line-height:1;
+  margin-top:20px;
+}
+
+.legacy-text,
+.mint-text{
+  font-family:'Monoton',cursive;
+  font-size:clamp(3rem,9vw,6rem);
+}
+
+.legacy-text{
+  background:linear-gradient(
+    180deg,
+    #fff6cc 0%,
+    #ffd700 22%,
+    #f5c542 45%,
+    #d89b00 68%,
+    #fff1a8 84%,
+    #b87900 100%
+  );
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.mint-text{
+  color:var(--green);
+  text-shadow:0 0 16px rgba(0,255,157,0.25);
+}
+
+.subtitle{
+  text-align:center;
+  color:#ddd;
+  margin:20px auto 34px;
+  max-width:760px;
+  line-height:1.6;
+  font-size:1rem;
+}
+
 .hero-layout{
   display:grid;
-  grid-template-columns:1fr;
-  gap:30px;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
   align-items:start;
 }
 
 .hero-card-wrap{
-  width:100%;
   max-width:620px;
+  width:100%;
   margin:0 auto;
 }
 
 .hero-card-header{
   color:var(--gold);
-  font-size:0.75rem;
+  font-size:0.72rem;
   font-weight:900;
   letter-spacing:2px;
   margin-bottom:14px;
   text-align:center;
 }
 
-.flip-card,
-.swipe-card{
+.flip-card{
   position:relative;
   min-height:760px;
   border-radius:34px;
   overflow:hidden;
   background:
-  linear-gradient(
-    145deg,
-    rgba(255,215,0,0.14),
-    rgba(0,255,157,0.08)
-  );
-  border:1px solid rgba(255,255,255,0.12);
+    linear-gradient(
+      145deg,
+      rgba(255,215,0,0.12),
+      rgba(0,255,157,0.08)
+    );
+  border:1px solid rgba(255,255,255,0.1);
   box-shadow:
-  0 0 40px rgba(0,0,0,0.6),
-  0 0 18px rgba(0,255,157,0.12);
+    0 0 40px rgba(0,0,0,0.55),
+    0 0 18px rgba(0,255,157,0.10);
 }
 
 .card-side{
@@ -141,6 +147,11 @@ body::before{
   display:block;
 }
 
+.hero-nft-img{
+  width:100%;
+  display:block;
+}
+
 .series-badge,
 .rarity-badge,
 .pioneer-badge{
@@ -148,28 +159,28 @@ body::before{
   z-index:10;
   padding:8px 12px;
   border-radius:999px;
-  font-size:0.66rem;
+  font-size:0.65rem;
   font-weight:900;
 }
 
 .series-badge{
   top:14px;
   left:14px;
-  background:rgba(0,255,157,0.12);
-  border:1px solid rgba(0,255,157,0.35);
   color:var(--green);
+  border:1px solid rgba(0,255,157,0.3);
+  background:rgba(0,255,157,0.12);
 }
 
 .rarity-badge{
   top:14px;
   right:14px;
   background:
-  linear-gradient(
-    180deg,
-    #fff4b0,
-    #ffd700,
-    #c79200
-  );
+    linear-gradient(
+      180deg,
+      #fff4b0,
+      #ffd700,
+      #b87900
+    );
   color:black;
 }
 
@@ -177,35 +188,29 @@ body::before{
   bottom:14px;
   right:14px;
   background:
-  linear-gradient(
-    180deg,
-    #fff4b0,
-    #ffd700,
-    #b87900
-  );
+    linear-gradient(
+      180deg,
+      #fff4b0,
+      #ffd700,
+      #b87900
+    );
   color:black;
 }
 
-.hero-nft-img,
-.fantasy-front-img{
-  width:100%;
-  display:block;
-}
-
 .hero-card-content{
-  padding:24px 20px 28px;
+  padding:24px 20px 30px;
 }
 
 .hero-series{
   color:var(--gold);
-  font-size:0.75rem;
-  letter-spacing:2px;
+  font-size:0.72rem;
   font-weight:900;
+  letter-spacing:2px;
 }
 
 .hero-athlete-name{
-  margin:10px 0 6px;
   font-size:2rem;
+  margin:12px 0 6px;
   font-weight:900;
 }
 
@@ -220,15 +225,13 @@ body::before{
   margin:22px 0;
 }
 
-.hero-stats,
-.collection-meta{
+.hero-stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:10px;
 }
 
-.stat-box,
-.collection-meta div{
+.stat-box{
   background:rgba(0,0,0,0.42);
   border-radius:18px;
   padding:14px 10px;
@@ -237,32 +240,31 @@ body::before{
 
 .stat-number{
   color:var(--gold);
-  font-size:1rem;
   font-weight:900;
+  font-size:1rem;
 }
 
 .stat-label{
+  color:#999;
+  margin-top:5px;
   font-size:0.68rem;
-  margin-top:6px;
-  color:#aaa;
 }
 
 .hero-buttons{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
-  margin-top:22px;
+  margin-top:20px;
 }
 
 .btn,
 .view-btn,
 .support-btn,
-.wallet-btn,
-.network-btn{
+.wallet-btn{
   width:100%;
-  padding:14px;
   border:none;
   border-radius:999px;
+  padding:14px;
   font-weight:900;
   cursor:pointer;
 }
@@ -276,38 +278,27 @@ body::before{
 .view-btn{
   background:rgba(255,255,255,0.08);
   color:white;
-  border:1px solid rgba(255,255,255,0.08);
-}
-
-.wallet-btn{
-  background:var(--orange);
-  color:white;
-}
-
-.network-btn{
-  background:#2563eb;
-  color:white;
-  margin-top:10px;
 }
 
 .card-panel{
-  padding:30px 24px;
+  padding:28px 24px;
 }
 
 .card-panel h2{
   color:var(--green);
+  margin-bottom:10px;
 }
 
 .star-rating-box{
-  margin:20px 0;
+  margin:22px 0;
   padding:18px;
-  border-radius:20px;
-  background:rgba(246,193,91,0.1);
+  border-radius:22px;
+  background:rgba(246,193,91,0.10);
 }
 
 .star-title{
-  font-size:0.7rem;
   color:#999;
+  font-size:0.7rem;
   letter-spacing:2px;
   font-weight:900;
 }
@@ -337,15 +328,15 @@ body::before{
 .skill-label{
   display:flex;
   justify-content:space-between;
-  color:var(--gold);
   margin-bottom:6px;
+  color:var(--gold);
   font-weight:900;
 }
 
 .skill-bar{
   height:10px;
-  border-radius:999px;
   background:rgba(255,255,255,0.08);
+  border-radius:999px;
   overflow:hidden;
 }
 
@@ -353,11 +344,11 @@ body::before{
   height:100%;
   border-radius:999px;
   background:
-  linear-gradient(
-    90deg,
-    var(--green),
-    var(--gold)
-  );
+    linear-gradient(
+      90deg,
+      var(--green),
+      var(--gold)
+    );
 }
 
 .badge-grid{
@@ -371,12 +362,11 @@ body::before{
   background:rgba(0,0,0,0.42);
   border-radius:18px;
   padding:14px;
-  text-align:left;
 }
 
 .badge-box h4{
   color:var(--green);
-  margin:0 0 6px;
+  margin-bottom:6px;
 }
 
 .utility-list{
@@ -389,7 +379,6 @@ body::before{
   background:rgba(0,0,0,0.42);
   border-radius:18px;
   padding:14px;
-  text-align:left;
 }
 
 .utility-item strong{
@@ -405,11 +394,12 @@ body::before{
 
 .side-controls button{
   padding:10px 6px;
-  border-radius:999px;
   border:none;
+  border-radius:999px;
   background:rgba(255,255,255,0.08);
   color:white;
   font-weight:900;
+  cursor:pointer;
 }
 
 .side-controls button.active{
@@ -420,12 +410,13 @@ body::before{
 .card{
   background:var(--panel);
   border-radius:28px;
-  padding:22px;
+  padding:24px;
   margin:20px 0;
 }
 
 .card h3{
   color:var(--gold);
+  margin-bottom:10px;
 }
 
 .collection-grid{
@@ -450,77 +441,10 @@ body::before{
   border-radius:20px;
 }
 
-.meta-title{
-  display:block;
-  color:#999;
-  font-size:0.65rem;
-  letter-spacing:1px;
-}
-
-.meta-value{
-  display:block;
-  margin-top:4px;
-  color:var(--gold);
-  font-weight:900;
-}
-
-.meta-value.green{
-  color:var(--green);
-}
-
 .full-img{
   width:100%;
   border-radius:22px;
   margin-top:18px;
-}
-
-.collection-modal,
-.fantasy-modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.94);
-  display:none;
-  overflow-y:auto;
-  z-index:9998;
-  padding:20px;
-}
-
-.collection-modal.active,
-.fantasy-modal.active{
-  display:block;
-}
-
-.collection-box,
-.fantasy-box{
-  max-width:1280px;
-  margin:0 auto;
-}
-
-.collection-header,
-.fantasy-header{
-  background:rgba(12,12,12,0.92);
-  border-radius:26px;
-  padding:20px;
-  margin-bottom:18px;
-}
-
-.collection-topline,
-.fantasy-topline{
-  color:var(--gold);
-  font-size:0.72rem;
-  letter-spacing:2px;
-  font-weight:900;
-}
-
-.close-modal{
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:999px;
-  background:var(--orange);
-  color:white;
-  font-weight:900;
-  margin-top:14px;
 }
 
 .overlay{
@@ -536,8 +460,8 @@ body::before{
 .overlay-box{
   max-width:420px;
   background:rgba(14,14,14,0.96);
-  padding:30px 22px;
   border-radius:28px;
+  padding:30px 22px;
   text-align:center;
 }
 
@@ -546,20 +470,21 @@ body::before{
 }
 
 .overlay-box button{
-  margin-top:14px;
-  background:var(--green);
-  color:black;
+  margin-top:16px;
+  padding:14px 24px;
   border:none;
   border-radius:999px;
-  padding:14px 24px;
+  background:var(--green);
+  color:black;
   font-weight:900;
+  cursor:pointer;
 }
 
 .beta-warning{
   margin-top:18px;
-  background:rgba(246,193,91,0.12);
-  border-radius:18px;
   padding:12px;
+  border-radius:18px;
+  background:rgba(246,193,91,0.12);
   color:var(--gold);
   font-weight:900;
 }
@@ -588,6 +513,7 @@ body::before{
   color:white;
   font-size:0.65rem;
   font-weight:900;
+  cursor:pointer;
 }
 
 .bottom-nav button.active{
@@ -605,7 +531,7 @@ body::before{
     grid-template-columns:1fr;
   }
 
-  .skill-grid{
+  .collection-grid{
     grid-template-columns:1fr;
   }
 
@@ -613,12 +539,11 @@ body::before{
     grid-template-columns:1fr;
   }
 
-  .collection-grid{
+  .skill-grid{
     grid-template-columns:1fr;
   }
 
   .flip-card,
-  .swipe-card,
   .card-side{
     min-height:620px;
   }
@@ -631,27 +556,29 @@ body::before{
 <body>
 
 <div class="overlay">
-  <div class="overlay-box">
 
-    <h2>LegacyMint Beta</h2>
+<div class="overlay-box">
 
-    <p>
-      A premium NFT platform for athletes,
-      clubs and communities on Apertum.
-    </p>
+<h2>LegacyMint Beta</h2>
 
-    <div class="beta-warning">
-      Platform currently undergoing Beta Testing.
-    </div>
+<p>
+A premium NFT platform for athletes,
+clubs and communities on Apertum.
+</p>
 
-    <button onclick="closeOverlay()">
-      Enter Site
-    </button>
-
-  </div>
+<div class="beta-warning">
+Platform currently undergoing Beta Testing.
 </div>
 
-<main class="app">
+<button onclick="closeOverlay()">
+Enter Site
+</button>
+
+</div>
+
+</div>
+
+<div class="app">
 
 <section id="home" class="tab-section active">
 
@@ -674,8 +601,8 @@ Mint digital legacy on Apertum.
 <h3>Premium Athlete Collectibles</h3>
 
 <p>
-Multi-side collectible cards featuring
-fantasy stats, utility, rarity and verification.
+Multi-side collectible cards featuring fantasy stats,
+utility, rarity and verification.
 </p>
 
 </div>
@@ -688,7 +615,7 @@ fantasy stats, utility, rarity and verification.
 FEATURED ATHLETE COLLECTION
 </div>
 
-<div class="flip-card" onclick="nextHeroSide()">
+<div class="flip-card">
 
 <div class="series-badge">
 LEGACY PIONEER SERIES
@@ -746,21 +673,18 @@ Black Sox Vice-Captain
 
 <div class="hero-buttons">
 
-<button
-class="view-btn"
-onclick="event.stopPropagation();">
+<button class="view-btn">
 View Collection
 </button>
 
-<button
-class="support-btn"
-onclick="event.stopPropagation();">
+<button class="support-btn">
 Fantasy Card
 </button>
 
 </div>
 
 </div>
+
 </div>
 
 <div class="card-side" id="side-stats">
@@ -839,6 +763,7 @@ Elite Tier • 10 / 12 Star Player
 </div>
 
 </div>
+
 </div>
 
 </div>
@@ -861,31 +786,76 @@ Stats
 
 </section>
 
-</main>
+<section id="collections" class="tab-section">
+<div class="card">
+<h3>Collections</h3>
+<p>Collection area coming next.</p>
+</div>
+</section>
+
+<section id="create" class="tab-section">
+<div class="card">
+<h3>Create</h3>
+<p>Create collection tools coming next.</p>
+</div>
+</section>
+
+<section id="verify" class="tab-section">
+<div class="card">
+<h3>Verification</h3>
+<p>Verification and rarity badges.</p>
+</div>
+</section>
+
+<section id="safety" class="tab-section">
+<div class="card">
+<h3>Safety</h3>
+<p>LegacyMint safety and scam prevention information.</p>
+</div>
+</section>
+
+<section id="wallet" class="tab-section">
+<div class="card">
+<h3>Wallet</h3>
+<button class="wallet-btn">
+Connect Wallet
+</button>
+</div>
+</section>
+
+</div>
 
 <nav class="bottom-nav">
 
-<button class="active">
+<button
+class="active"
+onclick="showTab('home', this)">
 Home
 </button>
 
-<button>
+<button
+onclick="showTab('collections', this)">
 Collect
 </button>
 
-<button>
+<button
+onclick="showTab('create', this)">
 Create
 </button>
 
-<button>
+<button
+onclick="showTab('verify', this)">
 Verify
 </button>
 
-<button>
+<button
+onclick="showTab('safety', this)">
 Safety
 </button>
 
-<button class="wallet-tab">
+<button
+class="wallet-tab"
+onclick="showTab('wallet', this)">
 Wallet
 </button>
 
@@ -902,7 +872,8 @@ const heroSides = [
 
 function updateHeroSide(){
 
-  document.querySelectorAll(".flip-card .card-side")
+  document
+  .querySelectorAll(".flip-card .card-side")
   .forEach(side=>{
     side.classList.remove("active");
   });
@@ -940,6 +911,30 @@ function setHeroSide(index){
 }
 
 setInterval(nextHeroSide,8000);
+
+function showTab(tabId, button){
+
+  document
+  .querySelectorAll(".tab-section")
+  .forEach(section=>{
+    section.classList.remove("active");
+  });
+
+  document
+  .getElementById(tabId)
+  .classList.add("active");
+
+  document
+  .querySelectorAll(".bottom-nav button")
+  .forEach(btn=>{
+    btn.classList.remove("active");
+  });
+
+  button.classList.add("active");
+
+  window.scrollTo(0,0);
+
+}
 
 function closeOverlay(){
 
