@@ -1,781 +1,413 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LegacyMint</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LegacyMint • MINT LEGACY. BUILD IMPACT.</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-
-:root{
-  --green:#00ff9d;
-  --gold:#f6c15b;
-  --orange:#f6851b;
-  --red:#ff2b2b;
-  --panel:rgba(12,12,12,0.92);
-  --soft:rgba(255,255,255,0.08);
-}
-
-body{
-  font-family:Arial,sans-serif;
-  background:#050505;
-  color:white;
-  overflow-x:hidden;
-  padding-bottom:115px;
-}
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.94)),
-    url("https://gateway.pinata.cloud/ipfs/bafkreifbbbh3ibc6ftx2guipqtgayry6i224dctbgilojnclk7u4jsle3a");
-  background-size:cover;
-  background-position:center;
-  z-index:-1;
-}
-
-img{max-width:100%;height:auto;display:block}
-
-.app{max-width:1400px;margin:0 auto;padding:24px 18px 100px}
-
-.tab-section{display:none}
-.tab-section.active{display:block}
-
-.main-logo{text-align:center;line-height:1;margin-top:20px}
-.legacy-text,.mint-text{font-family:'Monoton',cursive;font-size:clamp(3rem,9vw,6rem)}
-.legacy-text{
-  background:linear-gradient(180deg,#fff6cc,#ffd700,#f5c542,#d89b00,#fff1a8,#b87900);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-.mint-text{color:var(--green);text-shadow:0 0 16px rgba(0,255,157,0.25)}
-
-.slogan{text-align:center;font-weight:900;letter-spacing:3px;line-height:1.4;margin-top:18px}
-.slogan span{color:var(--green)}
-
-.subtitle{text-align:center;color:#ddd;margin:20px auto 34px;max-width:760px;line-height:1.6}
-
-.v3-hero{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:60px;
-  align-items:center;
-  min-height:88vh;
-}
-
-.card{
-  background:var(--panel);
-  border-radius:28px;
-  padding:24px;
-  margin:20px 0;
-  border:1px solid rgba(255,255,255,0.08);
-  box-shadow:0 0 34px rgba(0,0,0,0.45);
-}
-
-.card h3{color:var(--gold);margin-bottom:10px}
-.card p{color:#e6e6e6;line-height:1.5}
-
-button{cursor:pointer}
-
-.hero-buttons-v3,.modal-actions,.wallet-actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:14px;
-  margin-top:28px;
-}
-
-.hero-primary-btn,.hero-secondary-btn,.hero-wallet-btn,.btn,.view-btn,.support-btn,.wallet-btn,.network-btn,.modal-btn{
-  border:none;
-  border-radius:999px;
-  padding:14px 20px;
-  font-weight:900;
-}
-
-.hero-primary-btn,.btn,.support-btn,.modal-btn.primary{background:var(--green);color:black}
-.hero-secondary-btn,.view-btn,.modal-btn.secondary{background:var(--soft);color:white}
-.hero-wallet-btn,.wallet-btn,.network-btn,.modal-btn.orange{background:var(--orange);color:white}
-
-.trust-strip{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
-.trust-item{
-  background:rgba(0,255,157,0.08);
-  border:1px solid rgba(0,255,157,0.18);
-  color:var(--green);
-  padding:9px 12px;
-  border-radius:999px;
-  font-size:0.72rem;
-  font-weight:900;
-}
-
-.hero-card-wrap{max-width:620px;width:100%;margin:0 auto}
-.hero-card-header{color:var(--gold);font-size:0.72rem;font-weight:900;letter-spacing:2px;margin-bottom:14px;text-align:center}
-
-.flip-card{
-  position:relative;
-  min-height:760px;
-  border-radius:34px;
-  overflow:hidden;
-  background:linear-gradient(145deg,rgba(255,215,0,0.12),rgba(0,255,157,0.08));
-  border:1px solid rgba(255,255,255,0.1);
-  box-shadow:0 0 40px rgba(0,0,0,0.55),0 0 18px rgba(0,255,157,0.10);
-}
-
-.card-side{display:none;min-height:760px}
-.card-side.active{display:block}
-
-.series-badge,.rarity-badge,.pioneer-badge{
-  position:absolute;
-  z-index:10;
-  padding:8px 12px;
-  border-radius:999px;
-  font-size:0.65rem;
-  font-weight:900;
-}
-.series-badge{top:14px;left:14px;color:var(--green);border:1px solid rgba(0,255,157,0.3);background:rgba(0,255,157,0.12)}
-.rarity-badge{top:14px;right:14px;background:linear-gradient(180deg,#fff4b0,#ffd700,#b87900);color:black}
-.pioneer-badge{bottom:14px;right:14px;background:linear-gradient(180deg,#fff4b0,#ffd700,#b87900);color:black}
-
-.hero-nft-img{width:100%;height:auto}
-.hero-card-content{padding:24px 20px 30px}
-.hero-series{color:var(--gold);font-size:0.72rem;font-weight:900;letter-spacing:2px}
-.hero-athlete-name{font-size:2rem;margin:12px 0 6px;font-weight:900}
-.hero-role{color:var(--green);font-weight:700}
-.hero-divider{height:1px;background:rgba(255,255,255,0.1);margin:22px 0}
-
-.hero-stats,.collection-meta,.modal-meta{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-}
-
-.stat-box,.meta-box{
-  background:rgba(0,0,0,0.42);
-  border-radius:18px;
-  padding:14px 10px;
-  text-align:center;
-}
-.stat-number,.meta-value{color:var(--gold);font-weight:900;font-size:1rem}
-.stat-label,.meta-title{color:#999;margin-top:5px;font-size:0.68rem}
-
-.hero-buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
-
-.card-panel{padding:28px 24px}
-.card-panel h2{color:var(--green);margin-bottom:10px}
-
-.star-rating-box{
-  margin:22px 0;
-  padding:18px;
-  border-radius:22px;
-  background:rgba(246,193,91,0.10);
-}
-.star-title{color:#999;font-size:0.7rem;letter-spacing:2px;font-weight:900}
-.stars{color:var(--gold);font-size:1.4rem;margin-top:8px}
-.star-subtitle{color:var(--green);margin-top:8px;font-weight:900}
-
-.skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.skill-row{text-align:left}
-.skill-label{display:flex;justify-content:space-between;margin-bottom:6px;color:var(--gold);font-weight:900}
-.skill-bar{height:10px;background:rgba(255,255,255,0.08);border-radius:999px;overflow:hidden}
-.skill-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--green),var(--gold))}
-
-.badge-grid,.safety-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-  margin-top:20px;
-}
-
-.badge-box,.safety-card,.utility-item{
-  background:rgba(0,0,0,0.42);
-  border-radius:18px;
-  padding:14px;
-  border:1px solid rgba(255,255,255,0.06);
-}
-.badge-box h4{color:var(--green);margin-bottom:6px}
-.safety-card h4{color:var(--red);margin-bottom:8px}
-
-.side-controls{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
-.side-controls button{
-  padding:10px 6px;
-  border:none;
-  border-radius:999px;
-  background:rgba(255,255,255,0.08);
-  color:white;
-  font-weight:900;
-}
-.side-controls button.active{background:var(--green);color:black}
-
-.section-header{text-align:center;margin-bottom:36px}
-.section-kicker{color:var(--gold);font-size:0.72rem;letter-spacing:2px;font-weight:900}
-.section-title{font-size:clamp(2rem,5vw,3.5rem);margin-top:12px}
-.section-description{max-width:760px;margin:16px auto 0;color:#ddd;line-height:1.7}
-
-.collection-grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(280px,1fr));
-  gap:22px;
-}
-.collection-item{
-  background:rgba(12,12,12,0.92);
-  border-radius:26px;
-  padding:14px;
-  transition:0.25s;
-}
-.collection-item:hover{transform:translateY(-6px)}
-.collection-item img{width:100%;border-radius:20px}
-.collection-meta{margin-top:14px}
-
-.utility-list{display:grid;gap:14px;margin-top:20px}
-.utility-item strong{color:var(--gold)}
-
-.full-img{width:100%;border-radius:22px;margin-top:18px}
-.verify-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-
-.overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.95);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-}
-.overlay-box{
-  max-width:420px;
-  background:rgba(14,14,14,0.96);
-  border-radius:28px;
-  padding:30px 22px;
-  text-align:center;
-}
-.overlay-box h2{color:var(--green)}
-.overlay-box button{
-  margin-top:16px;
-  padding:14px 24px;
-  border:none;
-  border-radius:999px;
-  background:var(--green);
-  color:black;
-  font-weight:900;
-}
-.beta-warning{
-  margin-top:18px;
-  padding:12px;
-  border-radius:18px;
-  background:rgba(246,193,91,0.12);
-  color:var(--gold);
-  font-weight:900;
-}
-
-.modal{
-  position:fixed;
-  inset:0;
-  display:none;
-  z-index:9998;
-  background:rgba(0,0,0,0.94);
-  overflow-y:auto;
-  padding:22px;
-}
-.modal.active{display:block}
-.modal-box{max-width:1080px;margin:0 auto;background:var(--panel);border-radius:30px;padding:22px;border:1px solid rgba(255,255,255,0.08)}
-.modal-header{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:20px}
-.modal-header h2{color:var(--green)}
-.close-x{background:var(--orange);color:white;border:none;border-radius:999px;padding:10px 16px;font-weight:900}
-.modal-layout{display:grid;grid-template-columns:0.9fr 1.1fr;gap:24px}
-.modal-image{border-radius:24px;width:100%}
-.modal-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}
-.modal-tabs button{border:none;border-radius:999px;padding:10px;color:white;background:var(--soft);font-weight:900}
-.modal-tabs button.active{background:var(--green);color:black}
-.modal-panel{display:none}
-.modal-panel.active{display:block}
-
-.wallet-status{
-  margin-top:20px;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-}
-
-.bottom-nav{
-  position:fixed;
-  left:50%;
-  transform:translateX(-50%);
-  bottom:0;
-  width:100%;
-  max-width:680px;
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:6px;
-  padding:10px;
-  background:rgba(3,3,3,0.96);
-  border-radius:26px 26px 0 0;
-  z-index:900;
-}
-.bottom-nav button{
-  border:none;
-  border-radius:16px;
-  padding:10px 4px;
-  background:rgba(255,255,255,0.08);
-  color:white;
-  font-size:0.65rem;
-  font-weight:900;
-}
-.bottom-nav button.active{background:var(--green);color:black}
-.bottom-nav .wallet-tab{background:var(--orange);color:white}
-
-@media(max-width:900px){
-  .v3-hero,.modal-layout,.verify-grid{grid-template-columns:1fr}
-  .hero-buttons-v3,.trust-strip{justify-content:center}
-  .collection-grid,.badge-grid,.safety-grid,.skill-grid,.wallet-status{grid-template-columns:1fr}
-  .flip-card,.card-side{min-height:620px}
-}
+       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap');
+       :root {
+           --neon-green: #00ff9d;
+           --gold: #f6c15b;
+       }
+       body {
+           font-family: 'Inter', system_ui, sans-serif;
+           background: #0a0a0a;
+           color: #f1f1f1;
+       }
+       .hero-bg {
+           background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.9)), url('https://picsum.photos/id/1015/2000/1200') center/cover;
+       }
+       .neon-text {
+           text-shadow: 0 0 15px #00ff9d;
+       }
+       .card {
+           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+       }
+       .card:hover {
+           transform: translateY(-12px) scale(1.03);
+           box-shadow: 0 25px 50px -12px rgb(0 255 157 / 0.3);
+       }
+       .nav-active {
+           color: #00ff9d;
+           border-top: 3px solid #00ff9d;
+       }
+       .modal {
+           animation: modalPop 0.3s ease forwards;
+       }
+       @keyframes modalPop {
+           from { opacity: 0; transform: scale(0.8); }
+           to { opacity: 1; transform: scale(1); }
+       }
+       .stat-bar {
+           height: 6px;
+           background: linear-gradient(to right, #00ff9d, #f6c15b);
+       }
 </style>
 </head>
+<body class="min-h-screen pb-20">
+<!-- HEADER -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
+<div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+<div class="flex items-center gap-x-3">
+<div class="w-9 h-9 bg-gradient-to-br from-[#00ff9d] to-[#f6c15b] rounded-full flex items-center justify-center text-black font-bold text-xl">L</div>
+<div>
+<span class="text-2xl font-bold tracking-tighter">LEGACY</span><span class="text-2xl font-bold tracking-tighter text-[#00ff9d]">MINT</span>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
+<a href="#" onclick="showTab('home')" class="hover:text-[#00ff9d] transition-colors">MARKETPLACE</a>
+<a href="#" onclick="showTab('collect')" class="hover:text-[#00ff9d] transition-colors">COLLECT</a>
+<a href="#" onclick="showTab('create')" class="hover:text-[#00ff9d] transition-colors">CREATE</a>
+</div>
+<button onclick="connectWallet()" class="px-6 py-2.5 bg-white text-black rounded-full font-semibold hover:bg-[#00ff9d] hover:text-black transition-all flex items-center gap-x-2">
+<i class="fa-solid fa-wallet"></i>
+<span id="wallet-text">CONNECT</span>
+</button>
+</div>
+</header>
 
-<body>
+<!-- MAIN CONTENT -->
+<div id="home" class="tab-content min-h-screen">
+<div class="hero-bg h-screen flex items-center pt-16">
+<div class="max-w-5xl mx-auto px-6 text-center">
+<div class="inline-flex items-center gap-x-2 bg-white/10 backdrop-blur-md px-6 py-2 rounded-full mb-6 border border-white/20">
+<div class="w-2 h-2 bg-[#00ff9d] rounded-full animate-pulse"></div>
+<span class="text-xs tracking-[2px] uppercase font-mono">PIONEER DROP LIVE</span>
+</div>
+<h1 class="text-6xl md:text-7xl font-bold leading-none tracking-tighter mb-4">MINT LEGACY.<br>BUILD IMPACT.</h1>
+<p class="text-xl text-gray-300 max-w-lg mx-auto mb-10">Premium Athlete NFT Collectibles • Verified • Foundation Funding</p>
 
-<div class="overlay">
-  <div class="overlay-box">
-    <h2>LegacyMint Beta</h2>
-    <p>A premium NFT platform for athletes, clubs and communities on Apertum.</p>
-    <div class="beta-warning">Platform currently undergoing Beta Testing.</div>
-    <button onclick="closeOverlay()">Enter Site</button>
-  </div>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button onclick="showTab('collect')" class="px-10 py-5 bg-white text-black font-semibold rounded-2xl text-lg hover:bg-[#f6c15b] transition-all">ENTER MARKETPLACE</button>
+<button onclick="showTab('collect')" class="px-10 py-5 border border-white/60 hover:border-white font-semibold rounded-2xl text-lg transition-all">VIEW PIONEER COLLECTION</button>
 </div>
 
-<div id="cardModal" class="modal">
-  <div class="modal-box">
-    <div class="modal-header">
-      <div>
-        <div class="section-kicker">LEGACYMINT PLAYER CARD</div>
-        <h2 id="modalTitle">Thomas Enoka</h2>
-        <p id="modalSubtitle">Legacy Pioneer Series</p>
-      </div>
-      <button class="close-x" onclick="closeCardModal()">Close</button>
-    </div>
-
-    <div class="modal-layout">
-      <img id="modalImage" class="modal-image" src="">
-
-      <div>
-        <div class="modal-tabs">
-          <button class="active" onclick="showModalPanel('front', this)">Front</button>
-          <button onclick="showModalPanel('stats', this)">Stats</button>
-          <button onclick="showModalPanel('badges', this)">Badges</button>
-          <button onclick="showModalPanel('buy', this)">Buy</button>
-        </div>
-
-        <div id="modal-front" class="modal-panel active">
-          <div class="hero-series" id="modalSeries">LEGACY PIONEER #001</div>
-          <h2>Thomas Enoka</h2>
-          <p>Black Sox Vice-Captain. Pioneer 1 Founding Edition collectible.</p>
-          <div class="modal-meta">
-            <div class="meta-box"><div class="meta-value">10★</div><div class="meta-title">RATING</div></div>
-            <div class="meta-box"><div id="modalSupply" class="meta-value">25</div><div class="meta-title">SUPPLY</div></div>
-            <div class="meta-box"><div class="meta-value">ERC1155</div><div class="meta-title">STANDARD</div></div>
-          </div>
-        </div>
-
-        <div id="modal-stats" class="modal-panel">
-          <div class="star-rating-box">
-            <div class="star-title">FANTASY STAR RATING</div>
-            <div class="stars">★★★★★★★★★★☆☆</div>
-            <div class="star-subtitle">Elite Tier • 10 / 12 Star Player</div>
-          </div>
-          <div class="skill-grid">
-            <div class="skill-row"><div class="skill-label"><span>Batting</span><span>92</span></div><div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
-            <div class="skill-row"><div class="skill-label"><span>Power</span><span>88</span></div><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
-            <div class="skill-row"><div class="skill-label"><span>Leadership</span><span>95</span></div><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div></div>
-            <div class="skill-row"><div class="skill-label"><span>Game IQ</span><span>93</span></div><div class="skill-bar"><div class="skill-fill" style="width:93%"></div></div></div>
-          </div>
-        </div>
-
-        <div id="modal-badges" class="modal-panel">
-          <div class="badge-grid">
-            <div class="badge-box"><h4>Verified Athlete</h4><p>Official athlete identity.</p></div>
-            <div class="badge-box"><h4>Legacy Pioneer</h4><p>Founding platform athlete.</p></div>
-            <div class="badge-box"><h4>Pioneer 1</h4><p>First Pioneer badge.</p></div>
-            <div class="badge-box"><h4>10-Star Elite</h4><p>Elite fantasy tier.</p></div>
-          </div>
-        </div>
-
-        <div id="modal-buy" class="modal-panel">
-          <p>Review details before minting or purchasing.</p>
-          <div class="modal-meta">
-            <div class="meta-box"><div id="modalSupplyBuy" class="meta-value">25</div><div class="meta-title">SUPPLY</div></div>
-            <div class="meta-box"><div class="meta-value">7.5%</div><div class="meta-title">CREATOR ROYALTY</div></div>
-            <div class="meta-box"><div class="meta-value">APTM</div><div class="meta-title">NETWORK</div></div>
-          </div>
-          <div class="modal-actions">
-            <button class="modal-btn primary">Mint / Purchase Coming Soon</button>
-            <button class="modal-btn secondary" onclick="showTab('wallet', document.querySelector('[data-tab=wallet]')); closeCardModal();">Connect Wallet</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="mt-16 flex justify-center gap-x-12 text-sm">
+<div class="text-center">
+<div class="text-4xl font-bold text-[#00ff9d]">001</div>
+<div class="text-xs tracking-widest uppercase">Pioneer</div>
+</div>
+<div class="text-center">
+<div class="text-4xl font-bold text-[#f6c15b]">10★</div>
+<div class="text-xs tracking-widest uppercase">Active Player</div>
+</div>
+<div class="text-center">
+<div class="text-4xl font-bold">NZ</div>
+<div class="text-xs tracking-widest uppercase">Black Sox</div>
+</div>
+</div>
+</div>
 </div>
 
-<div class="app">
-
-<section id="home" class="tab-section active">
-  <div class="v3-hero">
-    <div>
-      <h1 class="main-logo"><span class="legacy-text">Legacy</span><span class="mint-text">Mint</span></h1>
-      <div class="slogan">MINT LEGACY.<br><span>BUILD IMPACT.</span></div>
-      <div class="subtitle">Premium athlete collectibles, verified creator collections, fantasy sports integrations and fundraising powered by Apertum.</div>
-
-      <div class="hero-buttons-v3">
-        <button class="hero-primary-btn" onclick="showTab('collections', document.querySelector('[data-tab=collections]'))">ENTER MARKETPLACE</button>
-        <button class="hero-secondary-btn" onclick="showTab('collections', document.querySelector('[data-tab=collections]'))">VIEW PIONEER COLLECTION</button>
-        <button class="hero-wallet-btn" onclick="showTab('wallet', document.querySelector('[data-tab=wallet]'))">CONNECT WALLET</button>
-      </div>
-
-      <div class="trust-strip">
-        <div class="trust-item">✓ VERIFIED ATHLETES</div>
-        <div class="trust-item">✓ ERC1155 SECURED</div>
-        <div class="trust-item">✓ IMPACT VERIFIED</div>
-        <div class="trust-item">✓ APERTUM POWERED</div>
-      </div>
-
-      <div class="card">
-        <h3>LegacyMint Vision</h3>
-        <p>Luxury sports collectibles with real trust, creator royalties, athlete identity and future fantasy gameplay.</p>
-      </div>
-    </div>
-
-    <div class="hero-card-wrap">
-      <div class="hero-card-header">FEATURED ATHLETE COLLECTION</div>
-      <div class="flip-card">
-        <div class="series-badge">LEGACY PIONEER SERIES</div>
-        <div class="rarity-badge">FOUNDING EDITION</div>
-        <div class="pioneer-badge">PIONEER 1</div>
-
-        <div class="card-side active" id="side-front">
-          <img class="hero-nft-img" src="https://gateway.pinata.cloud/ipfs/bafybeigiu67t4k7e3zidnpj77nziqqnzi2frjgknba6zmzi3ei3vjch6dy">
-          <div class="hero-card-content">
-            <div class="hero-series">LEGACY PIONEER #001</div>
-            <h2 class="hero-athlete-name">Thomas Enoka</h2>
-            <div class="hero-role">Black Sox Vice-Captain</div>
-            <div class="hero-divider"></div>
-            <div class="hero-stats">
-              <div class="stat-box"><div class="stat-number">10★</div><div class="stat-label">PLAYER RATING</div></div>
-              <div class="stat-box"><div class="stat-number">25</div><div class="stat-label">SUPPLY</div></div>
-              <div class="stat-box"><div class="stat-number">ERC1155</div><div class="stat-label">STANDARD</div></div>
-            </div>
-            <div class="hero-buttons">
-              <button class="view-btn" onclick="showTab('collections', document.querySelector('[data-tab=collections]'))">View Collection</button>
-              <button class="support-btn" onclick="openCardModal(0)">Fantasy Card</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="card-side" id="side-stats">
-          <div class="card-panel">
-            <div class="hero-series">PLAYER STATS / FANTASY LAYER</div>
-            <h2>Thomas Enoka</h2>
-            <p>10-star elite current-era player. 11 and 12 stars are reserved for retired legends.</p>
-            <div class="star-rating-box">
-              <div class="star-title">FANTASY STAR RATING</div>
-              <div class="stars">★★★★★★★★★★☆☆</div>
-              <div class="star-subtitle">Elite Tier • 10 / 12 Star Player</div>
-            </div>
-            <div class="skill-grid">
-              <div class="skill-row"><div class="skill-label"><span>Batting</span><span>92</span></div><div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
-              <div class="skill-row"><div class="skill-label"><span>Power</span><span>88</span></div><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
-              <div class="skill-row"><div class="skill-label"><span>Leadership</span><span>95</span></div><div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div></div>
-              <div class="skill-row"><div class="skill-label"><span>Game IQ</span><span>93</span></div><div class="skill-bar"><div class="skill-fill" style="width:93%"></div></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="side-controls">
-        <button class="active" onclick="setHeroSide(0)">Front</button>
-        <button onclick="setHeroSide(1)">Stats</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="collections" class="tab-section">
-  <div class="section-header">
-    <div class="section-kicker">OFFICIAL COLLECTION</div>
-    <h2 class="section-title">Thomas Enoka Legacy Pioneer Series</h2>
-    <p class="section-description">Official LegacyMint Pioneer #1 collection with fantasy-ready player card views.</p>
-  </div>
-
-  <div class="collection-grid">
-    <div class="collection-item">
-      <img src="https://gateway.pinata.cloud/ipfs/bafybeigiu67t4k7e3zidnpj77nziqqnzi2frjgknba6zmzi3ei3vjch6dy">
-      <h3>Legacy Pioneer #001</h3>
-      <p>Pioneer 1 Founding Edition collectible card.</p>
-      <div class="collection-meta">
-        <div class="meta-box"><div class="meta-title">SUPPLY</div><div class="meta-value">25</div></div>
-        <div class="meta-box"><div class="meta-title">ROYALTY</div><div class="meta-value">7.5%</div></div>
-        <div class="meta-box"><div class="meta-title">STANDARD</div><div class="meta-value">ERC1155</div></div>
-      </div>
-      <div class="modal-actions"><button class="modal-btn primary" onclick="openCardModal(0)">View Card</button></div>
-    </div>
-
-    <div class="collection-item">
-      <img src="https://gateway.pinata.cloud/ipfs/bafybeid33djahua3gzwj4ioy6ja46gv2lrwadh24ulvhxt2nf6bvikipfe">
-      <h3>Legacy Pioneer #002</h3>
-      <p>Limited high-energy action variant.</p>
-      <div class="collection-meta">
-        <div class="meta-box"><div class="meta-title">SUPPLY</div><div class="meta-value">10</div></div>
-        <div class="meta-box"><div class="meta-title">ROYALTY</div><div class="meta-value">7.5%</div></div>
-        <div class="meta-box"><div class="meta-title">STANDARD</div><div class="meta-value">ERC1155</div></div>
-      </div>
-      <div class="modal-actions"><button class="modal-btn primary" onclick="openCardModal(1)">View Card</button></div>
-    </div>
-
-    <div class="collection-item">
-      <img src="https://gateway.pinata.cloud/ipfs/bafybeidorylrziwwax35ds7iuedxfoyjqvwld63tjyobnx52ypt4kd3vxq">
-      <h3>Legacy Pioneer #003</h3>
-      <p>Emerald Action Edition collectible card.</p>
-      <div class="collection-meta">
-        <div class="meta-box"><div class="meta-title">SUPPLY</div><div class="meta-value">15</div></div>
-        <div class="meta-box"><div class="meta-title">ROYALTY</div><div class="meta-value">7.5%</div></div>
-        <div class="meta-box"><div class="meta-title">STANDARD</div><div class="meta-value">ERC1155</div></div>
-      </div>
-      <div class="modal-actions"><button class="modal-btn primary" onclick="openCardModal(2)">View Card</button></div>
-    </div>
-  </div>
-</section>
-
-<section id="create" class="tab-section">
-  <div class="section-header">
-    <div class="section-kicker">CREATOR PLATFORM</div>
-    <h2 class="section-title">Launch Your Legacy</h2>
-    <p class="section-description">Create verified athlete, club and impact collections powered by Apertum.</p>
-  </div>
-  <div class="card">
-    <div class="utility-list">
-      <div class="utility-item"><strong>Set Supply:</strong> limited or open editions.</div>
-      <div class="utility-item"><strong>Set Royalties:</strong> creator royalty support.</div>
-      <div class="utility-item"><strong>Upload Artwork:</strong> player cards and collectibles.</div>
-      <div class="utility-item"><strong>Fantasy Integration:</strong> future playable NFT ecosystem.</div>
-    </div>
-  </div>
-</section>
-
-<section id="verify" class="tab-section">
-  <div class="section-header">
-    <div class="section-kicker">TRUST LAYER</div>
-    <h2 class="section-title">Verification Ecosystem</h2>
-    <p class="section-description">Official trust infrastructure for athletes, creators and impact collections.</p>
-  </div>
-  <div class="verify-grid">
-    <div class="card">
-      <h3>Verification Badges</h3>
-      <img class="full-img" src="https://gateway.pinata.cloud/ipfs/bafybeiaj26sjyqgtc634ih4fqbeessep5ct3j4reuiog3cn5jizcozdvhm">
-    </div>
-    <div class="card">
-      <h3>Rarity Badges</h3>
-      <img class="full-img" src="https://gateway.pinata.cloud/ipfs/bafybeihqzbhuu4johuawlizweb7ukeqo3oat4yxcvetwwynrj4ahc256tu">
-    </div>
-  </div>
-</section>
-
-<section id="safety" class="tab-section">
-  <div class="section-header">
-    <div class="section-kicker">LEGACYMINT SAFETY ONLINE</div>
-    <h2 class="section-title">Safety First</h2>
-    <p class="section-description">Protecting new crypto users is a core platform priority.</p>
-  </div>
-  <div class="safety-grid">
-    <div class="safety-card"><h4>Never Share Seed Phrases</h4><p>LegacyMint will never ask for your recovery phrase.</p></div>
-    <div class="safety-card"><h4>Use Official Links</h4><p>Only mint through official LegacyMint pages.</p></div>
-    <div class="safety-card"><h4>Check Transactions</h4><p>Verify collection, image and wallet before approving.</p></div>
-    <div class="safety-card"><h4>No DM Scams</h4><p>LegacyMint staff will never DM first for wallet access.</p></div>
-    <div class="safety-card"><h4>Public Contracts</h4><p>Official contract addresses will always be public.</p></div>
-    <div class="safety-card"><h4>Verified Collections</h4><p>Look for official athlete verification badges.</p></div>
-  </div>
-</section>
-
-<section id="wallet" class="tab-section">
-  <div class="section-header">
-    <div class="section-kicker">WALLET CONNECTION</div>
-    <h2 class="section-title">Connect To LegacyMint</h2>
-    <p class="section-description">Secure wallet connectivity powered by Apertum.</p>
-  </div>
-  <div class="card">
-    <div class="wallet-actions">
-      <button class="wallet-btn" onclick="connectWallet()">Connect MetaMask</button>
-      <button class="network-btn" onclick="switchToApertum()">Switch To Apertum</button>
-    </div>
-    <div class="wallet-status">
-      <div class="meta-box"><div class="meta-title">WALLET</div><div id="walletStatus" class="meta-value">Not Connected</div></div>
-      <div class="meta-box"><div class="meta-title">NETWORK</div><div id="networkStatus" class="meta-value">Not Checked</div></div>
-      <div class="meta-box"><div class="meta-title">STANDARD</div><div class="meta-value">ERC1155</div></div>
-    </div>
-  </div>
-</section>
-
+<!-- FEATURED CARD -->
+<div class="max-w-5xl mx-auto px-6 -mt-20 relative z-10">
+<div class="bg-zinc-900 rounded-3xl p-8 shadow-2xl border border-white/10">
+<div class="flex justify-between items-start mb-8">
+<div>
+<div class="uppercase text-xs tracking-widest text-[#00ff9d]">LEGACY PIONEER #001</div>
+<div class="text-4xl font-bold">THOMAS ENOKA</div>
+<div class="text-gray-400">Black Sox Vice-Captain • 10-Star</div>
+</div>
+<div class="text-right">
+<div onclick="openCardModal(0)" class="cursor-pointer bg-zinc-800 hover:bg-zinc-700 transition-colors px-6 py-3 rounded-2xl text-sm font-medium flex items-center gap-x-2">
+<i class="fa-solid fa-expand"></i> EXPLORE CARD
+</div>
+</div>
 </div>
 
-<nav class="bottom-nav">
-  <button class="active" data-tab="home" onclick="showTab('home', this)">Home</button>
-  <button data-tab="collections" onclick="showTab('collections', this)">Collect</button>
-  <button data-tab="create" onclick="showTab('create', this)">Create</button>
-  <button data-tab="verify" onclick="showTab('verify', this)">Verify</button>
-  <button data-tab="safety" onclick="showTab('safety', this)">Safety</button>
-  <button class="wallet-tab" data-tab="wallet" onclick="showTab('wallet', this)">Wallet</button>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<div class="md:col-span-5">
+<img id="featured-img" src="https://gateway.pinata.cloud/ipfs/bafybeigiu67t4k7e3zidnpj77nziqqnzi2frjgknba6zmzi3ei3vjch6dy" class="w-full rounded-2xl shadow-2xl" alt="Thomas Enoka">
+</div>
+<div class="md:col-span-7">
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-zinc-950 p-6 rounded-2xl">
+<div class="text-xs text-gray-400 mb-1">HITTING</div>
+<div class="text-5xl font-bold text-white">92</div>
+<div class="h-2 bg-zinc-800 rounded mt-4 overflow-hidden"><div class="stat-bar w-[92%]"></div></div>
+</div>
+<div class="bg-zinc-950 p-6 rounded-2xl">
+<div class="text-xs text-gray-400 mb-1">GAME IQ</div>
+<div class="text-5xl font-bold text-white">95</div>
+<div class="h-2 bg-zinc-800 rounded mt-4 overflow-hidden"><div class="stat-bar w-[95%]"></div></div>
+</div>
+</div>
+<button onclick="openCardModal(0)" class="mt-8 w-full py-6 bg-gradient-to-r from-[#00ff9d] to-[#f6c15b] text-black font-bold text-lg rounded-2xl">VIEW FULL CARD DETAILS</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- COLLECT TAB -->
+<div id="collect" class="tab-content hidden max-w-7xl mx-auto px-6 pt-24">
+<h2 class="text-4xl font-bold mb-8">Pioneer Collection</h2>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="card-grid">
+<!-- Populated by JS -->
+</div>
+</div>
+
+<!-- CREATE TAB -->
+<div id="create" class="tab-content hidden max-w-5xl mx-auto px-6 pt-24">
+<h2 class="text-4xl font-bold mb-8">Create Your Legacy</h2>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-zinc-900 p-8 rounded-3xl">
+<div class="text-[#f6c15b] text-6xl mb-6">🇳🇿</div>
+<h3 class="font-bold text-2xl mb-2">National Team</h3>
+<p class="text-gray-400 mb-6">Official Black Sox and national squad NFTs</p>
+<button onclick="alert('National Team mint flow started')" class="w-full py-4 bg-white text-black rounded-2xl font-semibold">MINT NATIONAL</button>
+</div>
+<div class="bg-zinc-900 p-8 rounded-3xl">
+<div class="text-[#00ff9d] text-6xl mb-6">🌍</div>
+<h3 class="font-bold text-2xl mb-2">International</h3>
+<p class="text-gray-400 mb-6">Global tournament and world cup collections</p>
+<button onclick="alert('International Team mint flow started')" class="w-full py-4 bg-white text-black rounded-2xl font-semibold">MINT INTERNATIONAL</button>
+</div>
+<div class="bg-zinc-900 p-8 rounded-3xl">
+<div class="text-amber-400 text-6xl mb-6">🏛️</div>
+<h3 class="font-bold text-2xl mb-2">Country Club</h3>
+<p class="text-gray-400 mb-6">Elite club and academy collections</p>
+<button onclick="alert('Country Club mint flow started')" class="w-full py-4 bg-white text-black rounded-2xl font-semibold">MINT CLUB</button>
+</div>
+</div>
+<div class="mt-12 text-center">
+<button onclick="alert('Creator studio opened')" class="px-12 py-6 text-lg bg-gradient-to-r from-[#00ff9d] to-[#f6c15b] text-black font-bold rounded-3xl">LAUNCH PERSONAL NFT STUDIO</button>
+</div>
+</div>
+
+<!-- VERIFY TAB -->
+<div id="verify" class="tab-content hidden max-w-5xl mx-auto px-6 pt-24">
+<h2 class="text-4xl font-bold mb-12">Verification &amp; Trust</h2>
+<div class="grid md:grid-cols-2 gap-12">
+<div>
+<img src="https://gateway.pinata.cloud/ipfs/bafybeiaj26sjyqgtc634ih4fqbeessep5ct3j4reuiog3cn5jizcozdvhm" class="w-48 mx-auto mb-8 rounded-2xl" alt="Verification">
+<h3 class="text-2xl font-bold mb-4">Verified Athletes</h3>
+<p class="text-gray-400">All athletes and collections are officially verified through blockchain and direct partnerships.</p>
+</div>
+<div>
+<img src="https://gateway.pinata.cloud/ipfs/bafybeihqzbhuu4johuawlizweb7ukeqo3oat4yxcvetwwynrj4ahc256tu" class="w-48 mx-auto mb-8 rounded-2xl" alt="Rarity">
+<h3 class="text-2xl font-bold mb-4">Rarity Badges</h3>
+<p class="text-gray-400">Legacy Pioneer, Foundation Athlete, and Impact Verified badges ensure authenticity.</p>
+</div>
+</div>
+</div>
+
+<!-- SAFETY TAB -->
+<div id="safety" class="tab-content hidden max-w-5xl mx-auto px-6 pt-24">
+<h2 class="text-4xl font-bold mb-8">Safety First</h2>
+<div class="bg-zinc-900 rounded-3xl p-10">
+<div class="space-y-8 text-lg">
+<div class="flex gap-6">
+<i class="fa-solid fa-shield-halved text-4xl text-[#00ff9d] mt-1"></i>
+<div>
+<div class="font-semibold">Never share your seed phrase</div>
+<div class="text-gray-400">LegacyMint will never ask for it.</div>
+</div>
+</div>
+<div class="flex gap-6">
+<i class="fa-solid fa-link text-4xl text-[#00ff9d] mt-1"></i>
+<div>
+<div class="font-semibold">Only use official links</div>
+<div class="text-gray-400">legacymint.xyz • Verify contract addresses</div>
+</div>
+</div>
+<div class="flex gap-6">
+<i class="fa-solid fa-ban text-4xl text-[#f6c15b] mt-1"></i>
+<div>
+<div class="font-semibold">No DMs. No giveaways.</div>
+<div class="text-gray-400">All communication happens in-app.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- WALLET TAB -->
+<div id="wallet" class="tab-content hidden max-w-5xl mx-auto px-6 pt-24">
+<div class="bg-zinc-900 rounded-3xl p-12 text-center">
+<i class="fa-solid fa-wallet text-8xl text-[#00ff9d] mb-8"></i>
+<h2 class="text-4xl font-bold mb-3">Wallet Connected</h2>
+<div class="font-mono text-sm bg-black/50 py-2 px-6 inline-block rounded-full mb-8">0x71C7...a9F3</div>
+<button onclick="alert('Switched to Apertum network')" class="block w-full max-w-xs mx-auto py-6 bg-white text-black font-bold rounded-2xl">SWITCH TO APERTUM</button>
+<div class="mt-12 text-xs text-gray-500">• Secure connection • Audited contracts • Foundation pool active</div>
+</div>
+</div>
+
+<!-- CARD MODAL -->
+<div id="card-modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-[100]">
+<div class="modal bg-zinc-900 w-full max-w-2xl mx-4 rounded-3xl overflow-hidden">
+<div class="flex justify-between items-center border-b border-white/10 px-8 py-5">
+<div class="font-bold">THOMAS ENOKA • #001</div>
+<button onclick="closeModal()" class="text-3xl leading-none">×</button>
+</div>
+
+<div class="p-8">
+<!-- Card tabs -->
+<div class="flex border-b border-white/10 mb-8">
+<button onclick="switchCardTab(0)" id="cardtab-0" class="flex-1 pb-4 border-b-2 border-[#00ff9d] text-[#00ff9d] font-medium">FRONT</button>
+<button onclick="switchCardTab(1)" id="cardtab-1" class="flex-1 pb-4 text-gray-400">FANTASY</button>
+<button onclick="switchCardTab(2)" id="cardtab-2" class="flex-1 pb-4 text-gray-400">BADGES</button>
+<button onclick="switchCardTab(3)" id="cardtab-3" class="flex-1 pb-4 text-gray-400">UTILITY</button>
+</div>
+
+<!-- Views -->
+<div id="card-view-0" class="card-view">
+<img src="https://gateway.pinata.cloud/ipfs/bafybeigiu67t4k7e3zidnpj77nziqqnzi2frjgknba6zmzi3ei3vjch6dy" class="w-full rounded-2xl" alt="">
+</div>
+<div id="card-view-1" class="card-view hidden">
+<div class="space-y-8">
+<div><div class="text-xs">HITTING</div><div class="text-6xl font-bold">92</div><div class="h-3 bg-zinc-800 rounded"><div class="h-3 bg-[#00ff9d] w-[92%] rounded"></div></div></div>
+<div><div class="text-xs">POWER</div><div class="text-6xl font-bold">88</div><div class="h-3 bg-zinc-800 rounded"><div class="h-3 bg-[#f6c15b] w-[88%] rounded"></div></div></div>
+<div><div class="text-xs">CONTACT</div><div class="text-6xl font-bold">90</div><div class="h-3 bg-zinc-800 rounded"><div class="h-3 bg-[#00ff9d] w-[90%] rounded"></div></div></div>
+<div><div class="text-xs">SPEED</div><div class="text-6xl font-bold">81</div><div class="h-3 bg-zinc-800 rounded"><div class="h-3 bg-[#f6c15b] w-[81%] rounded"></div></div></div>
+<div><div class="text-xs">GAME IQ</div><div class="text-6xl font-bold">95</div><div class="h-3 bg-zinc-800 rounded"><div class="h-3 bg-[#00ff9d] w-[95%] rounded"></div></div></div>
+</div>
+</div>
+<div id="card-view-2" class="card-view hidden grid grid-cols-2 gap-8">
+<img src="https://gateway.pinata.cloud/ipfs/bafybeiaj26sjyqgtc634ih4fqbeessep5ct3j4reuiog3cn5jizcozdvhm" class="rounded-2xl" alt="">
+<img src="https://gateway.pinata.cloud/ipfs/bafybeihqzbhuu4johuawlizweb7ukeqo3oat4yxcvetwwynrj4ahc256tu" class="rounded-2xl" alt="">
+</div>
+<div id="card-view-3" class="card-view hidden">
+<div class="bg-black/60 p-8 rounded-2xl">
+<div class="font-bold mb-6">GOVERNANCE &amp; UTILITY</div>
+<ul class="space-y-4 text-sm">
+<li class="flex justify-between"><span>Foundation Voting Power</span><span class="text-[#00ff9d]">1 VOTE</span></li>
+<li class="flex justify-between"><span>Youth Funding Allocation</span><span class="text-[#f6c15b]">ELIGIBLE</span></li>
+<li class="flex justify-between"><span>Exclusive Events</span><span class="text-[#00ff9d]">ACCESS</span></li>
+<li class="flex justify-between"><span>Merch &amp; Experiences</span><span class="text-[#f6c15b]">UNLOCKED</span></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="p-8 border-t border-white/10 flex gap-4">
+<button onclick="alert('Added to cart')" class="flex-1 py-6 bg-white text-black font-bold rounded-2xl">BUY FOR 0.85 ETH</button>
+<button onclick="closeModal()" class="flex-1 py-6 border border-white/30 font-medium rounded-2xl">CLOSE</button>
+</div>
+</div>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="fixed bottom-0 left-0 right-0 bg-black border-t border-white/10 z-50">
+<div class="max-w-7xl mx-auto grid grid-cols-6 text-[10px] font-medium">
+<button onclick="showTab('home')" class="nav-btn flex flex-col items-center py-3 text-[#00ff9d]">
+<i class="fa-solid fa-house text-xl mb-1"></i>
+<span>HOME</span>
+</button>
+<button onclick="showTab('collect')" class="nav-btn flex flex-col items-center py-3 text-gray-400">
+<i class="fa-solid fa-layer-group text-xl mb-1"></i>
+<span>COLLECT</span>
+</button>
+<button onclick="showTab('create')" class="nav-btn flex flex-col items-center py-3 text-gray-400">
+<i class="fa-solid fa-plus text-xl mb-1"></i>
+<span>CREATE</span>
+</button>
+<button onclick="showTab('verify')" class="nav-btn flex flex-col items-center py-3 text-gray-400">
+<i class="fa-solid fa-shield text-xl mb-1"></i>
+<span>VERIFY</span>
+</button>
+<button onclick="showTab('safety')" class="nav-btn flex flex-col items-center py-3 text-gray-400">
+<i class="fa-solid fa-lock text-xl mb-1"></i>
+<span>SAFETY</span>
+</button>
+<button onclick="showTab('wallet')" class="nav-btn flex flex-col items-center py-3 text-gray-400">
+<i class="fa-solid fa-wallet text-xl mb-1"></i>
+<span>WALLET</span>
+</button>
+</div>
 </nav>
 
 <script>
-let heroSideIndex = 0;
-const heroSides = ["side-front","side-stats"];
+       let currentTab = 'home';
+       let currentCardIndex = 0;
 
-const playerCards = [
-  {
-    title:"Legacy Pioneer #001",
-    image:"https://gateway.pinata.cloud/ipfs/bafybeigiu67t4k7e3zidnpj77nziqqnzi2frjgknba6zmzi3ei3vjch6dy",
-    supply:"25",
-    subtitle:"Pioneer 1 Founding Edition collectible card."
-  },
-  {
-    title:"Legacy Pioneer #002",
-    image:"https://gateway.pinata.cloud/ipfs/bafybeid33djahua3gzwj4ioy6ja46gv2lrwadh24ulvhxt2nf6bvikipfe",
-    supply:"10",
-    subtitle:"Limited high-energy action variant."
-  },
-  {
-    title:"Legacy Pioneer #003",
-    image:"https://gateway.pinata.cloud/ipfs/bafybeidorylrziwwax35ds7iuedxfoyjqvwld63tjyobnx52ypt4kd3vxq",
-    supply:"15",
-    subtitle:"Emerald Action Edition collectible card."
-  }
-];
+       const cards = [
+           {
+               name: "THOMAS ENOKA",
+               img: "https://gateway.pinata.cloud/ipfs/bafybeigiu67t4k7e3zidnpj77nziqqnzi2frjgknba6zmzi3ei3vjch6dy"
+           },
+           {
+               name: "THOMAS ENOKA HOLO",
+               img: "https://gateway.pinata.cloud/ipfs/bafybeid33djahua3gzwj4ioy6ja46gv2lrwadh24ulvhxt2nf6bvikipfe"
+           },
+           {
+               name: "TEAM LEGACY",
+               img: "https://gateway.pinata.cloud/ipfs/bafybeidorylrziwwax35ds7iuedxfoyjqvwld63tjyobnx52ypt4kd3vxq"
+           }
+       ];
 
-function updateHeroSide(){
-  document.querySelectorAll(".flip-card .card-side").forEach(side=>side.classList.remove("active"));
-  document.getElementById(heroSides[heroSideIndex]).classList.add("active");
-  document.querySelectorAll(".side-controls button").forEach((btn,index)=>{
-    btn.classList.toggle("active", index === heroSideIndex);
-  });
-}
+       function showTab(tabId) {
+           document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+           document.getElementById(tabId).classList.remove('hidden');
 
-function nextHeroSide(){
-  heroSideIndex = (heroSideIndex + 1) % heroSides.length;
-  updateHeroSide();
-}
+           document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('text-[#00ff9d]'));
+           const activeBtn = Array.from(document.querySelectorAll('.nav-btn')).find(btn => btn.getAttribute('onclick').includes(`'${tabId}'`));
+           if (activeBtn) activeBtn.classList.add('text-[#00ff9d]');
 
-function setHeroSide(index){
-  heroSideIndex = index;
-  updateHeroSide();
-}
+           currentTab = tabId;
+       }
 
-setInterval(nextHeroSide,8000);
+       function openCardModal(index) {
+           currentCardIndex = index;
+           document.getElementById('card-modal').classList.remove('hidden');
+           switchCardTab(0);
+       }
 
-function showTab(tabId, button){
-  document.querySelectorAll(".tab-section").forEach(section=>section.classList.remove("active"));
-  const tab = document.getElementById(tabId);
-  if(tab){tab.classList.add("active")}
+       function closeModal() {
+           document.getElementById('card-modal').classList.add('hidden');
+       }
 
-  document.querySelectorAll(".bottom-nav button").forEach(btn=>btn.classList.remove("active"));
-  if(button){button.classList.add("active")}
+       function switchCardTab(n) {
+           document.querySelectorAll('.card-view').forEach(v => v.classList.add('hidden'));
+           document.getElementById(`card-view-${n}`).classList.remove('hidden');
 
-  window.scrollTo(0,0);
-}
+           document.querySelectorAll('#card-modal button[id^="cardtab"]').forEach((btn, i) => {
+               if (i === n) {
+                   btn.classList.add('border-[#00ff9d]', 'text-[#00ff9d]');
+               } else {
+                   btn.classList.remove('border-[#00ff9d]', 'text-[#00ff9d]');
+               }
+           });
+       }
 
-function closeOverlay(){
-  document.querySelector(".overlay").style.display = "none";
-  window.scrollTo(0,0);
-}
+       function connectWallet() {
+           const btn = document.getElementById('wallet-text');
+           btn.textContent = 'CONNECTED';
+           alert('Wallet connected successfully • Apertum Network');
+       }
 
-function openCardModal(index){
-  const card = playerCards[index];
-  document.getElementById("modalTitle").innerText = card.title;
-  document.getElementById("modalSubtitle").innerText = card.subtitle;
-  document.getElementById("modalImage").src = card.image;
-  document.getElementById("modalSeries").innerText = card.title;
-  document.getElementById("modalSupply").innerText = card.supply;
-  document.getElementById("modalSupplyBuy").innerText = card.supply;
+       // Populate collect grid
+       function populateCards() {
+           const grid = document.getElementById('card-grid');
+           grid.innerHTML = '';
 
-  document.querySelectorAll(".modal-panel").forEach(panel=>panel.classList.remove("active"));
-  document.getElementById("modal-front").classList.add("active");
+           cards.forEach((card, i) => {
+               const div = document.createElement('div');
+               div.className = 'bg-zinc-900 rounded-3xl overflow-hidden card cursor-pointer';
+               div.innerHTML = `
+<img src="${card.img}" class="w-full aspect-square object-cover">
+<div class="p-5">
+<div class="font-bold">${card.name}</div>
+<div class="text-xs text-gray-400">Legacy Pioneer</div>
+<button onclick="event.stopImmediatePropagation(); openCardModal(${i});" class="mt-4 w-full py-3 text-sm border border-white/30 hover:bg-white/5 rounded-2xl">VIEW CARD</button>
+</div>
+               `;
+               div.onclick = () => openCardModal(i);
+               grid.appendChild(div);
+           });
+       }
 
-  document.querySelectorAll(".modal-tabs button").forEach(btn=>btn.classList.remove("active"));
-  document.querySelector(".modal-tabs button").classList.add("active");
+       // Initialize
+       window.onload = function() {
+           populateCards();
+           showTab('home');
 
-  document.getElementById("cardModal").classList.add("active");
-}
-
-function closeCardModal(){
-  document.getElementById("cardModal").classList.remove("active");
-}
-
-function showModalPanel(panelName, button){
-  document.querySelectorAll(".modal-panel").forEach(panel=>panel.classList.remove("active"));
-  document.getElementById("modal-" + panelName).classList.add("active");
-
-  document.querySelectorAll(".modal-tabs button").forEach(btn=>btn.classList.remove("active"));
-  button.classList.add("active");
-}
-
-function shortenAddress(address){
-  return address.slice(0,6) + "..." + address.slice(-4);
-}
-
-async function connectWallet(){
-  if(!window.ethereum){
-    document.getElementById("walletStatus").innerText = "MetaMask Missing";
-    return;
-  }
-
-  const accounts = await window.ethereum.request({method:"eth_requestAccounts"});
-  document.getElementById("walletStatus").innerText = shortenAddress(accounts[0]);
-
-  checkNetwork();
-}
-
-const APTM_CHAIN_ID = "0xae2";
-
-const APTM_NETWORK = {
-  chainId:"0xae2",
-  chainName:"Apertum",
-  nativeCurrency:{name:"APTM",symbol:"APTM",decimals:18},
-  rpcUrls:["https://rpc.apertum.io/ext/bc/YDJ1r9RMkewATmA7B35q1bdV18aywzmdiXwd9zGBq3uQjsCnn/rpc"],
-  blockExplorerUrls:["https://explorer.apertum.io/"]
-};
-
-async function checkNetwork(){
-  if(!window.ethereum){return}
-  const chainId = await window.ethereum.request({method:"eth_chainId"});
-  document.getElementById("networkStatus").innerText = chainId === APTM_CHAIN_ID ? "Apertum ✅" : "Wrong Network";
-}
-
-async function switchToApertum(){
-  if(!window.ethereum){
-    document.getElementById("walletStatus").innerText = "MetaMask Missing";
-    return;
-  }
-
-  try{
-    await window.ethereum.request({
-      method:"wallet_switchEthereumChain",
-      params:[{chainId:APTM_CHAIN_ID}]
-    });
-  }catch(error){
-    if(error.code === 4902){
-      await window.ethereum.request({
-        method:"wallet_addEthereumChain",
-        params:[APTM_NETWORK]
-      });
-    }
-  }
-
-  checkNetwork();
-}
-
-window.onload = function(){
-  window.scrollTo(0,0);
-};
+           // Tailwind script already loaded
+           console.log('%cLegacyMint ready', 'color:#00ff9d; font-family:monospace');
+       };
 </script>
-
 </body>
 </html>
