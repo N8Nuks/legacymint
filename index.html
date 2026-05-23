@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>LegacyMint</title>
+<title>LegacyMint V2</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
 
@@ -20,8 +20,7 @@
   --green:#00ff9d;
   --gold:#f6c15b;
   --orange:#f6851b;
-  --red:#ff2b2b;
-  --dark:#050505;
+  --red:#ff3b3b;
   --panel:rgba(12,12,12,0.92);
 }
 
@@ -38,8 +37,8 @@ body::before{
   position:fixed;
   inset:0;
   background:
-    linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.94)),
-    url("https://gateway.pinata.cloud/ipfs/bafkreifbbbh3ibc6ftx2guipqtgayry6i224dctbgilojnclk7u4jsle3a");
+  linear-gradient(rgba(0,0,0,0.72),rgba(0,0,0,0.94)),
+  url("https://gateway.pinata.cloud/ipfs/bafkreifbbbh3ibc6ftx2guipqtgayry6i224dctbgilojnclk7u4jsle3a");
   background-size:cover;
   background-position:center;
   z-index:-1;
@@ -127,11 +126,11 @@ body::before{
   border-radius:34px;
   overflow:hidden;
   background:
-    linear-gradient(
-      145deg,
-      rgba(255,215,0,0.12),
-      rgba(0,255,157,0.08)
-    );
+  linear-gradient(
+    145deg,
+    rgba(255,215,0,0.12),
+    rgba(0,255,157,0.08)
+  );
   border:1px solid rgba(255,255,255,0.1);
   box-shadow:
     0 0 40px rgba(0,0,0,0.55),
@@ -175,12 +174,12 @@ body::before{
   top:14px;
   right:14px;
   background:
-    linear-gradient(
-      180deg,
-      #fff4b0,
-      #ffd700,
-      #b87900
-    );
+  linear-gradient(
+    180deg,
+    #fff4b0,
+    #ffd700,
+    #b87900
+  );
   color:black;
 }
 
@@ -188,12 +187,12 @@ body::before{
   bottom:14px;
   right:14px;
   background:
-    linear-gradient(
-      180deg,
-      #fff4b0,
-      #ffd700,
-      #b87900
-    );
+  linear-gradient(
+    180deg,
+    #fff4b0,
+    #ffd700,
+    #b87900
+  );
   color:black;
 }
 
@@ -344,11 +343,11 @@ body::before{
   height:100%;
   border-radius:999px;
   background:
-    linear-gradient(
-      90deg,
-      var(--green),
-      var(--gold)
-    );
+  linear-gradient(
+    90deg,
+    var(--green),
+    var(--gold)
+  );
 }
 
 .badge-grid{
@@ -441,6 +440,31 @@ body::before{
   border-radius:20px;
 }
 
+.collection-meta{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:14px;
+}
+
+.meta-box{
+  background:rgba(0,0,0,0.42);
+  border-radius:14px;
+  padding:10px;
+  text-align:center;
+}
+
+.meta-title{
+  color:#999;
+  font-size:0.65rem;
+}
+
+.meta-value{
+  color:var(--gold);
+  font-weight:900;
+  margin-top:4px;
+}
+
 .full-img{
   width:100%;
   border-radius:22px;
@@ -527,26 +551,26 @@ body::before{
 
 @media(max-width:900px){
 
-  .hero-layout{
-    grid-template-columns:1fr;
-  }
+.hero-layout{
+  grid-template-columns:1fr;
+}
 
-  .collection-grid{
-    grid-template-columns:1fr;
-  }
+.collection-grid{
+  grid-template-columns:1fr;
+}
 
-  .badge-grid{
-    grid-template-columns:1fr;
-  }
+.badge-grid{
+  grid-template-columns:1fr;
+}
 
-  .skill-grid{
-    grid-template-columns:1fr;
-  }
+.skill-grid{
+  grid-template-columns:1fr;
+}
 
-  .flip-card,
-  .card-side{
-    min-height:620px;
-  }
+.flip-card,
+.card-side{
+  min-height:620px;
+}
 
 }
 
@@ -582,10 +606,6 @@ Enter Site
 
 <section id="home" class="tab-section active">
 
-<div class="hero-layout">
-
-<div>
-
 <h1 class="main-logo">
 <span class="legacy-text">Legacy</span>
 <span class="mint-text">Mint</span>
@@ -596,14 +616,43 @@ Support athletes. Create collections.
 Mint digital legacy on Apertum.
 </div>
 
+<div class="hero-layout">
+
+<div>
+
 <div class="card">
 
-<h3>Premium Athlete Collectibles</h3>
+<h3>LegacyMint Vision</h3>
 
 <p>
-Multi-side collectible cards featuring fantasy stats,
-utility, rarity and verification.
+Premium athlete collectibles, verified creator collections,
+fantasy sports integrations and fundraising powered by Apertum.
 </p>
+
+</div>
+
+<div class="card">
+
+<h3>Platform Goals</h3>
+
+<div class="utility-list">
+
+<div class="utility-item">
+<strong>Verified Athletes:</strong>
+identity-first trust system.
+</div>
+
+<div class="utility-item">
+<strong>Fantasy Layer:</strong>
+future playable NFT sports ecosystem.
+</div>
+
+<div class="utility-item">
+<strong>Fundraising:</strong>
+support athletes and communities.
+</div>
+
+</div>
 
 </div>
 
@@ -673,11 +722,13 @@ Black Sox Vice-Captain
 
 <div class="hero-buttons">
 
-<button class="view-btn">
+<button class="view-btn"
+onclick="showTab('collections', document.querySelector('[data-tab=collections]'))">
 View Collection
 </button>
 
-<button class="support-btn">
+<button class="support-btn"
+onclick="setHeroSide(1)">
 Fantasy Card
 </button>
 
@@ -699,7 +750,7 @@ PLAYER STATS / FANTASY LAYER
 
 <p>
 10-star elite current-era player.
-11 and 12 stars reserved for retired legends.
+11 and 12 stars are reserved for retired legends.
 </p>
 
 <div class="star-rating-box">
@@ -787,40 +838,253 @@ Stats
 </section>
 
 <section id="collections" class="tab-section">
+
 <div class="card">
-<h3>Collections</h3>
-<p>Collection area coming next.</p>
+
+<h3>Thomas Enoka Collection</h3>
+
+<p>
+Official Legacy Pioneer Series collection.
+</p>
+
+<div class="collection-grid">
+
+<div class="collection-item">
+
+<img src="https://gateway.pinata.cloud/ipfs/bafybeigiu67t4k7e3zidnpj77nziqqnzi2frjgknba6zmzi3ei3vjch6dy">
+
+<h3>Legacy Pioneer #001</h3>
+
+<div class="collection-meta">
+
+<div class="meta-box">
+<div class="meta-title">SUPPLY</div>
+<div class="meta-value">25</div>
 </div>
+
+<div class="meta-box">
+<div class="meta-title">ROYALTY</div>
+<div class="meta-value">7.5%</div>
+</div>
+
+<div class="meta-box">
+<div class="meta-title">STANDARD</div>
+<div class="meta-value">ERC1155</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="collection-item">
+
+<img src="https://gateway.pinata.cloud/ipfs/bafybeid33djahua3gzwj4ioy6ja46gv2lrwadh24ulvhxt2nf6bvikipfe">
+
+<h3>Legacy Pioneer #002</h3>
+
+<div class="collection-meta">
+
+<div class="meta-box">
+<div class="meta-title">SUPPLY</div>
+<div class="meta-value">10</div>
+</div>
+
+<div class="meta-box">
+<div class="meta-title">ROYALTY</div>
+<div class="meta-value">7.5%</div>
+</div>
+
+<div class="meta-box">
+<div class="meta-title">STANDARD</div>
+<div class="meta-value">ERC1155</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="collection-item">
+
+<img src="https://gateway.pinata.cloud/ipfs/bafybeidorylrziwwax35ds7iuedxfoyjqvwld63tjyobnx52ypt4kd3vxq">
+
+<h3>Legacy Pioneer #003</h3>
+
+<div class="collection-meta">
+
+<div class="meta-box">
+<div class="meta-title">SUPPLY</div>
+<div class="meta-value">15</div>
+</div>
+
+<div class="meta-box">
+<div class="meta-title">ROYALTY</div>
+<div class="meta-value">7.5%</div>
+</div>
+
+<div class="meta-box">
+<div class="meta-title">STANDARD</div>
+<div class="meta-value">ERC1155</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
 
 <section id="create" class="tab-section">
+
 <div class="card">
-<h3>Create</h3>
-<p>Create collection tools coming next.</p>
+
+<h3>Create Collection</h3>
+
+<p>
+Launch athlete, club or community NFT collections.
+</p>
+
+<div class="utility-list">
+
+<div class="utility-item">
+<strong>Set Supply:</strong>
+limited or open editions.
 </div>
+
+<div class="utility-item">
+<strong>Set Royalties:</strong>
+creator royalty support.
+</div>
+
+<div class="utility-item">
+<strong>Upload Artwork:</strong>
+player cards and collectibles.
+</div>
+
+<div class="utility-item">
+<strong>Fantasy Integration:</strong>
+future playable NFT ecosystem.
+</div>
+
+</div>
+
+</div>
+
 </section>
 
 <section id="verify" class="tab-section">
+
 <div class="card">
-<h3>Verification</h3>
-<p>Verification and rarity badges.</p>
+
+<h3>Verification System</h3>
+
+<p>
+Verification badges identify trusted athletes,
+creators and official collections.
+</p>
+
+<img
+class="full-img"
+src="https://gateway.pinata.cloud/ipfs/bafybeiaj26sjyqgtc634ih4fqbeessep5ct3j4reuiog3cn5jizcozdvhm"
+>
+
 </div>
+
+<div class="card">
+
+<h3>Rarity Badge System</h3>
+
+<p>
+Rarity identifies collectible significance and scarcity.
+</p>
+
+<img
+class="full-img"
+src="https://gateway.pinata.cloud/ipfs/bafybeihqzbhuu4johuawlizweb7ukeqo3oat4yxcvetwwynrj4ahc256tu"
+>
+
+</div>
+
 </section>
 
 <section id="safety" class="tab-section">
+
 <div class="card">
-<h3>Safety</h3>
-<p>LegacyMint safety and scam prevention information.</p>
+
+<h3>LegacyMint Safety Online</h3>
+
+<p>
+Protecting new crypto users is a core priority.
+</p>
+
+<div class="badge-grid">
+
+<div class="badge-box">
+<h4 style="color:var(--red)">Never Share Seed Phrases</h4>
+<p>
+LegacyMint will never ask for your recovery phrase.
+</p>
 </div>
+
+<div class="badge-box">
+<h4 style="color:var(--red)">Use Official Links</h4>
+<p>
+Only mint through official LegacyMint pages.
+</p>
+</div>
+
+<div class="badge-box">
+<h4 style="color:var(--red)">Check Transactions</h4>
+<p>
+Verify collection, image and wallet before approving.
+</p>
+</div>
+
+<div class="badge-box">
+<h4 style="color:var(--red)">Verified Collections</h4>
+<p>
+Look for official athlete verification badges.
+</p>
+</div>
+
+<div class="badge-box">
+<h4 style="color:var(--red)">No DM Scams</h4>
+<p>
+LegacyMint staff will never DM first for wallet access.
+</p>
+</div>
+
+<div class="badge-box">
+<h4 style="color:var(--red)">Public Contracts</h4>
+<p>
+Official contract addresses will always be public.
+</p>
+</div>
+
+</div>
+
+</div>
+
 </section>
 
 <section id="wallet" class="tab-section">
+
 <div class="card">
-<h3>Wallet</h3>
+
+<h3>Wallet Connection</h3>
+
+<p>
+Connect MetaMask and switch to Apertum network.
+</p>
+
 <button class="wallet-btn">
 Connect Wallet
 </button>
+
 </div>
+
 </section>
 
 </div>
@@ -834,6 +1098,7 @@ Home
 </button>
 
 <button
+data-tab="collections"
 onclick="showTab('collections', this)">
 Collect
 </button>
