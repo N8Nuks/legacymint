@@ -319,8 +319,145 @@
 </button>
 </div>
 </nav>
+<div class="card-container">
 
+  <div class="lm-card standard">
+
+    <!-- Background -->
+    <div class="card-bg"></div>
+
+    <!-- Holo Overlay -->
+    <div class="holo-overlay"></div>
+
+    <!-- Left Badge -->
+    <img
+      class="rarity-badge"
+      src="images/legacy-pioneer-badge.png"
+    >
+
+    <!-- Right Badge -->
+    <img
+      class="pioneer-badge"
+      src="images/pioneer-01.png"
+    >
+
+    <!-- Signature -->
+    <div class="signature">
+      Thomas Enoka
+    </div>
+
+    <!-- Athlete -->
+    <img
+      class="athlete-image"
+      src="images/thomas-enoka.png"
+    >
+
+    <!-- Name -->
+    <div class="name-block">
+      <h1>ENOKA</h1>
+      <p>BLACK SOX VICE-CAPTAIN</p>
+      <span>#20 | 1B / UTIL</span>
+    </div>
+
+    <!-- Footer -->
+    <div class="edition-footer">
+      FOUNDING EDITION
+    </div>
+
+  </div>
+
+</div>
 <script>
+  .card-container {
+  display: flex;
+  justify-content: center;
+  padding: 60px;
+}
+
+.lm-card {
+position: relative;
+width: 420px;
+aspect-ratio: 2.5 / 3.5;
+border-radius: 28px;
+overflow: hidden;
+background: #050505;
+border: 3px solid #f6c15b;
+box-shadow:
+0 0 40px rgba(246,193,91,.3);
+}
+
+.card-bg {
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(circle at center,
+      rgba(246,193,91,.15),
+      transparent 70%),
+    #050505;
+}
+
+.rarity-badge {
+position: absolute;
+top: 4%;
+left: 4%;
+width: 28%;
+}
+
+.pioneer-badge {
+position: absolute;
+top: 4%;
+right: 4%;
+width: 22%;
+}
+
+.signature {
+position: absolute;
+left: 3%;
+top: 24%;
+writing-mode: vertical-rl;
+transform: rotate(180deg);
+color: #f6c15b;
+font-size: 2rem;
+font-family: cursive;
+}
+
+.athlete-image {
+position: absolute;
+bottom: 12%;
+left: 18%;
+width: 72%;
+height: 72%;
+object-fit: contain;
+}
+
+.name-block {
+position: absolute;
+bottom: 12%;
+width: 100%;
+text-align: center;
+}
+
+.name-block h1 {
+font-size: 4rem;
+color: #f6c15b;
+margin: 0;
+}
+.name-block p {
+margin: 0;
+color: white;
+}
+.name-block span {
+color: #f6c15b;
+}
+.edition-footer {
+position: absolute;
+bottom: 3%;
+width: 100%;
+text-align: center;
+color: #f6c15b;
+letter-spacing: 4px;
+}
        let currentTab = 'home';
        let currentCardIndex = 0;
 
