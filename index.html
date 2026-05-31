@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
 :root {
   --gold: #f6c15b;
@@ -17,1135 +18,353 @@
   --card-bg: #111111;
   --border: rgba(246,193,91,0.15);
 }
-
 * { box-sizing: border-box; }
-
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--dark);
-  color: #f1f1f1;
-  min-height: 100vh;
-}
-
-h1, h2, h3, .display {
-  font-family: 'Bebas Neue', sans-serif;
-  letter-spacing: 0.04em;
-}
-
+body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: #f1f1f1; min-height: 100vh; }
+h1,h2,h3,.display { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em; }
 .mono { font-family: 'DM Mono', monospace; }
-
-/* GRAIN OVERLAY */
 body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
+  content: ''; position: fixed; inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.4;
+  pointer-events: none; z-index: 9999; opacity: 0.4;
 }
-
-/* HEADER */
 .header {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  background: rgba(8,8,8,0.92);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-  padding: 0 24px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  background: rgba(8,8,8,0.92); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border); padding: 0 24px;
+  height: 64px; display: flex; align-items: center; justify-content: space-between;
 }
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
+.logo { display:flex; align-items:center; gap:10px; }
 .logo-mark {
-  width: 36px;
-  height: 36px;
-  background: linear-gradient(135deg, var(--gold), var(--neon));
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 20px;
-  color: #000;
+  width:36px; height:36px;
+  background: linear-gradient(135deg,var(--gold),var(--neon));
+  border-radius:10px; display:flex; align-items:center; justify-content:center;
+  font-family:'Bebas Neue',sans-serif; font-size:20px; color:#000;
 }
-
-.logo-text {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 22px;
-  letter-spacing: 0.08em;
-}
-
-.logo-text span { color: var(--gold); }
-
-.nav-links {
-  display: none;
-  gap: 28px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-@media(min-width: 768px) { .nav-links { display: flex; } }
-
-.nav-links a {
-  color: #888;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.nav-links a:hover, .nav-links a.active { color: var(--gold); }
-
+.logo-text { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:0.08em; }
+.logo-text span { color:var(--gold); }
+.nav-links { display:none; gap:24px; font-size:11px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; }
+@media(min-width:768px){.nav-links{display:flex;}}
+.nav-links a { color:#888; text-decoration:none; transition:color 0.2s; }
+.nav-links a:hover,.nav-links a.active { color:var(--gold); }
 .connect-btn {
-  background: transparent;
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  padding: 8px 20px;
-  border-radius: 8px;
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  background:transparent; border:1px solid var(--gold); color:var(--gold);
+  padding:8px 20px; border-radius:8px; font-family:'DM Mono',monospace;
+  font-size:11px; cursor:pointer; transition:all 0.2s; display:flex; align-items:center; gap:8px;
 }
-
-.connect-btn:hover, .connect-btn.connected {
-  background: var(--gold);
-  color: #000;
-}
-
-.connect-btn.connected { border-color: var(--neon); background: var(--neon); color: #000; }
-
-/* TABS */
-.tab-content { display: none; }
-.tab-content.active { display: block; }
-
-/* HERO */
-.hero {
-  min-height: 100vh;
-  padding-top: 64px;
-  position: relative;
-  overflow: hidden;
-}
-
+.connect-btn:hover,.connect-btn.connected { background:var(--gold); color:#000; }
+.connect-btn.connected { border-color:var(--neon); background:var(--neon); }
+.tab-content { display:none; }
+.tab-content.active { display:block; }
+.hero { min-height:100vh; padding-top:64px; position:relative; overflow:hidden; }
 .hero-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 60% 40%, rgba(246,193,91,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(0,255,157,0.04) 0%, transparent 50%),
-    #080808;
+  position:absolute; inset:0;
+  background: radial-gradient(ellipse 80% 60% at 60% 40%,rgba(246,193,91,0.06) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 40% at 20% 80%,rgba(0,255,157,0.04) 0%,transparent 50%),#080808;
 }
-
 .hero-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(246,193,91,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(246,193,91,0.04) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+  position:absolute; inset:0;
+  background-image: linear-gradient(rgba(246,193,91,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(246,193,91,0.04) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%,black,transparent);
 }
-
 .hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 80px 24px 40px;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 48px;
-  align-items: center;
+  position:relative; z-index:2; max-width:1200px; margin:0 auto;
+  padding:80px 24px 40px; display:grid; grid-template-columns:1fr; gap:48px; align-items:center;
 }
-
-@media(min-width: 1024px) {
-  .hero-content { grid-template-columns: 1fr 1fr; padding: 100px 48px 60px; }
-}
-
+@media(min-width:1024px){.hero-content{grid-template-columns:1fr 1fr;padding:100px 48px 60px;}}
 .hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(246,193,91,0.08);
-  border: 1px solid rgba(246,193,91,0.2);
-  padding: 6px 14px;
-  border-radius: 100px;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 20px;
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(246,193,91,0.08); border:1px solid rgba(246,193,91,0.2);
+  padding:6px 14px; border-radius:100px; font-size:10px; font-weight:600;
+  letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:20px;
 }
-
-.pulse {
-  width: 6px; height: 6px;
-  background: var(--neon);
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.4); }
-}
-
-.hero-title {
-  font-size: clamp(56px, 8vw, 96px);
-  line-height: 0.95;
-  margin-bottom: 20px;
-}
-
-.hero-title .gold { color: var(--gold); }
-.hero-title .neon { color: var(--neon); }
-
-.hero-sub {
-  font-size: 15px;
-  color: #888;
-  line-height: 1.7;
-  max-width: 440px;
-  margin-bottom: 36px;
-}
-
-.hero-btns {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 48px;
-}
-
+.pulse { width:6px; height:6px; background:var(--neon); border-radius:50%; animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(1.4);} }
+.hero-title { font-size:clamp(56px,8vw,96px); line-height:0.95; margin-bottom:20px; }
+.hero-title .gold{color:var(--gold);} .hero-title .neon{color:var(--neon);}
+.hero-sub { font-size:15px; color:#888; line-height:1.7; max-width:440px; margin-bottom:36px; }
+.hero-btns { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:48px; }
 .btn-primary {
-  background: var(--gold);
-  color: #000;
-  padding: 14px 28px;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  border: none;
-  transition: all 0.2s;
+  background:var(--gold); color:#000; padding:14px 28px; border-radius:10px;
+  font-weight:700; font-size:13px; letter-spacing:0.08em; text-transform:uppercase;
+  cursor:pointer; border:none; transition:all 0.2s;
 }
-
-.btn-primary:hover { background: #fff; transform: translateY(-1px); }
-
+.btn-primary:hover { background:#fff; transform:translateY(-1px); }
 .btn-secondary {
-  background: transparent;
-  color: #fff;
-  padding: 14px 28px;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  border: 1px solid rgba(255,255,255,0.2);
-  transition: all 0.2s;
+  background:transparent; color:#fff; padding:14px 28px; border-radius:10px;
+  font-weight:600; font-size:13px; letter-spacing:0.08em; text-transform:uppercase;
+  cursor:pointer; border:1px solid rgba(255,255,255,0.2); transition:all 0.2s;
 }
-
-.btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
-
-.hero-stats {
-  display: flex;
-  gap: 32px;
-}
-
-.stat-item { text-align: center; }
-.stat-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 36px;
-  line-height: 1;
-  color: var(--gold);
-}
-.stat-label {
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #555;
-  margin-top: 4px;
-}
-
-/* FEATURED CARD */
-.card-showcase {
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-
+.btn-secondary:hover { border-color:var(--gold); color:var(--gold); }
+.hero-stats { display:flex; gap:32px; }
+.stat-item { text-align:center; }
+.stat-num { font-family:'Bebas Neue',sans-serif; font-size:36px; line-height:1; color:var(--gold); }
+.stat-label { font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:#555; margin-top:4px; }
+.card-showcase { position:relative; display:flex; justify-content:center; }
 .nft-card {
-  width: 300px;
-  background: linear-gradient(160deg, #1a1a1a, #111);
-  border: 1px solid rgba(246,193,91,0.3);
-  border-radius: 20px;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 60px rgba(246,193,91,0.08);
-  transition: transform 0.4s;
-  cursor: pointer;
+  width:300px; background:linear-gradient(160deg,#1a1a1a,#111);
+  border:1px solid rgba(246,193,91,0.3); border-radius:20px; overflow:hidden;
+  position:relative; box-shadow:0 40px 80px rgba(0,0,0,0.6),0 0 60px rgba(246,193,91,0.08);
+  transition:transform 0.4s; cursor:pointer;
 }
-
-.nft-card:hover { transform: translateY(-8px) rotate(1deg); }
-
-.nft-card-header {
-  padding: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-
+.nft-card:hover{transform:translateY(-8px) rotate(1deg);}
+.nft-card-header { padding:16px; display:flex; justify-content:space-between; align-items:flex-start; border-bottom:1px solid rgba(255,255,255,0.06); }
 .card-badge {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  background: rgba(246,193,91,0.1);
-  padding: 4px 10px;
-  border-radius: 100px;
-  border: 1px solid rgba(246,193,91,0.2);
+  font-size:9px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--gold); background:rgba(246,193,91,0.1); padding:4px 10px;
+  border-radius:100px; border:1px solid rgba(246,193,91,0.2);
 }
-
-.card-badge.holo {
-  color: var(--neon);
-  background: rgba(0,255,157,0.1);
-  border-color: rgba(0,255,157,0.2);
-}
-
-.star-rating {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 18px;
-  color: var(--gold);
-}
-
-.nft-card img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-}
-
-.nft-card-footer { padding: 16px; }
-
-.nft-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 22px;
-  letter-spacing: 0.04em;
-  margin-bottom: 2px;
-}
-
-.nft-sub {
-  font-size: 11px;
-  color: #555;
-  margin-bottom: 12px;
-  letter-spacing: 0.05em;
-}
-
-.nft-price-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.nft-price {
-  font-family: 'DM Mono', monospace;
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--gold);
-}
-
-.nft-price-usd { font-size: 11px; color: #555; }
-
-.vote-badge {
-  font-size: 10px;
-  background: rgba(0,255,157,0.1);
-  color: var(--neon);
-  border: 1px solid rgba(0,255,157,0.2);
-  padding: 3px 8px;
-  border-radius: 100px;
-}
-
+.card-badge.holo { color:var(--neon); background:rgba(0,255,157,0.1); border-color:rgba(0,255,157,0.2); }
+.star-rating { font-family:'Bebas Neue',sans-serif; font-size:18px; color:var(--gold); }
+.nft-card img { width:100%; aspect-ratio:1; object-fit:cover; }
+.nft-card-footer { padding:16px; }
+.nft-name { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:0.04em; margin-bottom:2px; }
+.nft-sub { font-size:11px; color:#555; margin-bottom:12px; letter-spacing:0.05em; }
+.nft-price-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+.nft-price { font-family:'DM Mono',monospace; font-size:18px; font-weight:500; color:var(--gold); }
+.nft-price-usd { font-size:11px; color:#555; }
+.vote-badge { font-size:10px; background:rgba(0,255,157,0.1); color:var(--neon); border:1px solid rgba(0,255,157,0.2); padding:3px 8px; border-radius:100px; }
 .mint-btn {
-  width: 100%;
-  padding: 12px;
-  background: linear-gradient(135deg, var(--gold), #e0a832);
-  color: #000;
-  border: none;
-  border-radius: 10px;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 16px;
-  letter-spacing: 0.08em;
-  cursor: pointer;
-  transition: all 0.2s;
+  width:100%; padding:12px; background:linear-gradient(135deg,var(--gold),#e0a832);
+  color:#000; border:none; border-radius:10px; font-family:'Bebas Neue',sans-serif;
+  font-size:16px; letter-spacing:0.08em; cursor:pointer; transition:all 0.2s;
 }
-
-.mint-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(246,193,91,0.3); }
-.mint-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-.mint-btn.coming-soon { background: rgba(255,255,255,0.08); color: #555; }
-
-/* FOUNDATION FUND */
-.fund-section {
-  background: rgba(246,193,91,0.04);
-  border: 1px solid rgba(246,193,91,0.12);
-  border-radius: 16px;
-  padding: 24px;
-  margin: 0 0 32px;
-}
-
-.fund-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 16px;
-}
-
-.fund-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 20px;
-  letter-spacing: 0.04em;
-}
-
-.fund-amount {
-  font-family: 'DM Mono', monospace;
-  font-size: 13px;
-  color: var(--gold);
-}
-
-.progress-bar {
-  height: 6px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 100px;
-  overflow: hidden;
-  margin-bottom: 8px;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--gold), var(--neon));
-  border-radius: 100px;
-  transition: width 1s ease;
-}
-
-.fund-meta {
-  display: flex;
-  justify-content: space-between;
-  font-size: 11px;
-  color: #555;
-}
-
-/* SECTION STYLES */
-.section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 80px 24px;
-}
-
-@media(min-width: 768px) { .section { padding: 80px 48px; } }
-
-.section-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 12px;
-}
-
-.section-title {
-  font-size: clamp(36px, 5vw, 56px);
-  line-height: 1;
-  margin-bottom: 16px;
-}
-
-.section-sub {
-  font-size: 15px;
-  color: #666;
-  max-width: 480px;
-  line-height: 1.7;
-  margin-bottom: 48px;
-}
-
-/* COLLECTION GRID */
-.collection-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 20px;
-}
-
-.collection-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.collection-card:hover {
-  border-color: rgba(246,193,91,0.4);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-}
-
-.collection-card img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-}
-
-.collection-card-body { padding: 16px; }
-
-.collection-card-name {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 18px;
-  letter-spacing: 0.04em;
-  margin-bottom: 4px;
-}
-
-.collection-card-meta {
-  font-size: 11px;
-  color: #555;
-  margin-bottom: 12px;
-}
-
-.collection-card-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.price-tag {
-  font-family: 'DM Mono', monospace;
-  font-size: 14px;
-  color: var(--gold);
-}
-
-/* HOW IT WORKS */
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 24px;
-}
-
-.step-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 28px;
-  position: relative;
-}
-
-.step-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 64px;
-  line-height: 1;
-  color: rgba(246,193,91,0.1);
-  margin-bottom: 16px;
-}
-
-.step-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 22px;
-  letter-spacing: 0.04em;
-  margin-bottom: 8px;
-  color: var(--gold);
-}
-
-.step-desc {
-  font-size: 13px;
-  color: #666;
-  line-height: 1.7;
-}
-
-/* PAYOUT SECTION (replaces Vault27 promo) */
-.payout-section {
-  background: linear-gradient(135deg, rgba(246,193,91,0.04), rgba(0,255,157,0.02));
-  border: 1px solid rgba(246,193,91,0.12);
-  border-radius: 20px;
-  padding: 48px;
-  text-align: center;
-}
-
-/* SAFETY */
-.safety-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
-}
-
-.safety-item {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px;
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-}
-
-.safety-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  flex-shrink: 0;
-}
-
-.safety-icon.gold { background: rgba(246,193,91,0.1); color: var(--gold); }
-.safety-icon.neon { background: rgba(0,255,157,0.1); color: var(--neon); }
-
-.safety-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
-.safety-desc { font-size: 12px; color: #555; line-height: 1.6; }
-
-/* ==================== LEGAL SECTION STYLES ==================== */
-
-/* Legal hero banner */
+.mint-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(246,193,91,0.3);}
+.mint-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+.mint-btn.coming-soon{background:rgba(255,255,255,0.08);color:#555;}
+.fund-section { background:rgba(246,193,91,0.04); border:1px solid rgba(246,193,91,0.12); border-radius:16px; padding:24px; margin:0 0 32px; }
+.fund-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; }
+.fund-title { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:0.04em; }
+.fund-amount { font-family:'DM Mono',monospace; font-size:13px; color:var(--gold); }
+.progress-bar { height:6px; background:rgba(255,255,255,0.06); border-radius:100px; overflow:hidden; margin-bottom:8px; }
+.progress-fill { height:100%; background:linear-gradient(90deg,var(--gold),var(--neon)); border-radius:100px; transition:width 1s ease; }
+.fund-meta { display:flex; justify-content:space-between; font-size:11px; color:#555; }
+.section { max-width:1200px; margin:0 auto; padding:80px 24px; }
+@media(min-width:768px){.section{padding:80px 48px;}}
+.section-label { font-size:10px; font-weight:700; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+.section-title { font-size:clamp(36px,5vw,56px); line-height:1; margin-bottom:16px; }
+.section-sub { font-size:15px; color:#666; max-width:480px; line-height:1.7; margin-bottom:48px; }
+.collection-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:20px; }
+.collection-card { background:var(--card-bg); border:1px solid var(--border); border-radius:16px; overflow:hidden; cursor:pointer; transition:all 0.3s; }
+.collection-card:hover { border-color:rgba(246,193,91,0.4); transform:translateY(-4px); box-shadow:0 20px 40px rgba(0,0,0,0.4); }
+.collection-card img { width:100%; aspect-ratio:1; object-fit:cover; }
+.collection-card-body { padding:16px; }
+.collection-card-name { font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:0.04em; margin-bottom:4px; }
+.collection-card-meta { font-size:11px; color:#555; margin-bottom:12px; }
+.collection-card-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+.price-tag { font-family:'DM Mono',monospace; font-size:14px; color:var(--gold); }
+.steps-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:24px; }
+.step-card { background:var(--card-bg); border:1px solid var(--border); border-radius:16px; padding:28px; position:relative; }
+.step-num { font-family:'Bebas Neue',sans-serif; font-size:64px; line-height:1; color:rgba(246,193,91,0.1); margin-bottom:16px; }
+.step-title { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:0.04em; margin-bottom:8px; color:var(--gold); }
+.step-desc { font-size:13px; color:#666; line-height:1.7; }
+.safety-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; }
+.safety-item { background:var(--card-bg); border:1px solid var(--border); border-radius:12px; padding:20px; display:flex; gap:14px; align-items:flex-start; }
+.safety-icon { width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.safety-icon.gold{background:rgba(246,193,91,0.1);color:var(--gold);}
+.safety-icon.neon{background:rgba(0,255,157,0.1);color:var(--neon);}
+.safety-title{font-weight:600;font-size:14px;margin-bottom:4px;}
+.safety-desc{font-size:12px;color:#555;line-height:1.6;}
+ 
+/* ── LEGAL ── */
 .legal-hero {
-  background: linear-gradient(135deg, rgba(246,193,91,0.06) 0%, rgba(0,255,157,0.02) 100%);
-  border-bottom: 1px solid var(--border);
-  padding: 80px 24px 48px;
-  margin-top: 64px;
-  position: relative;
-  overflow: hidden;
+  background:linear-gradient(135deg,rgba(246,193,91,0.06) 0%,rgba(0,255,157,0.02) 100%);
+  border-bottom:1px solid var(--border); padding:80px 24px 48px;
+  margin-top:64px; position:relative; overflow:hidden;
 }
-
 .legal-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(246,193,91,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(246,193,91,0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  mask-image: radial-gradient(ellipse 100% 100% at 50% 0%, black, transparent);
+  content:''; position:absolute; inset:0;
+  background-image: linear-gradient(rgba(246,193,91,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(246,193,91,0.03) 1px,transparent 1px);
+  background-size:40px 40px;
+  mask-image:radial-gradient(ellipse 100% 100% at 50% 0%,black,transparent);
 }
-
-.legal-hero-inner {
-  max-width: 800px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 2;
-}
-
+.legal-hero-inner { max-width:800px; margin:0 auto; position:relative; z-index:2; }
 .legal-hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(246,193,91,0.08);
-  border: 1px solid rgba(246,193,91,0.2);
-  padding: 5px 14px;
-  border-radius: 100px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 20px;
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(246,193,91,0.08); border:1px solid rgba(246,193,91,0.2);
+  padding:5px 14px; border-radius:100px; font-size:10px; font-weight:700;
+  letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:20px;
 }
-
-/* Draft notice banner */
 .draft-banner {
-  background: rgba(246,193,91,0.08);
-  border: 1px solid rgba(246,193,91,0.25);
-  border-radius: 12px;
-  padding: 16px 20px;
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 40px;
+  background:rgba(246,193,91,0.08); border:1px solid rgba(246,193,91,0.25);
+  border-radius:12px; padding:16px 20px; display:flex; align-items:flex-start;
+  gap:12px; margin-bottom:0;
 }
-
-.draft-banner-icon {
-  font-size: 18px;
-  color: var(--gold);
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.draft-banner-text {
-  font-size: 12px;
-  color: #aaa;
-  line-height: 1.6;
-}
-
-.draft-banner-text strong {
-  color: var(--gold);
-  display: block;
-  margin-bottom: 3px;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-/* Legal nav pills */
+.draft-banner-icon{font-size:18px;color:var(--gold);flex-shrink:0;margin-top:1px;}
+.draft-banner-text{font-size:12px;color:#aaa;line-height:1.6;}
+.draft-banner-text strong{color:var(--gold);display:block;margin-bottom:3px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;}
 .legal-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 40px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 24px;
+  display:flex; flex-wrap:wrap; gap:8px;
+  max-width:800px; margin:28px auto 0; padding:0 24px;
 }
-
 .legal-nav-pill {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  color: #666;
-  padding: 8px 18px;
-  border-radius: 100px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-family: 'DM Sans', sans-serif;
+  background:var(--card-bg); border:1px solid var(--border); color:#666;
+  padding:8px 18px; border-radius:100px; font-size:11px; font-weight:600;
+  letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; transition:all 0.2s;
+  font-family:'DM Sans',sans-serif;
 }
-
-.legal-nav-pill:hover { border-color: rgba(246,193,91,0.4); color: #ccc; }
-.legal-nav-pill.active { background: rgba(246,193,91,0.1); border-color: rgba(246,193,91,0.4); color: var(--gold); }
-
-/* Legal doc panels */
-.legal-panel { display: none; max-width: 800px; margin: 0 auto; padding: 0 24px 80px; }
-.legal-panel.active { display: block; }
-
-/* Disclaimer card — key disclaimers with visual weight */
+.legal-nav-pill:hover{border-color:rgba(246,193,91,0.4);color:#ccc;}
+.legal-nav-pill.active{background:rgba(246,193,91,0.1);border-color:rgba(246,193,91,0.4);color:var(--gold);}
+.legal-panel{display:none;max-width:800px;margin:32px auto 0;padding:0 24px 80px;}
+.legal-panel.active{display:block;}
 .disclaimer-card {
-  background: rgba(255,80,80,0.04);
-  border: 1px solid rgba(255,80,80,0.2);
-  border-radius: 12px;
-  padding: 20px 24px;
-  margin-bottom: 16px;
+  background:rgba(255,80,80,0.04); border:1px solid rgba(255,80,80,0.2);
+  border-radius:12px; padding:20px 24px; margin-bottom:16px;
 }
-
 .disclaimer-card-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 15px;
-  letter-spacing: 0.1em;
-  color: #ff8080;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  font-family:'Bebas Neue',sans-serif; font-size:15px; letter-spacing:0.1em;
+  color:#ff8080; margin-bottom:8px; display:flex; align-items:center; gap:8px;
 }
-
-.disclaimer-card p {
-  font-size: 13px;
-  color: #888;
-  line-height: 1.7;
-}
-
-/* Legal accordion */
+.disclaimer-card p{font-size:13px;color:#888;line-height:1.7;}
 .legal-accordion {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 12px;
+  background:var(--card-bg); border:1px solid var(--border);
+  border-radius:12px; overflow:hidden; margin-bottom:12px;
 }
-
 .legal-accordion-header {
-  width: 100%;
-  background: none;
-  border: none;
-  padding: 20px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  text-align: left;
-  font-family: 'DM Sans', sans-serif;
-  transition: background 0.2s;
+  width:100%; background:none; border:none; padding:20px 24px;
+  display:flex; justify-content:space-between; align-items:center;
+  cursor:pointer; text-align:left; font-family:'DM Sans',sans-serif; transition:background 0.2s;
 }
-
-.legal-accordion-header:hover { background: rgba(246,193,91,0.03); }
-
-.legal-accordion-title {
-  font-weight: 600;
-  font-size: 14px;
-  color: #ddd;
-}
-
-.legal-accordion-chevron {
-  color: #444;
-  font-size: 12px;
-  transition: transform 0.25s;
-  flex-shrink: 0;
-}
-
-.legal-accordion.open .legal-accordion-chevron { transform: rotate(180deg); color: var(--gold); }
-.legal-accordion.open .legal-accordion-title { color: var(--gold); }
-
+.legal-accordion-header:hover{background:rgba(246,193,91,0.03);}
+.legal-accordion-title{font-weight:600;font-size:14px;color:#ddd;}
+.legal-accordion-chevron{color:#444;font-size:12px;transition:transform 0.25s;flex-shrink:0;}
+.legal-accordion.open .legal-accordion-chevron{transform:rotate(180deg);color:var(--gold);}
+.legal-accordion.open .legal-accordion-title{color:var(--gold);}
 .legal-accordion-body {
-  display: none;
-  padding: 0 24px 20px;
-  font-size: 13px;
-  color: #777;
-  line-height: 1.8;
-  border-top: 1px solid rgba(255,255,255,0.04);
+  display:none; padding:0 24px 20px; font-size:13px; color:#777;
+  line-height:1.8; border-top:1px solid rgba(255,255,255,0.04);
 }
-
-.legal-accordion.open .legal-accordion-body { display: block; }
-
-.legal-accordion-body p { margin-bottom: 10px; }
-.legal-accordion-body p:last-child { margin-bottom: 0; }
-
-.legal-accordion-body ul {
-  list-style: none;
-  padding: 0;
-  margin: 8px 0;
-}
-
-.legal-accordion-body ul li {
-  padding: 4px 0 4px 16px;
-  position: relative;
-  color: #666;
-  font-size: 13px;
-}
-
-.legal-accordion-body ul li::before {
-  content: '—';
-  position: absolute;
-  left: 0;
-  color: var(--gold);
-  font-size: 11px;
-}
-
-/* Legal section heading inside accordion */
+.legal-accordion.open .legal-accordion-body{display:block;}
+.legal-accordion-body p{margin-bottom:10px;}
+.legal-accordion-body p:last-child{margin-bottom:0;}
+.legal-accordion-body ul{list-style:none;padding:0;margin:8px 0;}
+.legal-accordion-body ul li{padding:4px 0 4px 16px;position:relative;color:#666;font-size:13px;}
+.legal-accordion-body ul li::before{content:'—';position:absolute;left:0;color:var(--gold);font-size:11px;}
 .legal-section-tag {
-  display: inline-block;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  background: rgba(246,193,91,0.08);
-  border: 1px solid rgba(246,193,91,0.15);
-  padding: 3px 8px;
-  border-radius: 4px;
-  margin-bottom: 10px;
+  display:inline-block; font-size:9px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase;
+  color:var(--gold); background:rgba(246,193,91,0.08); border:1px solid rgba(246,193,91,0.15);
+  padding:3px 8px; border-radius:4px; margin-bottom:10px;
 }
-
-/* Info row in legal docs */
-.legal-info-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-  font-size: 12px;
-}
-
-.legal-info-row:last-child { border-bottom: none; }
-.legal-info-label { color: #555; }
-.legal-info-val { color: #ccc; font-family: 'DM Mono', monospace; font-size: 11px; }
-
-/* Contact card */
-.legal-contact-card {
-  background: rgba(0,255,157,0.04);
-  border: 1px solid rgba(0,255,157,0.12);
-  border-radius: 12px;
-  padding: 24px;
-  margin-top: 32px;
-}
-
-.legal-contact-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 20px;
-  letter-spacing: 0.04em;
-  color: var(--neon);
-  margin-bottom: 8px;
-}
-
-/* Privacy section */
-.privacy-point {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  padding: 20px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-}
-
-.privacy-point:last-child { border-bottom: none; }
-
-.privacy-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: rgba(246,193,91,0.08);
-  border: 1px solid rgba(246,193,91,0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--gold);
-  font-size: 15px;
-  flex-shrink: 0;
-}
-
-.privacy-content-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
-.privacy-content-desc { font-size: 13px; color: #666; line-height: 1.6; }
-
-/* ==================== END LEGAL STYLES ==================== */
-
+.legal-info-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;}
+.legal-info-row:last-child{border-bottom:none;}
+.legal-info-label{color:#555;}
+.legal-info-val{color:#ccc;font-family:'DM Mono',monospace;font-size:11px;}
+.legal-contact-card{background:rgba(0,255,157,0.04);border:1px solid rgba(0,255,157,0.12);border-radius:12px;padding:24px;margin-bottom:16px;}
+.legal-contact-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.04em;color:var(--neon);margin-bottom:8px;}
+.privacy-point{display:flex;gap:16px;align-items:flex-start;padding:20px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.privacy-point:last-child{border-bottom:none;}
+.privacy-icon{width:40px;height:40px;border-radius:10px;background:rgba(246,193,91,0.08);border:1px solid rgba(246,193,91,0.15);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:15px;flex-shrink:0;}
+.privacy-content-title{font-weight:600;font-size:14px;margin-bottom:4px;}
+.privacy-content-desc{font-size:13px;color:#666;line-height:1.6;}
+ 
 /* MODAL */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  backdrop-filter: blur(8px);
-  z-index: 200;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-}
-
-.modal-overlay.open { display: flex; }
-
-.modal-box {
-  background: #111;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  width: 100%;
-  max-width: 560px;
-  max-height: 90vh;
-  overflow-y: auto;
-  animation: modalIn 0.25s ease;
-}
-
-@keyframes modalIn {
-  from { opacity: 0; transform: scale(0.95) translateY(10px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-.modal-header {
-  padding: 20px 24px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.modal-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 22px;
-  letter-spacing: 0.04em;
-}
-
-.modal-close {
-  background: none;
-  border: none;
-  color: #555;
-  font-size: 22px;
-  cursor: pointer;
-  line-height: 1;
-  transition: color 0.2s;
-}
-
-.modal-close:hover { color: #fff; }
-
-.modal-body { padding: 24px; }
-
-.modal-tabs {
-  display: flex;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  margin-bottom: 24px;
-  gap: 4px;
-}
-
-.modal-tab {
-  flex: 1;
-  padding: 10px;
-  background: none;
-  border: none;
-  border-bottom: 2px solid transparent;
-  color: #555;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-family: 'DM Sans', sans-serif;
-}
-
-.modal-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
-
-.modal-view { display: none; }
-.modal-view.active { display: block; }
-
-.stat-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-  font-size: 13px;
-}
-
-.stat-row-label { color: #666; }
-.stat-row-val { font-family: 'DM Mono', monospace; color: #fff; }
-.stat-bar-wrap { flex: 1; margin: 0 12px; height: 4px; background: rgba(255,255,255,0.06); border-radius: 100px; overflow: hidden; }
-.stat-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--neon)); border-radius: 100px; }
-
-.modal-mint-section {
-  background: rgba(246,193,91,0.04);
-  border: 1px solid rgba(246,193,91,0.12);
-  border-radius: 12px;
-  padding: 20px;
-  margin-top: 20px;
-}
-
-.modal-price-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-.modal-price-main {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 32px;
-  color: var(--gold);
-}
-
-.modal-price-sub { font-size: 12px; color: #555; }
-
-.modal-mint-btn {
-  width: 100%;
-  padding: 14px;
-  background: linear-gradient(135deg, var(--gold), #e0a832);
-  color: #000;
-  border: none;
-  border-radius: 10px;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 18px;
-  letter-spacing: 0.08em;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.modal-mint-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(246,193,91,0.3); }
-.modal-mint-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
-
-.tx-status {
-  margin-top: 12px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-family: 'DM Mono', monospace;
-  display: none;
-}
-
-.tx-status.pending { background: rgba(246,193,91,0.1); color: var(--gold); display: block; }
-.tx-status.success { background: rgba(0,255,157,0.1); color: var(--neon); display: block; }
-.tx-status.error { background: rgba(255,80,80,0.1); color: #ff5050; display: block; }
-
-/* BOTTOM NAV */
-.bottom-nav {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  background: rgba(8,8,8,0.95);
-  backdrop-filter: blur(20px);
-  border-top: 1px solid var(--border);
-  z-index: 100;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  padding: 8px 0 12px;
-}
-
-.nav-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  padding: 6px;
-  background: none;
-  border: none;
-  color: #444;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: color 0.2s;
-  font-family: 'DM Sans', sans-serif;
-}
-
-.nav-btn i { font-size: 18px; }
-.nav-btn.active, .nav-btn:hover { color: var(--gold); }
-
-/* NOTIFICATION */
-.notification {
-  position: fixed;
-  top: 80px;
-  right: 24px;
-  background: #111;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 16px 20px;
-  font-size: 13px;
-  z-index: 300;
-  transform: translateX(120%);
-  transition: transform 0.3s;
-  max-width: 300px;
-}
-
-.notification.show { transform: translateX(0); }
-.notification.success { border-color: rgba(0,255,157,0.3); color: var(--neon); }
-.notification.error { border-color: rgba(255,80,80,0.3); color: #ff5050; }
-.notification.info { border-color: rgba(246,193,91,0.3); color: var(--gold); }
-
-.divider { border: none; border-top: 1px solid var(--border); margin: 0; }
-
-.verified-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 10px;
-  color: var(--neon);
-  background: rgba(0,255,157,0.08);
-  border: 1px solid rgba(0,255,157,0.2);
-  padding: 3px 8px;
-  border-radius: 100px;
-}
-
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #333; border-radius: 100px; }
-
-.pb-20 { padding-bottom: 80px; }
-.text-gold { color: var(--gold); }
-.text-neon { color: var(--neon); }
-.text-muted { color: #555; }
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);z-index:200;align-items:center;justify-content:center;padding:24px;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:#111;border:1px solid var(--border);border-radius:20px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;animation:modalIn 0.25s ease;}
+@keyframes modalIn{from{opacity:0;transform:scale(0.95) translateY(10px);}to{opacity:1;transform:scale(1) translateY(0);}}
+.modal-header{padding:20px 24px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.04em;}
+.modal-close{background:none;border:none;color:#555;font-size:22px;cursor:pointer;line-height:1;transition:color 0.2s;}
+.modal-close:hover{color:#fff;}
+.modal-body{padding:24px;}
+.modal-tabs{display:flex;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:24px;gap:4px;}
+.modal-tab{flex:1;padding:10px;background:none;border:none;border-bottom:2px solid transparent;color:#555;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+.modal-tab.active{color:var(--gold);border-bottom-color:var(--gold);}
+.modal-view{display:none;}
+.modal-view.active{display:block;}
+.stat-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;}
+.stat-row-label{color:#666;}
+.stat-row-val{font-family:'DM Mono',monospace;color:#fff;}
+.stat-bar-wrap{flex:1;margin:0 12px;height:4px;background:rgba(255,255,255,0.06);border-radius:100px;overflow:hidden;}
+.stat-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--neon));border-radius:100px;}
+.modal-mint-section{background:rgba(246,193,91,0.04);border:1px solid rgba(246,193,91,0.12);border-radius:12px;padding:20px;margin-top:20px;}
+.modal-price-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+.modal-price-main{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--gold);}
+.modal-price-sub{font-size:12px;color:#555;}
+.modal-mint-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),#e0a832);color:#000;border:none;border-radius:10px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.08em;cursor:pointer;transition:all 0.2s;}
+.modal-mint-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(246,193,91,0.3);}
+.modal-mint-btn:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
+.tx-status{margin-top:12px;padding:10px 14px;border-radius:8px;font-size:12px;font-family:'DM Mono',monospace;display:none;}
+.tx-status.pending{background:rgba(246,193,91,0.1);color:var(--gold);display:block;}
+.tx-status.success{background:rgba(0,255,157,0.1);color:var(--neon);display:block;}
+.tx-status.error{background:rgba(255,80,80,0.1);color:#ff5050;display:block;}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(8,8,8,0.95);backdrop-filter:blur(20px);border-top:1px solid var(--border);z-index:100;display:grid;grid-template-columns:repeat(6,1fr);padding:8px 0 12px;}
+.nav-btn{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px;background:none;border:none;color:#444;font-size:9px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:color 0.2s;font-family:'DM Sans',sans-serif;}
+.nav-btn i{font-size:18px;}
+.nav-btn.active,.nav-btn:hover{color:var(--gold);}
+.notification{position:fixed;top:80px;right:24px;background:#111;border:1px solid var(--border);border-radius:12px;padding:16px 20px;font-size:13px;z-index:300;transform:translateX(120%);transition:transform 0.3s;max-width:300px;}
+.notification.show{transform:translateX(0);}
+.notification.success{border-color:rgba(0,255,157,0.3);color:var(--neon);}
+.notification.error{border-color:rgba(255,80,80,0.3);color:#ff5050;}
+.notification.info{border-color:rgba(246,193,91,0.3);color:var(--gold);}
+.verified-badge{display:inline-flex;align-items:center;gap:4px;font-size:10px;color:var(--neon);background:rgba(0,255,157,0.08);border:1px solid rgba(0,255,157,0.2);padding:3px 8px;border-radius:100px;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:#333;border-radius:100px;}
+.pb-20{padding-bottom:80px;}
+.text-gold{color:var(--gold);}
+.text-neon{color:var(--neon);}
+.text-muted{color:#555;}
+ 
+/* ── SOCIALS FOOTER ── */
+.socials-footer{background:linear-gradient(180deg,transparent 0%,rgba(8,8,8,0.98) 30%);padding:48px 24px 32px;text-align:center;border-top:1px solid var(--border);}
+.socials-footer-label{font-size:10px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:#333;margin-bottom:6px;}
+.socials-footer-brand{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.1em;margin-bottom:4px;}
+.socials-footer-brand span{color:var(--gold);}
+.socials-footer-tagline{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#2a2a2a;margin-bottom:24px;}
+.socials-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:20px;}
+.socials-divider-line{flex:1;max-width:120px;height:1px;background:rgba(246,193,91,0.1);}
+.socials-divider-diamond{color:var(--gold);font-size:8px;opacity:0.35;}
+.socials-list{display:flex;flex-direction:column;gap:9px;max-width:460px;margin:0 auto 24px;}
+.social-row{display:flex;align-items:center;background:rgba(255,255,255,0.025);border:1px solid rgba(246,193,91,0.08);border-radius:12px;overflow:hidden;text-decoration:none;transition:all 0.2s;cursor:pointer;}
+.social-row:hover{background:rgba(246,193,91,0.05);border-color:rgba(246,193,91,0.22);transform:translateX(3px);}
+.social-row.discord-row{border-color:rgba(88,101,242,0.2);}
+.social-row.discord-row:hover{background:rgba(88,101,242,0.06);border-color:rgba(88,101,242,0.4);}
+.social-icon-wrap{width:48px;height:48px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;}
+.social-divider-bar{width:1px;height:24px;background:rgba(246,193,91,0.08);flex-shrink:0;}
+.discord-row .social-divider-bar{background:rgba(88,101,242,0.15);}
+.social-platform-name{font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#bbb;width:90px;text-align:left;padding-left:14px;flex-shrink:0;}
+.social-handle{font-family:'DM Mono',monospace;font-size:12px;color:#444;padding:0 14px;flex:1;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.social-row:hover .social-handle{color:var(--gold);}
+.discord-row:hover .social-handle{color:#8b9cf4;}
+.socials-footer-bottom{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#1e1e1e;padding-top:18px;border-top:1px solid rgba(246,193,91,0.05);}
+.socials-footer-bottom span{color:var(--gold);}
+ 
+/* ── COMPARISON WIDGET ── */
+.comparison-section{max-width:700px;margin:0 auto;padding:0 24px 56px;}
+.comparison-toggle{display:flex;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:9999px;padding:4px;width:fit-content;margin:0 auto 32px;gap:2px;}
+.comp-tab{padding:10px 22px;border-radius:9999px;font-size:12px;font-weight:600;letter-spacing:0.08em;cursor:pointer;border:none;background:transparent;color:#555;transition:all 0.25s ease;font-family:'DM Sans',sans-serif;text-transform:uppercase;}
+.comp-tab.active{background:var(--gold);color:#1a1000;box-shadow:0 2px 12px rgba(246,193,91,0.35);}
+.comp-flow{display:none;animation:fadeInUp 0.3s ease;}
+.comp-flow.visible{display:block;}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.comp-flow-label{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:0.25em;text-align:center;color:#444;margin-bottom:24px;}
+.comp-steps-with{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;}
+.comp-step{display:flex;flex-direction:column;align-items:center;gap:12px;width:155px;}
+.comp-icon-box{width:76px;height:76px;border-radius:16px;background:var(--card-bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 8px 30px rgba(0,0,0,0.4);transition:transform 0.2s,box-shadow 0.2s;}
+.comp-icon-box:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.5),0 0 30px rgba(246,193,91,0.1);}
+.comp-icon-box i{font-size:26px;color:var(--gold);}
+.comp-step-num{position:absolute;top:-9px;right:-9px;width:20px;height:20px;border-radius:50%;background:var(--gold);color:#1a1000;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.comp-step-label{font-size:12px;font-weight:500;text-align:center;color:#bbb;line-height:1.4;max-width:130px;}
+.comp-arrow{color:rgba(246,193,91,0.22);font-size:18px;margin:0 4px 16px;flex-shrink:0;}
+.comp-badges{display:flex;justify-content:center;gap:8px;margin-top:24px;flex-wrap:wrap;}
+.comp-badge{font-size:10px;font-weight:600;letter-spacing:0.1em;padding:5px 14px;border-radius:9999px;text-transform:uppercase;background:rgba(246,193,91,0.08);color:var(--gold);border:1px solid rgba(246,193,91,0.2);}
+.comp-badge.neon{background:rgba(0,255,157,0.08);color:var(--neon);border-color:rgba(0,255,157,0.2);}
+.comp-steps-without{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;max-width:580px;margin:0 auto;}
+.comp-without-step{background:var(--card-bg);border:1px solid rgba(255,255,255,0.05);border-radius:10px;padding:12px 13px;display:flex;align-items:center;gap:9px;transition:border-color 0.2s;}
+.comp-without-step:hover{border-color:rgba(255,255,255,0.1);}
+.comp-without-step i{font-size:17px;color:#2e2e2e;flex-shrink:0;}
+.comp-ws-num{font-size:9px;font-weight:700;letter-spacing:0.1em;color:#252525;text-transform:uppercase;margin-bottom:2px;}
+.comp-ws-label{font-size:11px;color:#4a4a4a;line-height:1.3;}
+.comp-pain-note{text-align:center;margin-top:22px;font-size:13px;color:#555;}
+.comp-pain-note strong{color:#e05a5a;}
+@media(max-width:560px){.comp-steps-with{flex-direction:column;gap:4px;}.comp-arrow{transform:rotate(90deg);margin:0;}.comp-steps-without{grid-template-columns:1fr;}}
 </style>
 </head>
 <body class="pb-20">
-
-<!-- NOTIFICATION -->
 <div id="notification" class="notification"></div>
-
-<!-- HEADER -->
 <header class="header">
   <div class="logo">
     <div class="logo-mark">L</div>
@@ -1160,11 +379,10 @@ body::before {
     <a href="#" onclick="showTab('legal')" id="nav-legal">LEGAL</a>
   </nav>
   <button class="connect-btn" id="connectBtn" onclick="connectWallet()">
-    <i class="fa-solid fa-wallet"></i>
-    <span id="walletText">CONNECT</span>
+    <i class="fa-solid fa-wallet"></i><span id="walletText">CONNECT</span>
   </button>
 </header>
-
+ 
 <!-- ==================== HOME TAB ==================== -->
 <div id="home" class="tab-content active">
   <section class="hero">
@@ -1172,39 +390,19 @@ body::before {
     <div class="hero-grid"></div>
     <div class="hero-content">
       <div>
-        <div class="hero-eyebrow">
-          <div class="pulse"></div>
-          PIONEER COLLECTION • APERTUM NETWORK
-        </div>
-        <h1 class="hero-title">
-          MINT<br>
-          <span class="gold">LEGACY.</span><br>
-          BUILD<br>
-          <span class="neon">IMPACT.</span>
-        </h1>
-        <p class="hero-sub">
-          Premium athlete NFT collectibles on Apertum. Every mint funds the Foundation — a community-governed pool that athletes apply to and NFT holders vote on.
-        </p>
+        <div class="hero-eyebrow"><div class="pulse"></div>PIONEER COLLECTION • APERTUM NETWORK</div>
+        <h1 class="hero-title">MINT<br><span class="gold">LEGACY.</span><br>BUILD<br><span class="neon">IMPACT.</span></h1>
+        <p class="hero-sub">Premium athlete NFT collectibles on Apertum. Every mint funds the Foundation — a community-governed pool that athletes apply to and NFT holders vote on.</p>
         <div class="hero-btns">
           <button class="btn-primary" onclick="showTab('collect')">VIEW COLLECTION</button>
           <button class="btn-secondary" onclick="showTab('foundation')">FOUNDATION FUND</button>
         </div>
         <div class="hero-stats">
-          <div class="stat-item">
-            <div class="stat-num">001</div>
-            <div class="stat-label">Pioneer</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num">10★</div>
-            <div class="stat-label">Elite Rated</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num">NZ</div>
-            <div class="stat-label">Black Sox</div>
-          </div>
+          <div class="stat-item"><div class="stat-num">001</div><div class="stat-label">Pioneer</div></div>
+          <div class="stat-item"><div class="stat-num">10★</div><div class="stat-label">Elite Rated</div></div>
+          <div class="stat-item"><div class="stat-num">NZ</div><div class="stat-label">Black Sox</div></div>
         </div>
       </div>
-
       <div class="card-showcase">
         <div class="nft-card" onclick="openModal(0)">
           <div class="nft-card-header">
@@ -1216,10 +414,7 @@ body::before {
             <div class="nft-name">THOMAS ENOKA</div>
             <div class="nft-sub">BLACK SOX VICE-CAPTAIN</div>
             <div class="nft-price-row">
-              <div>
-                <div class="nft-price">150 APTM</div>
-                <div class="nft-price-usd">≈ NZ$50</div>
-              </div>
+              <div><div class="nft-price">150 APTM</div><div class="nft-price-usd">≈ NZ$50</div></div>
               <div class="vote-badge">1 VOTE</div>
             </div>
             <button class="mint-btn coming-soon" disabled>MINT OPENING SOON</button>
@@ -1227,288 +422,257 @@ body::before {
         </div>
       </div>
     </div>
-
-    <div class="section" style="padding-top: 0;">
+    <div class="section" style="padding-top:0;">
       <div class="section-label">HOW IT WORKS</div>
       <h2 class="section-title">FAN TO FOUNDATION</h2>
       <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-num">01</div>
-          <div class="step-title">MINT AN NFT</div>
-          <p class="step-desc">Buy a Standard (150 APTM) or Holo (250 APTM) athlete card. Pay with crypto or fiat via Alchemy Pay.</p>
+        <div class="step-card"><div class="step-num">01</div><div class="step-title">MINT AN NFT</div><p class="step-desc">Buy a Standard (150 APTM) or Holo (250 APTM) athlete card. Pay with crypto or fiat via Alchemy Pay.</p></div>
+        <div class="step-card"><div class="step-num">02</div><div class="step-title">FUND GROWS</div><p class="step-desc">90% of every mint goes directly to the Foundation Fund. Fully on-chain and transparent. Goal: NZ$10,000.</p></div>
+        <div class="step-card"><div class="step-num">03</div><div class="step-title">VOTE</div><p class="step-desc">When the fund goal is reached, NFT holders cast advisory votes on which verified athletes receive funding. Holo cards carry 2 votes.</p></div>
+        <div class="step-card"><div class="step-num">04</div><div class="step-title">ATHLETES WIN</div><p class="step-desc">Funded athletes receive grants from the Foundation Fund to support their training, competition, and development goals.</p></div>
+      </div>
+    </div>
+ 
+    <!-- ── COMPARISON WIDGET ── -->
+    <div style="padding: 0 0 16px;">
+      <div class="section-label" style="text-align:center; margin-bottom:12px;">WHY LEGACYMINT</div>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,48px);line-height:1;text-align:center;margin-bottom:32px;">THE SIMPLER WAY TO <span style="color:var(--gold);">OWN SPORTS HISTORY</span></h2>
+      <div class="comparison-section">
+        <div class="comparison-toggle">
+          <button class="comp-tab active" onclick="switchCompTab('with')">With LegacyMint</button>
+          <button class="comp-tab" onclick="switchCompTab('without')">Without LegacyMint</button>
         </div>
-        <div class="step-card">
-          <div class="step-num">02</div>
-          <div class="step-title">FUND GROWS</div>
-          <p class="step-desc">90% of every mint goes directly to the Foundation Fund. Fully on-chain and transparent. Goal: NZ$10,000.</p>
+ 
+        <!-- WITH -->
+        <div class="comp-flow visible" id="comp-with">
+          <div class="comp-flow-label">3 steps. Done.</div>
+          <div class="comp-steps-with">
+            <div class="comp-step">
+              <div class="comp-icon-box">
+                <i class="ti ti-cards"></i>
+                <span class="comp-step-num">1</span>
+              </div>
+              <span class="comp-step-label">Select your Legacy Card</span>
+            </div>
+            <i class="ti ti-arrow-narrow-right comp-arrow"></i>
+            <div class="comp-step">
+              <div class="comp-icon-box">
+                <i class="ti ti-credit-card"></i>
+                <span class="comp-step-num">2</span>
+              </div>
+              <span class="comp-step-label">Pay with card, bank, or local method</span>
+            </div>
+            <i class="ti ti-arrow-narrow-right comp-arrow"></i>
+            <div class="comp-step">
+              <div class="comp-icon-box">
+                <i class="ti ti-trophy"></i>
+                <span class="comp-step-num">3</span>
+              </div>
+              <span class="comp-step-label">Receive your NFT instantly</span>
+            </div>
+          </div>
+          <div class="comp-badges">
+            <span class="comp-badge">No crypto needed</span>
+            <span class="comp-badge">No wallet setup</span>
+            <span class="comp-badge neon">Instant delivery</span>
+          </div>
         </div>
-        <div class="step-card">
-          <div class="step-num">03</div>
-          <div class="step-title">VOTE</div>
-          <p class="step-desc">When the fund goal is reached, NFT holders cast advisory votes on which verified athletes receive funding. Holo cards carry 2 votes.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-num">04</div>
-          <div class="step-title">ATHLETES WIN</div>
-          <p class="step-desc">Funded athletes receive grants from the Foundation Fund to support their training, competition, and development goals.</p>
+ 
+        <!-- WITHOUT -->
+        <div class="comp-flow" id="comp-without">
+          <div class="comp-flow-label">9 steps. No guarantees.</div>
+          <div class="comp-steps-without">
+            <div class="comp-without-step"><i class="ti ti-cards"></i><div><div class="comp-ws-num">Step 1</div><div class="comp-ws-label">Select NFT</div></div></div>
+            <div class="comp-without-step"><i class="ti ti-login"></i><div><div class="comp-ws-num">Step 2</div><div class="comp-ws-label">Sign into wallet</div></div></div>
+            <div class="comp-without-step"><i class="ti ti-link"></i><div><div class="comp-ws-num">Step 3</div><div class="comp-ws-label">Link wallet to site</div></div></div>
+            <div class="comp-without-step"><i class="ti ti-arrow-back"></i><div><div class="comp-ws-num">Step 4</div><div class="comp-ws-label">Return to NFT site</div></div></div>
+            <div class="comp-without-step"><i class="ti ti-building-bank"></i><div><div class="comp-ws-num">Step 5</div><div class="comp-ws-label">Use crypto on-ramp</div></div></div>
+            <div class="comp-without-step"><i class="ti ti-coin"></i><div><div class="comp-ws-num">Step 6</div><div class="comp-ws-label">Pay gas fees</div></div></div>
+            <div class="comp-without-step"><i class="ti ti-id-badge"></i><div><div class="comp-ws-num">Step 7</div><div class="comp-ws-label">Submit ID &amp; KYC docs</div></div></div>
+            <div class="comp-without-step"><i class="ti ti-clock"></i><div><div class="comp-ws-num">Step 8</div><div class="comp-ws-label">Wait for crypto</div></div></div>
+            <div class="comp-without-step"><i class="ti ti-repeat"></i><div><div class="comp-ws-num">Step 9</div><div class="comp-ws-label">Buy NFT (pay gas again)</div></div></div>
+          </div>
+          <p class="comp-pain-note"><strong>9 friction points.</strong> Most people give up before step 5.</p>
         </div>
       </div>
     </div>
+ 
+    <!-- ── SOCIALS FOOTER ── -->
+    <div class="socials-footer">
+      <div class="socials-footer-label">FIND US ON</div>
+      <div class="socials-footer-brand"><span>LEGACY</span>MINT</div>
+      <div class="socials-footer-tagline">MINT LEGACY. BUILD IMPACT.</div>
+      <div class="socials-divider">
+        <div class="socials-divider-line"></div>
+        <span class="socials-divider-diamond">◆</span>
+        <div class="socials-divider-line"></div>
+      </div>
+      <div class="socials-list">
+        <a class="social-row" href="https://t.me/legacymintclub" target="_blank" rel="noopener">
+          <div class="social-icon-wrap"><i class="fa-brands fa-telegram" style="color:#2AABEE;"></i></div>
+          <div class="social-divider-bar"></div>
+          <span class="social-platform-name">Telegram</span>
+          <span class="social-handle">t.me/legacymintclub</span>
+        </a>
+        <a class="social-row" href="https://x.com/legacymintclub" target="_blank" rel="noopener">
+          <div class="social-icon-wrap"><i class="fa-brands fa-x-twitter" style="color:#e8e8e8;"></i></div>
+          <div class="social-divider-bar"></div>
+          <span class="social-platform-name">X</span>
+          <span class="social-handle">@legacymintclub</span>
+        </a>
+        <a class="social-row" href="https://tiktok.com/@legacymintclub" target="_blank" rel="noopener">
+          <div class="social-icon-wrap"><i class="fa-brands fa-tiktok" style="color:#ee1d52;"></i></div>
+          <div class="social-divider-bar"></div>
+          <span class="social-platform-name">TikTok</span>
+          <span class="social-handle">@legacymintclub</span>
+        </a>
+        <a class="social-row" href="https://instagram.com/legacymint.club" target="_blank" rel="noopener">
+          <div class="social-icon-wrap"><i class="fa-brands fa-instagram" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);-webkit-background-clip:text;-webkit-text-fill-color:transparent;"></i></div>
+          <div class="social-divider-bar"></div>
+          <span class="social-platform-name">Instagram</span>
+          <span class="social-handle">@legacymint.club</span>
+        </a>
+        <a class="social-row discord-row" href="https://discord.gg/legacymint.club" target="_blank" rel="noopener">
+          <div class="social-icon-wrap"><i class="fa-brands fa-discord" style="color:#5865F2;"></i></div>
+          <div class="social-divider-bar"></div>
+          <span class="social-platform-name" style="color:#8b9cf4;">Discord</span>
+          <span class="social-handle" style="color:#3d4566;">@legacymint.club</span>
+        </a>
+      </div>
+      <div class="socials-footer-bottom">Powered by <span>LEGACYMINT</span> &amp; Alchemy Pay</div>
+    </div>
+ 
   </section>
 </div>
-
+ 
 <!-- ==================== COLLECT TAB ==================== -->
 <div id="collect" class="tab-content">
   <div class="section">
     <div class="section-label">PIONEER COLLECTION</div>
     <h2 class="section-title">THOMAS ENOKA</h2>
-    <p class="section-sub">The founding collection. Limited Pioneer Series featuring Standard and Holo editions with voting rights in the Foundation Fund.</p>
-
+    <p class="section-sub">The founding collection. Limited Pioneer Series featuring Standard and Holo editions with advisory voting rights in the Foundation Fund.</p>
     <div class="fund-section">
       <div class="fund-header">
-        <div>
-          <div class="fund-title">🏦 FOUNDATION FUND</div>
-          <div style="font-size:12px; color:#555; margin-top:4px;">Mint proceeds go here. Vote when goal is reached.</div>
-        </div>
+        <div><div class="fund-title">🏦 FOUNDATION FUND</div><div style="font-size:12px;color:#555;margin-top:4px;">Mint proceeds go here. Vote when goal is reached.</div></div>
         <div class="fund-amount" id="fundAmount">0 APTM</div>
       </div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="fundProgress" style="width: 0%"></div>
-      </div>
-      <div class="fund-meta">
-        <span id="fundPercent">0% of goal</span>
-        <span>GOAL: NZ$10,000</span>
-      </div>
+      <div class="progress-bar"><div class="progress-fill" id="fundProgress" style="width:0%"></div></div>
+      <div class="fund-meta"><span id="fundPercent">0% of goal</span><span>GOAL: NZ$10,000</span></div>
     </div>
-
     <div class="collection-grid" id="collectionGrid"></div>
   </div>
 </div>
-
+ 
 <!-- ==================== FOUNDATION TAB ==================== -->
 <div id="foundation" class="tab-content">
   <div class="section">
     <div class="section-label">FOUNDATION FUND</div>
     <h2 class="section-title">ATHLETE POWERED. COMMUNITY GOVERNED.</h2>
     <p class="section-sub">Every NFT mint contributes 90% to the Foundation Fund. When the fund reaches NZ$10,000, NFT holders cast advisory votes on which athlete receives the grant.</p>
-
-    <div style="background: rgba(246,193,91,0.06); border: 1px solid rgba(246,193,91,0.15); border-radius: 12px; padding: 16px 20px; margin-bottom: 32px; font-size: 12px; color: #999; line-height: 1.7;">
-      <strong style="color: var(--gold); display:block; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:6px;">⚠️ Important — Advisory Votes</strong>
-      NFT holder votes are advisory recommendations only. They do not constitute governance control over the Foundation Fund. All grant decisions are made by the Foundation Fund Trustees in accordance with the Trust Deed and eligibility criteria. See the <a href="#" onclick="showTab('legal'); showLegalPanel('terms')" style="color:var(--gold); text-decoration:underline;">Legal</a> section for full terms.
+    <div style="background:rgba(246,193,91,0.06);border:1px solid rgba(246,193,91,0.15);border-radius:12px;padding:16px 20px;margin-bottom:32px;font-size:12px;color:#999;line-height:1.7;">
+      <strong style="color:var(--gold);display:block;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:6px;">⚠️ Important — Advisory Votes Only</strong>
+      NFT holder votes are advisory recommendations only. They do not constitute governance control over the Foundation Fund. All grant decisions are made solely by the Foundation Fund Trustees. <a href="#" onclick="showTab('legal');showLegalPanel('terms')" style="color:var(--gold);text-decoration:underline;">Read full terms →</a>
     </div>
-
-    <div class="fund-section" style="margin-bottom: 48px;">
+    <div class="fund-section" style="margin-bottom:48px;">
       <div class="fund-header">
-        <div>
-          <div class="fund-title">🏦 FOUNDATION FUND STATUS</div>
-          <div style="font-size:12px; color:#555; margin-top:4px;">Live on-chain balance</div>
-        </div>
+        <div><div class="fund-title">🏦 FOUNDATION FUND STATUS</div><div style="font-size:12px;color:#555;margin-top:4px;">Live on-chain balance</div></div>
         <div class="fund-amount" id="fundAmount2">0 APTM</div>
       </div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="fundProgress2" style="width: 0%"></div>
-      </div>
-      <div class="fund-meta">
-        <span id="fundPercent2">0% of NZ$10,000 goal</span>
-        <span>VOTING UNLOCKS AT GOAL</span>
-      </div>
+      <div class="progress-bar"><div class="progress-fill" id="fundProgress2" style="width:0%"></div></div>
+      <div class="fund-meta"><span id="fundPercent2">0% of NZ$10,000 goal</span><span>VOTING UNLOCKS AT GOAL</span></div>
     </div>
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 48px;">
-      <div class="step-card" style="text-align:center;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:48px; color:var(--gold);">90%</div>
-        <div style="font-weight:600; margin-bottom:4px;">Foundation Fund</div>
-        <div class="text-muted" style="font-size:12px;">Goes to athlete grants</div>
-      </div>
-      <div class="step-card" style="text-align:center;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:48px; color:#888;">7.5%</div>
-        <div style="font-weight:600; margin-bottom:4px;">Platform Fee</div>
-        <div class="text-muted" style="font-size:12px;">Covers operating costs</div>
-      </div>
-      <div class="step-card" style="text-align:center;">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:48px; color:#888;">2.5%</div>
-        <div style="font-weight:600; margin-bottom:4px;">Payment Processing</div>
-        <div class="text-muted" style="font-size:12px;">Alchemy Pay fee</div>
-      </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:48px;">
+      <div class="step-card" style="text-align:center;"><div style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--gold);">90%</div><div style="font-weight:600;margin-bottom:4px;">Foundation Fund</div><div class="text-muted" style="font-size:12px;">Goes to athlete grants</div></div>
+      <div class="step-card" style="text-align:center;"><div style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:#888;">7.5%</div><div style="font-weight:600;margin-bottom:4px;">Platform Fee</div><div class="text-muted" style="font-size:12px;">Covers operating costs</div></div>
+      <div class="step-card" style="text-align:center;"><div style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:#888;">2.5%</div><div style="font-weight:600;margin-bottom:4px;">Payment Processing</div><div class="text-muted" style="font-size:12px;">Alchemy Pay fee</div></div>
     </div>
-
     <div class="section-label">VOTING RIGHTS</div>
-    <h3 class="section-title" style="font-size:32px; margin-bottom:24px;">YOUR CARD. YOUR VOICE.</h3>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 48px;">
-      <div class="step-card">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:40px; color:var(--gold); margin-bottom:8px;">1 VOTE</div>
-        <div style="font-weight:600; margin-bottom:4px;">Standard Card</div>
-        <div class="text-muted" style="font-size:12px;">150 APTM • Foundation Collection</div>
-      </div>
-      <div class="step-card" style="border-color: rgba(0,255,157,0.2);">
-        <div style="font-family:'Bebas Neue',sans-serif; font-size:40px; color:var(--neon); margin-bottom:8px;">2 VOTES</div>
-        <div style="font-weight:600; margin-bottom:4px;">Holo Card</div>
-        <div class="text-muted" style="font-size:12px;">250 APTM • Foundation Collection</div>
-      </div>
+    <h3 class="section-title" style="font-size:32px;margin-bottom:24px;">YOUR CARD. YOUR VOICE.</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:48px;">
+      <div class="step-card"><div style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--gold);margin-bottom:8px;">1 VOTE</div><div style="font-weight:600;margin-bottom:4px;">Standard Card</div><div class="text-muted" style="font-size:12px;">150 APTM • Advisory vote only</div></div>
+      <div class="step-card" style="border-color:rgba(0,255,157,0.2);"><div style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--neon);margin-bottom:8px;">2 VOTES</div><div style="font-weight:600;margin-bottom:4px;">Holo Card</div><div class="text-muted" style="font-size:12px;">250 APTM • Advisory votes only</div></div>
     </div>
-
-    <div style="background: rgba(246,193,91,0.04); border: 1px solid rgba(246,193,91,0.12); border-radius:16px; padding:32px;">
+    <div style="background:rgba(246,193,91,0.04);border:1px solid rgba(246,193,91,0.12);border-radius:16px;padding:32px;">
       <div class="section-label">FOR ATHLETES</div>
-      <h3 style="font-family:'Bebas Neue',sans-serif; font-size:32px; margin-bottom:12px;">APPLY FOR VERIFICATION</h3>
-      <p style="color:#666; font-size:14px; line-height:1.7; margin-bottom:24px;">Any athlete can apply to become a verified LegacyMint athlete. Verification makes you eligible to apply for Foundation Fund grants when voting periods open. Identity verification required.</p>
-      <div style="display:flex; gap:12px; flex-wrap:wrap;">
-        <button class="btn-primary" onclick="notify('Athlete verification applications opening soon!', 'info')">APPLY FOR VERIFICATION</button>
-        <button class="btn-secondary" onclick="showTab('legal'); showLegalPanel('nft-terms')">READ NFT TERMS</button>
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:32px;margin-bottom:12px;">APPLY FOR VERIFICATION</h3>
+      <p style="color:#666;font-size:14px;line-height:1.7;margin-bottom:24px;">Any athlete can apply to become a verified LegacyMint athlete. Verification makes you eligible to apply for Foundation Fund grants when voting periods open. Identity verification (KYC) required.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <button class="btn-primary" onclick="notify('Athlete verification applications opening soon!','info')">APPLY FOR VERIFICATION</button>
+        <button class="btn-secondary" onclick="showTab('legal');showLegalPanel('nft-terms')">READ NFT TERMS</button>
       </div>
     </div>
   </div>
 </div>
-
-<!-- ==================== PAYOUTS TAB (replaces Vault27 promo) ==================== -->
+ 
+<!-- ==================== PAYOUTS TAB ==================== -->
 <div id="payouts" class="tab-content">
   <div class="section">
     <div class="section-label">GRANT PAYOUTS</div>
     <h2 class="section-title">HOW ATHLETES RECEIVE GRANTS</h2>
     <p class="section-sub">The Foundation Fund distributes grants to verified athletes via regulated payment channels. All recipients complete identity verification before payment is disbursed.</p>
-
-    <div class="payout-section" style="margin-bottom:32px;">
+    <div style="background:linear-gradient(135deg,rgba(246,193,91,0.04),rgba(0,255,157,0.02));border:1px solid rgba(246,193,91,0.12);border-radius:20px;padding:48px;text-align:center;margin-bottom:32px;">
       <div style="width:64px;height:64px;background:rgba(246,193,91,0.1);border:1px solid rgba(246,193,91,0.2);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 20px;">💳</div>
       <h3 style="font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:0.04em;margin-bottom:12px;">PAYOUT INFRASTRUCTURE</h3>
-      <p style="color:#666;font-size:14px;line-height:1.7;max-width:540px;margin:0 auto 28px;">LegacyMint is finalising regulated payout partnerships to ensure grant recipients receive funds safely, compliantly, and efficiently. Payment partner announcements coming soon.</p>
+      <p style="color:#666;font-size:14px;line-height:1.7;max-width:540px;margin:0 auto 28px;">LegacyMint is finalising regulated payout partnerships to ensure grant recipients receive funds safely, compliantly, and efficiently. All payment partners undergo full due diligence and legal review before integration.</p>
       <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
-        <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:14px 20px;display:flex;align-items:center;gap:10px;">
-          <i class="fa-solid fa-building-columns" style="color:var(--gold)"></i>
-          <span style="font-size:13px;color:#aaa;">Bank Transfer (NZD)</span>
-        </div>
-        <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:14px 20px;display:flex;align-items:center;gap:10px;">
-          <i class="fa-solid fa-coins" style="color:var(--gold)"></i>
-          <span style="font-size:13px;color:#aaa;">Crypto (APTM / USDT)</span>
-        </div>
-        <div style="background:var(--card-bg);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px 20px;display:flex;align-items:center;gap:10px;opacity:0.5;">
-          <i class="fa-solid fa-credit-card" style="color:#666"></i>
-          <span style="font-size:13px;color:#555;">Card (Announcing Soon)</span>
-        </div>
+        <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:14px 20px;display:flex;align-items:center;gap:10px;"><i class="fa-solid fa-building-columns" style="color:var(--gold)"></i><span style="font-size:13px;color:#aaa;">Bank Transfer (NZD)</span></div>
+        <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:14px 20px;display:flex;align-items:center;gap:10px;"><i class="fa-solid fa-coins" style="color:var(--gold)"></i><span style="font-size:13px;color:#aaa;">Crypto (APTM / USDT)</span></div>
+        <div style="background:var(--card-bg);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:14px 20px;display:flex;align-items:center;gap:10px;opacity:0.45;"><i class="fa-solid fa-credit-card" style="color:#555"></i><span style="font-size:13px;color:#555;">Card (Announcing Soon)</span></div>
       </div>
     </div>
-
     <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-num">01</div>
-        <div class="step-title">VERIFY IDENTITY</div>
-        <p class="step-desc">All grant recipients complete KYC identity verification. Required for compliance with NZ AML/CFT regulations before any payment is processed.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">02</div>
-        <div class="step-title">SIGN AGREEMENT</div>
-        <p class="step-desc">Recipients sign a Grantee Agreement confirming how funds will be used. Grants are purpose-specific and reported on after receipt.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">03</div>
-        <div class="step-title">RECEIVE FUNDS</div>
-        <p class="step-desc">Trustees approve payment to your verified bank account or wallet. Funds arrive via regulated payment rails — safely and transparently.</p>
-      </div>
+      <div class="step-card"><div class="step-num">01</div><div class="step-title">VERIFY IDENTITY</div><p class="step-desc">All grant recipients complete KYC identity verification. Required for compliance with NZ AML/CFT regulations before any payment is processed.</p></div>
+      <div class="step-card"><div class="step-num">02</div><div class="step-title">SIGN AGREEMENT</div><p class="step-desc">Recipients sign a Grantee Agreement confirming how funds will be used. Grants are purpose-specific and reported on after receipt.</p></div>
+      <div class="step-card"><div class="step-num">03</div><div class="step-title">RECEIVE FUNDS</div><p class="step-desc">Trustees approve payment to your verified bank account or wallet. Funds arrive via regulated payment rails — safely and transparently.</p></div>
     </div>
-
-    <div style="margin-top:40px; background:rgba(0,255,157,0.04); border:1px solid rgba(0,255,157,0.12); border-radius:16px; padding:28px;">
+    <div style="margin-top:40px;background:rgba(0,255,157,0.04);border:1px solid rgba(0,255,157,0.12);border-radius:16px;padding:28px;">
       <div class="section-label">ATHLETE ENQUIRIES</div>
       <h3 style="font-family:'Bebas Neue',sans-serif;font-size:28px;margin-bottom:10px;">WANT TO APPLY FOR A GRANT?</h3>
       <p style="color:#666;font-size:14px;line-height:1.7;margin-bottom:20px;">Athlete grant applications open when the Foundation Fund reaches its target. Register your interest now and we will notify you when applications open.</p>
-      <button class="btn-primary" onclick="notify('Grant application registration opening soon!', 'info')">REGISTER INTEREST</button>
+      <button class="btn-primary" onclick="notify('Grant application registration opening soon!','info')">REGISTER INTEREST</button>
     </div>
   </div>
 </div>
-
+ 
 <!-- ==================== SAFETY TAB ==================== -->
 <div id="safety" class="tab-content">
   <div class="section">
     <div class="section-label">TRUST & SAFETY</div>
     <h2 class="section-title">PROTECTING OUR COMMUNITY</h2>
     <p class="section-sub">Safety is a core platform priority. We never ask for your seed phrase, keys, or personal wallet access.</p>
-
     <div class="safety-grid">
-      <div class="safety-item">
-        <div class="safety-icon gold"><i class="fa-solid fa-shield-halved"></i></div>
-        <div>
-          <div class="safety-title">Never Share Seed Phrases</div>
-          <div class="safety-desc">LegacyMint will never ask for your recovery phrase or private keys under any circumstances.</div>
-        </div>
-      </div>
-      <div class="safety-item">
-        <div class="safety-icon neon"><i class="fa-solid fa-link"></i></div>
-        <div>
-          <div class="safety-title">Official Links Only</div>
-          <div class="safety-desc">Only mint through legacymint.club. Always verify the URL before connecting your wallet.</div>
-        </div>
-      </div>
-      <div class="safety-item">
-        <div class="safety-icon gold"><i class="fa-solid fa-ban"></i></div>
-        <div>
-          <div class="safety-title">No DMs. No Giveaways.</div>
-          <div class="safety-desc">LegacyMint staff will never DM you first requesting wallet access or offering giveaways.</div>
-        </div>
-      </div>
-      <div class="safety-item">
-        <div class="safety-icon neon"><i class="fa-solid fa-magnifying-glass"></i></div>
-        <div>
-          <div class="safety-title">Check Transactions</div>
-          <div class="safety-desc">Always verify the contract address, collection name and your wallet before approving any transaction.</div>
-        </div>
-      </div>
-      <div class="safety-item">
-        <div class="safety-icon gold"><i class="fa-solid fa-file-contract"></i></div>
-        <div>
-          <div class="safety-title">Public Contracts</div>
-          <div class="safety-desc">All official contract addresses are published publicly. Verify on the Apertum explorer before minting.</div>
-        </div>
-      </div>
-      <div class="safety-item">
-        <div class="safety-icon neon"><i class="fa-solid fa-badge-check"></i></div>
-        <div>
-          <div class="safety-title">Verified Athletes</div>
-          <div class="safety-desc">Look for the verified badge on all official athlete collections. Unverified collections are not LegacyMint official.</div>
-        </div>
-      </div>
+      <div class="safety-item"><div class="safety-icon gold"><i class="fa-solid fa-shield-halved"></i></div><div><div class="safety-title">Never Share Seed Phrases</div><div class="safety-desc">LegacyMint will never ask for your recovery phrase or private keys under any circumstances.</div></div></div>
+      <div class="safety-item"><div class="safety-icon neon"><i class="fa-solid fa-link"></i></div><div><div class="safety-title">Official Links Only</div><div class="safety-desc">Only mint through legacymint.club. Always verify the URL before connecting your wallet.</div></div></div>
+      <div class="safety-item"><div class="safety-icon gold"><i class="fa-solid fa-ban"></i></div><div><div class="safety-title">No DMs. No Giveaways.</div><div class="safety-desc">LegacyMint staff will never DM you first requesting wallet access or offering giveaways.</div></div></div>
+      <div class="safety-item"><div class="safety-icon neon"><i class="fa-solid fa-magnifying-glass"></i></div><div><div class="safety-title">Check Transactions</div><div class="safety-desc">Always verify the contract address, collection name and your wallet before approving any transaction.</div></div></div>
+      <div class="safety-item"><div class="safety-icon gold"><i class="fa-solid fa-file-contract"></i></div><div><div class="safety-title">Public Contracts</div><div class="safety-desc">All official contract addresses are published publicly. Verify on the Apertum explorer before minting.</div></div></div>
+      <div class="safety-item"><div class="safety-icon neon"><i class="fa-solid fa-badge-check"></i></div><div><div class="safety-title">Verified Athletes</div><div class="safety-desc">Look for the verified badge on all official athlete collections. Unverified collections are not LegacyMint official.</div></div></div>
     </div>
-
-    <div style="margin-top: 48px; background: var(--card-bg); border: 1px solid var(--border); border-radius:16px; padding:28px;">
+    <div style="margin-top:48px;background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:28px;">
       <div class="section-label">TESTNET STATUS</div>
-      <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
-        <div class="pulse"></div>
-        <div style="font-size:14px; color:var(--neon);">Currently on Apertum Testnet — Mainnet launching soon</div>
-      </div>
-      <div class="mono" style="font-size:11px; color:#555; word-break:break-all;">
-        Testnet Contract: 0x7614701E34F12EE7887c557323D686e7A2f9c3B8
-      </div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;"><div class="pulse"></div><div style="font-size:14px;color:var(--neon);">Currently on Apertum Testnet — Mainnet launching soon</div></div>
+      <div class="mono" style="font-size:11px;color:#555;word-break:break-all;">Testnet Contract: 0x7614701E34F12EE7887c557323D686e7A2f9c3B8</div>
     </div>
   </div>
 </div>
-
+ 
 <!-- ==================== LEGAL TAB ==================== -->
 <div id="legal" class="tab-content">
-
-  <!-- Hero banner -->
   <div class="legal-hero">
     <div class="legal-hero-inner">
-      <div class="legal-hero-eyebrow">
-        <i class="fa-solid fa-scale-balanced"></i>
-        LEGAL & COMPLIANCE
-      </div>
-      <h2 style="font-family:'Bebas Neue',sans-serif; font-size:clamp(40px,6vw,72px); line-height:0.95; margin-bottom:16px;">
-        TRANSPARENCY<br><span style="color:var(--gold);">BY DESIGN.</span>
-      </h2>
-      <p style="color:#666; font-size:15px; line-height:1.7; max-width:540px;">
-        LegacyMint is built on clear terms, proper governance, and compliance-first architecture. Our legal documents are published here so our community can read and understand them.
-      </p>
-    </div>
-  </div>
-
-  <!-- Draft banner -->
-  <div style="max-width:800px; margin:32px auto 0; padding:0 24px;">
-    <div class="draft-banner">
-      <div class="draft-banner-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
-      <div class="draft-banner-text">
-        <strong>Draft Documents — Under Legal Review</strong>
-        These documents are working drafts currently under review by qualified New Zealand legal counsel. They are published for community transparency. Final versions will replace these upon legal sign-off. Nothing on this page constitutes legal, financial, or investment advice.
+      <div class="legal-hero-eyebrow"><i class="fa-solid fa-scale-balanced"></i>&nbsp; LEGAL & COMPLIANCE</div>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,72px);line-height:0.95;margin-bottom:16px;">TRANSPARENCY<br><span style="color:var(--gold);">BY DESIGN.</span></h2>
+      <p style="color:#666;font-size:15px;line-height:1.7;max-width:540px;margin-bottom:32px;">LegacyMint is built on clear terms, proper governance, and compliance-first architecture. Our legal documents are published here so our community can read and understand them before participating.</p>
+      <div class="draft-banner">
+        <div class="draft-banner-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+        <div class="draft-banner-text">
+          <strong>Draft Documents — Currently Under Legal Review</strong>
+          These documents are working drafts under review by qualified New Zealand legal counsel. They are published for community transparency only. Final versions will replace these upon legal sign-off. Nothing on this page constitutes legal, financial, investment, or tax advice.
+        </div>
       </div>
     </div>
   </div>
-
-  <!-- Legal nav pills -->
+ 
   <div class="legal-nav">
     <button class="legal-nav-pill active" onclick="showLegalPanel('disclaimers')">Key Disclaimers</button>
     <button class="legal-nav-pill" onclick="showLegalPanel('terms')">Terms of Service</button>
@@ -1516,40 +680,24 @@ body::before {
     <button class="legal-nav-pill" onclick="showLegalPanel('privacy')">Privacy</button>
     <button class="legal-nav-pill" onclick="showLegalPanel('contact')">Legal Contact</button>
   </div>
-
-  <!-- ── PANEL 1: KEY DISCLAIMERS ── -->
+ 
+  <!-- PANEL: DISCLAIMERS -->
   <div id="panel-disclaimers" class="legal-panel active">
-
     <div class="section-label" style="margin-bottom:20px;">CRITICAL DISCLAIMERS</div>
-
     <div class="disclaimer-card">
-      <div class="disclaimer-card-title">
-        <i class="fa-solid fa-circle-exclamation"></i>
-        NFTS ARE NOT INVESTMENTS OR SECURITIES
-      </div>
+      <div class="disclaimer-card-title"><i class="fa-solid fa-circle-exclamation"></i> NFTS ARE NOT INVESTMENTS OR SECURITIES</div>
       <p>LegacyMint NFTs are digital collectibles and supporter passes. They do <strong>not</strong> represent investments, securities, equity, profit-sharing rights, or ownership of any kind in LegacyMint Ltd or the Foundation Fund. Purchase of an NFT should not be made with any expectation of financial gain. NFT values are highly volatile and may decrease significantly or fall to zero. Only purchase what you can afford to lose entirely.</p>
     </div>
-
     <div class="disclaimer-card">
-      <div class="disclaimer-card-title">
-        <i class="fa-solid fa-circle-exclamation"></i>
-        ADVISORY VOTES ARE NON-BINDING
-      </div>
-      <p>NFT holder votes on grant nominations are advisory recommendations only. They are a community engagement feature and do <strong>not</strong> grant governance control over the Foundation Fund. All grant decisions are made solely by the Foundation Fund Trustees based on eligibility criteria, due diligence, and the Trust Deed. The Trustees have full and sole discretion over all grant decisions.</p>
+      <div class="disclaimer-card-title"><i class="fa-solid fa-circle-exclamation"></i> ADVISORY VOTES ARE NON-BINDING</div>
+      <p>NFT holder votes on grant nominations are advisory recommendations only. They are a community engagement feature and do <strong>not</strong> grant governance control over the Foundation Fund. All grant decisions are made solely by the Foundation Fund Trustees based on eligibility criteria, due diligence, and the Trust Deed. The Trustees retain full and sole discretion over all grant decisions.</p>
     </div>
-
     <div class="disclaimer-card">
-      <div class="disclaimer-card-title">
-        <i class="fa-solid fa-circle-exclamation"></i>
-        FOUNDATION FUND IS INDEPENDENT
-      </div>
-      <p>The LegacyMint Foundation Trust operates as an independent charitable trust, separate from LegacyMint Ltd. Foundation Fund assets are held in a dedicated trust account and governed by appointed Trustees under the Trust Deed. LegacyMint Ltd does not control Foundation Fund assets or grant decisions.</p>
+      <div class="disclaimer-card-title"><i class="fa-solid fa-circle-exclamation"></i> FOUNDATION FUND IS INDEPENDENTLY GOVERNED</div>
+      <p>The LegacyMint Foundation Trust operates as an independent charitable trust, legally separate from LegacyMint Ltd. Foundation Fund assets are held in a dedicated trust account and governed by appointed Trustees under the Trust Deed. LegacyMint Ltd does not control Foundation Fund assets or grant decisions.</p>
     </div>
-
-    <div style="background:var(--card-bg); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-top:32px;">
-      <div style="padding:20px 24px; border-bottom:1px solid rgba(255,255,255,0.04);">
-        <div class="section-label" style="margin-bottom:0;">PLATFORM AT A GLANCE</div>
-      </div>
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:32px;">
+      <div style="padding:20px 24px;border-bottom:1px solid rgba(255,255,255,0.04);"><div class="section-label" style="margin-bottom:0;">PLATFORM AT A GLANCE</div></div>
       <div style="padding:4px 24px 8px;">
         <div class="legal-info-row"><span class="legal-info-label">Operating Company</span><span class="legal-info-val">LegacyMint Ltd (NZ)</span></div>
         <div class="legal-info-row"><span class="legal-info-label">Foundation Trust</span><span class="legal-info-val">LegacyMint Foundation Trust (NZ)</span></div>
@@ -1562,26 +710,25 @@ body::before {
       </div>
     </div>
   </div>
-
-  <!-- ── PANEL 2: TERMS OF SERVICE ── -->
+ 
+  <!-- PANEL: TERMS OF SERVICE -->
   <div id="panel-terms" class="legal-panel">
-
     <div class="section-label" style="margin-bottom:6px;">TERMS OF SERVICE</div>
     <h3 style="font-family:'Bebas Neue',sans-serif;font-size:36px;margin-bottom:8px;">LEGACYMINT TERMS OF SERVICE</h3>
-    <p style="color:#555;font-size:12px;margin-bottom:32px;">Version 1.0 — Draft | New Zealand | Requires Legal Review</p>
-
+    <p style="color:#555;font-size:12px;margin-bottom:32px;">Version 1.0 — Draft | New Zealand | Requires Legal Review Before Publication</p>
+ 
     <div class="legal-accordion open">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
-        <span class="legal-accordion-title">1. Introduction & Acceptance</span>
+        <span class="legal-accordion-title">1. Introduction & Acceptance of Terms</span>
         <i class="fa-solid fa-chevron-down legal-accordion-chevron"></i>
       </button>
       <div class="legal-accordion-body">
         <div class="legal-section-tag">Section 1</div>
-        <p>Welcome to LegacyMint, operated by LegacyMint Ltd, a company incorporated in New Zealand. These Terms of Service govern your access to and use of the LegacyMint platform, including our website at legacymint.club, and all associated services.</p>
-        <p>By accessing or using the Platform, you confirm that you have read, understood, and agree to be bound by these Terms. If you do not agree, you must not access or use the Platform.</p>
+        <p>Welcome to LegacyMint, operated by LegacyMint Ltd, a company incorporated in New Zealand. These Terms of Service govern your access to and use of the LegacyMint platform, including our website at legacymint.club and all associated services (collectively, the "Platform").</p>
+        <p>By accessing or using the Platform, you confirm that you have read, understood, and agree to be bound by these Terms. If you do not agree, you must not access or use the Platform. These Terms constitute a legally binding agreement between you and LegacyMint Ltd.</p>
       </div>
     </div>
-
+ 
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">2. Platform Overview</span>
@@ -1589,16 +736,16 @@ body::before {
       </button>
       <div class="legal-accordion-body">
         <div class="legal-section-tag">Section 2</div>
-        <p>LegacyMint is a digital platform that enables supporters to purchase NFT supporter passes associated with athletes. The Platform facilitates:</p>
+        <p>LegacyMint is a digital platform that enables supporters to purchase NFT supporter passes associated with athletes, sports teams, and community programmes. The Platform facilitates:</p>
         <ul>
           <li>The purchase and collection of LegacyMint NFTs as digital collectibles and supporter passes</li>
           <li>Advisory (non-binding) participation by NFT holders in the Foundation Fund grant nomination process</li>
-          <li>Access to exclusive content, experiences, and community features</li>
-          <li>Distribution of grants from the Foundation Fund to eligible recipients</li>
+          <li>Access to exclusive content, experiences, and community features associated with supported athletes</li>
+          <li>Distribution of grants from the Foundation Fund to eligible grant recipients</li>
         </ul>
       </div>
     </div>
-
+ 
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">3. Eligibility</span>
@@ -1608,52 +755,68 @@ body::before {
         <div class="legal-section-tag">Section 3</div>
         <p>To use the Platform, you must:</p>
         <ul>
-          <li>Be at least 18 years of age (or the age of majority in your jurisdiction)</li>
+          <li>Be at least 18 years of age (or the age of majority in your jurisdiction, whichever is higher)</li>
           <li>Have the legal capacity to enter into a binding contract</li>
-          <li>Not be located in, or a resident of, any jurisdiction where use of the Platform is prohibited</li>
-          <li>Not be subject to any applicable sanctions</li>
-          <li>Complete any required identity verification (KYC) procedures</li>
+          <li>Not be located in, or be a national or resident of, any jurisdiction where use of the Platform is prohibited by law</li>
+          <li>Not be subject to any sanctions administered by the United Nations, NZ government, US OFAC, EU, or other relevant authority</li>
+          <li>Complete any required identity verification (KYC) procedures as requested by LegacyMint</li>
         </ul>
+        <p>LegacyMint reserves the right to refuse access to the Platform to any person at its sole discretion.</p>
       </div>
     </div>
-
+ 
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
-        <span class="legal-accordion-title">4. NFTs — Nature & Important Disclaimers</span>
+        <span class="legal-accordion-title">4. NFTs — Nature, Purchase & Important Disclaimers</span>
         <i class="fa-solid fa-chevron-down legal-accordion-chevron"></i>
       </button>
       <div class="legal-accordion-body">
         <div class="legal-section-tag">Section 4</div>
-        <p>LegacyMint NFTs are digital collectibles and supporter passes. They do NOT represent: investments, securities, equity, profit-sharing rights, or ownership of LegacyMint Ltd or the Foundation Fund.</p>
+        <p><strong style="color:#ccc;">LegacyMint NFTs are digital collectibles and supporter passes. They do NOT represent:</strong> investments, securities, equity, profit-sharing rights, or ownership of LegacyMint Ltd or the Foundation Fund. Purchase should not be made with any expectation of financial gain.</p>
         <p>NFT holder votes are advisory recommendations only and do not grant governance control over the Foundation Fund. Grant decisions are made solely by the Foundation Fund Trustees.</p>
-        <p>All NFT purchases are final. Due to the nature of blockchain technology, transactions are irreversible once confirmed on-chain.</p>
+        <p>All NFT purchases are final. Due to the irreversible nature of blockchain technology, LegacyMint does not offer refunds except where required by applicable New Zealand consumer protection law.</p>
+        <p>Purchase of a LegacyMint NFT grants you a limited, personal, non-commercial licence to display the associated digital artwork for personal use. You do not acquire copyright or other intellectual property rights in the underlying artwork.</p>
       </div>
     </div>
-
+ 
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
-        <span class="legal-accordion-title">5. Fees & Payments</span>
+        <span class="legal-accordion-title">5. Foundation Fund — Grant Process</span>
         <i class="fa-solid fa-chevron-down legal-accordion-chevron"></i>
       </button>
       <div class="legal-accordion-body">
         <div class="legal-section-tag">Section 5</div>
-        <p>LegacyMint charges fees for certain Platform services:</p>
-        <ul>
-          <li>Primary NFT sale fees — a percentage retained by LegacyMint Ltd from each NFT sale</li>
-          <li>Secondary market royalties — 7.5% encoded in the smart contract (ERC-2981)</li>
-          <li>Foundation Fund contribution — 90% of each primary sale directed to the Foundation Fund</li>
-        </ul>
-        <p>Goods and Services Tax (GST) may apply to New Zealand residents in accordance with the Goods and Services Tax Act 1985.</p>
+        <p>The LegacyMint Foundation Trust is an independently administered charitable trust, legally separate from LegacyMint Ltd. The Foundation Fund operates under its own Trust Deed and governance framework.</p>
+        <p>NFT holders may participate in advisory votes to nominate and rank grant candidates. These votes are non-binding recommendations to the Trustees. The Trustees retain full and sole decision-making authority on all grants based on eligibility criteria and the Trust Deed.</p>
+        <p>LegacyMint makes no guarantee that any specific individual or organisation will receive a grant. The Foundation Fund Trustees have sole discretion over all grant decisions.</p>
       </div>
     </div>
-
+ 
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
-        <span class="legal-accordion-title">6. Prohibited Activities</span>
+        <span class="legal-accordion-title">6. Fees & Payments</span>
         <i class="fa-solid fa-chevron-down legal-accordion-chevron"></i>
       </button>
       <div class="legal-accordion-body">
         <div class="legal-section-tag">Section 6</div>
+        <p>LegacyMint charges fees for certain Platform services including:</p>
+        <ul>
+          <li>Primary NFT sale fees — a percentage retained by LegacyMint Ltd from each primary sale</li>
+          <li>Secondary market royalties — 7.5% encoded in the smart contract (ERC-2981 standard)</li>
+          <li>Foundation Fund contribution — 90% of each primary sale directed to the Foundation Fund</li>
+          <li>Payment processing fees — approximately 2.5% via Alchemy Pay, disclosed at point of sale</li>
+        </ul>
+        <p>Goods and Services Tax (GST) may apply to New Zealand residents in accordance with the Goods and Services Tax Act 1985.</p>
+      </div>
+    </div>
+ 
+    <div class="legal-accordion">
+      <button class="legal-accordion-header" onclick="toggleAccordion(this)">
+        <span class="legal-accordion-title">7. Prohibited Activities</span>
+        <i class="fa-solid fa-chevron-down legal-accordion-chevron"></i>
+      </button>
+      <div class="legal-accordion-body">
+        <div class="legal-section-tag">Section 7</div>
         <p>You must not use the Platform to:</p>
         <ul>
           <li>Violate any applicable law or regulation</li>
@@ -1661,51 +824,64 @@ body::before {
           <li>Circumvent or attempt to circumvent AML/KYC procedures</li>
           <li>Purchase NFTs using funds derived from illegal activity</li>
           <li>Manipulate advisory voting outcomes through fraudulent means</li>
-          <li>Infringe intellectual property rights of LegacyMint or any third party</li>
+          <li>Infringe the intellectual property rights of LegacyMint or any third party</li>
+          <li>Deploy bots, scrapers, or automated tools without written consent</li>
           <li>Misrepresent your identity or provide false information during KYC</li>
         </ul>
+        <p>Breach of this section may result in immediate account suspension, termination, reporting to relevant authorities, and/or legal action.</p>
       </div>
     </div>
-
+ 
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
-        <span class="legal-accordion-title">7. Disclaimers & Limitation of Liability</span>
-        <i class="fa-solid fa-chevron-down legal-accordion-chevron"></i>
-      </button>
-      <div class="legal-accordion-body">
-        <div class="legal-section-tag">Section 7</div>
-        <p>The Platform is provided on an "as is" and "as available" basis without warranties of any kind. Nothing on the Platform constitutes financial, investment, legal, or tax advice.</p>
-        <p>To the maximum extent permitted by New Zealand law, LegacyMint's total liability for any claim shall not exceed the amount you paid to LegacyMint in the twelve months preceding the claim.</p>
-        <p>You acknowledge the inherent risks of blockchain technology, including smart contract vulnerabilities, network failures, regulatory changes, and irreversible transactions.</p>
-      </div>
-    </div>
-
-    <div class="legal-accordion">
-      <button class="legal-accordion-header" onclick="toggleAccordion(this)">
-        <span class="legal-accordion-title">8. Governing Law & Dispute Resolution</span>
+        <span class="legal-accordion-title">8. Disclaimers & Limitation of Liability</span>
         <i class="fa-solid fa-chevron-down legal-accordion-chevron"></i>
       </button>
       <div class="legal-accordion-body">
         <div class="legal-section-tag">Section 8</div>
-        <p>These Terms are governed by and construed in accordance with the laws of New Zealand. The parties submit to the non-exclusive jurisdiction of the New Zealand courts.</p>
-        <p>In the event of a dispute, you agree to first contact LegacyMint at legal@legacymint.io to attempt informal resolution within 30 days before pursuing formal proceedings.</p>
+        <p>The Platform is provided on an "as is" and "as available" basis without warranties of any kind. LegacyMint does not warrant that the Platform will be uninterrupted, error-free, or secure.</p>
+        <p>Nothing on the Platform constitutes financial, investment, legal, or tax advice. You should seek independent professional advice before making any decisions.</p>
+        <p>To the maximum extent permitted by New Zealand law, LegacyMint's total liability to you for any claim shall not exceed the amount you paid to LegacyMint in the twelve months preceding the claim. LegacyMint shall not be liable for any indirect, incidental, consequential, or punitive damages.</p>
+        <p>You acknowledge the inherent risks of blockchain technology, including smart contract vulnerabilities, network failures, regulatory changes, and irreversible transactions.</p>
       </div>
     </div>
-
+ 
+    <div class="legal-accordion">
+      <button class="legal-accordion-header" onclick="toggleAccordion(this)">
+        <span class="legal-accordion-title">9. AML/CFT Compliance</span>
+        <i class="fa-solid fa-chevron-down legal-accordion-chevron"></i>
+      </button>
+      <div class="legal-accordion-body">
+        <div class="legal-section-tag">Section 9</div>
+        <p>LegacyMint maintains an AML/CFT compliance programme in accordance with New Zealand's Anti-Money Laundering and Countering Financing of Terrorism Act 2009. We may be required to report suspicious activity to the New Zealand Department of Internal Affairs or other relevant authorities. By using the Platform, you consent to such reporting obligations.</p>
+        <p>Identity verification (KYC) may be required before accessing certain Platform features or receiving Foundation Fund grants. Failure to complete KYC may result in restricted access.</p>
+      </div>
+    </div>
+ 
+    <div class="legal-accordion">
+      <button class="legal-accordion-header" onclick="toggleAccordion(this)">
+        <span class="legal-accordion-title">10. Governing Law & Dispute Resolution</span>
+        <i class="fa-solid fa-chevron-down legal-accordion-chevron"></i>
+      </button>
+      <div class="legal-accordion-body">
+        <div class="legal-section-tag">Section 10</div>
+        <p>These Terms are governed by and construed in accordance with the laws of New Zealand. The parties submit to the non-exclusive jurisdiction of the New Zealand courts.</p>
+        <p>In the event of a dispute, you agree to first contact LegacyMint at legal@legacymint.io to attempt informal resolution. If not resolved within 30 days, either party may pursue formal dispute resolution through the New Zealand courts or an applicable dispute resolution scheme.</p>
+        <p>LegacyMint reserves the right to amend these Terms at any time. Continued use of the Platform after notice of changes constitutes acceptance of the updated Terms.</p>
+      </div>
+    </div>
   </div>
-
-  <!-- ── PANEL 3: NFT PURCHASER TERMS ── -->
+ 
+  <!-- PANEL: NFT PURCHASER TERMS -->
   <div id="panel-nft-terms" class="legal-panel">
-
     <div class="section-label" style="margin-bottom:6px;">NFT PURCHASER TERMS</div>
     <h3 style="font-family:'Bebas Neue',sans-serif;font-size:36px;margin-bottom:8px;">WHAT YOU ARE PURCHASING</h3>
-    <p style="color:#555;font-size:12px;margin-bottom:32px;">Version 1.0 — Draft | Please read carefully before purchasing</p>
-
-    <div class="disclaimer-card" style="margin-bottom:32px;">
-      <div class="disclaimer-card-title"><i class="fa-solid fa-circle-exclamation"></i> PLEASE READ BEFORE PURCHASING</div>
-      <p>A LegacyMint NFT is a unique digital collectible and supporter pass. It is NOT an investment product, security, share, governance token, or profit-sharing arrangement of any kind. Only purchase what you can afford to lose entirely.</p>
+    <p style="color:#555;font-size:12px;margin-bottom:24px;">Version 1.0 — Draft | Please read carefully before purchasing any LegacyMint NFT</p>
+    <div class="disclaimer-card" style="margin-bottom:28px;">
+      <div class="disclaimer-card-title"><i class="fa-solid fa-circle-exclamation"></i> PLEASE READ CAREFULLY BEFORE PURCHASING</div>
+      <p>A LegacyMint NFT is a unique digital collectible and supporter pass. It is NOT an investment product, security, share, governance token, or profit-sharing arrangement of any kind. NFT values may fall to zero. Only purchase what you can afford to lose entirely.</p>
     </div>
-
+ 
     <div class="legal-accordion open">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">What You Receive When You Purchase</span>
@@ -1714,62 +890,65 @@ body::before {
       <div class="legal-accordion-body">
         <p>When you purchase a LegacyMint NFT, you acquire:</p>
         <ul>
-          <li>A unique digital asset (NFT) recorded on the Apertum blockchain, stored in your wallet</li>
-          <li>A supporter pass granting access to Platform features and community benefits as described at time of purchase</li>
+          <li>A unique digital asset (NFT) recorded on the Apertum blockchain, stored in your connected wallet</li>
+          <li>A supporter pass granting access to Platform features and community benefits as described at the time of purchase</li>
           <li>An advisory (non-binding) participation right in Foundation Fund grant nominations</li>
-          <li>A limited personal licence to display the associated digital artwork for non-commercial use</li>
+          <li>A limited personal licence to display the associated digital artwork for non-commercial personal use</li>
         </ul>
-        <p>You do NOT acquire: investment returns, equity, governance rights, financial distributions, copyright in the artwork, or any ownership of LegacyMint Ltd or the Foundation Fund.</p>
+        <p>You do NOT acquire: investment returns or profit expectations; equity, shares, or ownership interest in LegacyMint Ltd or the Foundation Fund; governance control over any aspect of the Platform or Foundation Fund; copyright or intellectual property rights in the underlying artwork; any right to receive financial distributions.</p>
       </div>
     </div>
-
+ 
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">What Advisory Voting Means</span>
         <i class="fa-solid fa-chevron-down legal-accordion-chevron"></i>
       </button>
       <div class="legal-accordion-body">
-        <p>As an NFT holder, you may participate in advisory votes to nominate grant candidates. You acknowledge:</p>
+        <p>As an NFT holder, you may participate in advisory votes to nominate grant candidates for the Foundation Fund. You acknowledge and agree:</p>
         <ul>
           <li>Advisory votes are non-binding recommendations only</li>
           <li>The Foundation Fund Trustees have sole and complete discretion over all grant decisions</li>
-          <li>Trustees may accept, reject, or modify any community recommendation</li>
-          <li>Your NFT does not give you legal control over, or ownership of, the Foundation Fund</li>
+          <li>Trustees may accept, reject, or modify any community recommendation for any reason</li>
+          <li>Your NFT does not give you any legal control over, or ownership of, the Foundation Fund</li>
           <li>Advisory voting is a community engagement feature, not a governance mechanism</li>
+          <li>Standard cards carry 1 advisory vote; Holo cards carry 2 advisory votes</li>
         </ul>
       </div>
     </div>
-
+ 
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">Intellectual Property Rights</span>
         <i class="fa-solid fa-chevron-down legal-accordion-chevron"></i>
       </button>
       <div class="legal-accordion-body">
-        <p>You own the NFT token itself — the blockchain record. You do not own the underlying digital artwork, athlete name, likeness, or associated intellectual property.</p>
-        <p>Your licence permits: displaying the NFT artwork for personal, non-commercial use; sharing images of the NFT on personal social media with appropriate attribution.</p>
-        <p>You may not: reproduce, modify, or create derivative works; use the artwork or athlete likeness for commercial purposes; claim authorship or ownership of the underlying artwork.</p>
+        <p>You own the NFT token itself — the blockchain record. You do not own the underlying digital artwork, athlete name, likeness, or associated intellectual property. LegacyMint and/or the relevant athlete retains all intellectual property rights.</p>
+        <p>Your licence permits: displaying the NFT artwork for personal, non-commercial use; sharing images of the NFT on personal social media with appropriate attribution to LegacyMint.</p>
+        <p>You may NOT: reproduce, modify, or create derivative works of the NFT artwork; use the NFT artwork or any athlete's name, likeness, or image for commercial purposes without written consent; claim authorship or ownership of the underlying artwork. If you sell your NFT, the licence transfers to the new owner and terminates for you.</p>
       </div>
     </div>
-
+ 
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">Risks — You Must Read This</span>
         <i class="fa-solid fa-chevron-down legal-accordion-chevron"></i>
       </button>
       <div class="legal-accordion-body">
-        <p>The following risks are real and could result in total or partial loss of your purchase price:</p>
+        <p>The following risks are real and could result in total or partial loss of your purchase price. By purchasing, you confirm you understand these risks:</p>
         <ul>
-          <li><strong style="color:#ccc;">Market Risk:</strong> NFT prices are highly volatile and may decrease significantly or fall to zero</li>
-          <li><strong style="color:#ccc;">Liquidity Risk:</strong> There may be no buyer for your NFT when you wish to sell</li>
-          <li><strong style="color:#ccc;">Technology Risk:</strong> Smart contracts may contain bugs; blockchain networks may experience downtime or failure</li>
-          <li><strong style="color:#ccc;">Regulatory Risk:</strong> Laws governing NFTs and cryptocurrencies are evolving and may adversely affect the Platform</li>
-          <li><strong style="color:#ccc;">Wallet Risk:</strong> If you lose access to your wallet or private keys, your NFT may be permanently inaccessible. LegacyMint cannot recover lost wallets</li>
-          <li><strong style="color:#ccc;">Tax Risk:</strong> Tax treatment of NFTs is uncertain. You are responsible for your own tax obligations</li>
+          <li><strong style="color:#ccc;">Market Risk:</strong> NFT prices are highly volatile and may decrease significantly or fall to zero at any time</li>
+          <li><strong style="color:#ccc;">Liquidity Risk:</strong> There may be no buyer for your NFT when you wish to sell. Secondary market liquidity is not guaranteed</li>
+          <li><strong style="color:#ccc;">Technology Risk:</strong> Smart contracts may contain bugs or vulnerabilities. Blockchain networks may experience downtime, forks, or failure</li>
+          <li><strong style="color:#ccc;">Regulatory Risk:</strong> Laws governing NFTs and cryptocurrencies are evolving and may adversely affect the Platform or the value of your NFT</li>
+          <li><strong style="color:#ccc;">Wallet Risk:</strong> If you lose access to your wallet or private keys, your NFT may be permanently inaccessible. LegacyMint cannot recover lost wallets or seed phrases</li>
+          <li><strong style="color:#ccc;">Platform Risk:</strong> LegacyMint Ltd may cease operations. Your NFT will remain on the blockchain but Platform features may become unavailable</li>
+          <li><strong style="color:#ccc;">Tax Risk:</strong> Tax treatment of NFTs is uncertain and evolving. You are solely responsible for your own tax obligations in your jurisdiction</li>
+          <li><strong style="color:#ccc;">Scam Risk:</strong> Only purchase through official Platform channels at legacymint.club. Beware of counterfeit collections and phishing attacks</li>
         </ul>
       </div>
     </div>
-
+ 
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">Purchase Process & Refunds</span>
@@ -1777,61 +956,449 @@ body::before {
       </button>
       <div class="legal-accordion-body">
         <p>NFT purchases are processed through smart contracts on the Apertum blockchain. All purchases are final. Due to the irreversible nature of blockchain transactions, LegacyMint does not offer refunds except where required by applicable New Zealand consumer protection law.</p>
-        <p>You are responsible for ensuring you have the appropriate wallet, network connection, and sufficient funds (including network fees) before initiating a purchase.</p>
+        <p>You are responsible for ensuring you have a compatible Digital Wallet, are connected to the Apertum network, and have sufficient funds (including network/gas fees) before initiating any purchase. LegacyMint is not responsible for failed transactions due to insufficient funds, network congestion, or wallet incompatibility.</p>
+        <p>Secondary market royalties of 7.5% (ERC-2981) are automatically applied on resales through compatible marketplaces.</p>
       </div>
     </div>
-
+ 
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">Jurisdiction Restrictions</span>
         <i class="fa-solid fa-chevron-down legal-accordion-chevron"></i>
       </button>
       <div class="legal-accordion-body">
-        <p>LegacyMint NFTs may not be available or appropriate for purchase in all jurisdictions. You represent that your purchase does not violate any laws in your jurisdiction.</p>
-        <p>United States residents: LegacyMint NFTs are not registered securities and are not offered to US residents under the US Securities Act of 1933 unless LegacyMint has expressly confirmed otherwise in writing.</p>
+        <p>LegacyMint NFTs may not be available or appropriate for purchase in all jurisdictions. You represent that your purchase does not violate any laws applicable to you in your jurisdiction.</p>
+        <p><strong style="color:#ccc;">United States residents:</strong> LegacyMint NFTs are not registered securities and are not offered to US residents under the US Securities Act of 1933 unless LegacyMint has expressly confirmed otherwise in writing. By purchasing, non-US purchasers represent they are not a US person as defined by applicable US securities law.</p>
+        <p><strong style="color:#ccc;">Australia:</strong> Purchasers should be aware of ASIC's evolving position on NFTs and applicable ATO tax treatment for Australian residents.</p>
       </div>
     </div>
-
   </div>
-
-  <!-- ── PANEL 4: PRIVACY ── -->
+ 
+  <!-- PANEL: PRIVACY -->
   <div id="panel-privacy" class="legal-panel">
-
-    <div class="section-label" style="margin-bottom:6px;">PRIVACY</div>
+    <div class="section-label" style="margin-bottom:6px;">PRIVACY STATEMENT</div>
     <h3 style="font-family:'Bebas Neue',sans-serif;font-size:36px;margin-bottom:8px;">HOW WE HANDLE YOUR DATA</h3>
-    <p style="color:#555;font-size:12px;margin-bottom:32px;">LegacyMint complies with the New Zealand Privacy Act 2020</p>
-
-    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:8px 24px;margin-bottom:32px;">
+    <p style="color:#555;font-size:12px;margin-bottom:32px;">LegacyMint complies with the New Zealand Privacy Act 2020 | Draft — Under Review</p>
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:8px 24px;margin-bottom:24px;">
       <div class="privacy-point">
         <div class="privacy-icon"><i class="fa-solid fa-database"></i></div>
-        <div>
-          <div class="privacy-content-title">What We Collect</div>
-          <div class="privacy-content-desc">Wallet addresses, transaction data, identity verification documents (where KYC is required), email address (where provided), and usage data to improve Platform performance.</div>
-        </div>
+        <div><div class="privacy-content-title">What We Collect</div><div class="privacy-content-desc">Wallet addresses, transaction data, identity verification documents (where KYC is required), email address (where provided), and usage data to improve Platform performance.</div></div>
       </div>
       <div class="privacy-point">
         <div class="privacy-icon"><i class="fa-solid fa-bullseye"></i></div>
-        <div>
-          <div class="privacy-content-title">Why We Collect It</div>
-          <div class="privacy-content-desc">To operate the Platform, process NFT transactions, comply with NZ AML/CFT legal obligations, administer Foundation Fund grants, and improve user experience.</div>
-        </div>
+        <div><div class="privacy-content-title">Why We Collect It</div><div class="privacy-content-desc">To operate the Platform, process NFT transactions, comply with NZ AML/CFT legal obligations, administer Foundation Fund grants, verify athlete eligibility, and improve user experience.</div></div>
       </div>
       <div class="privacy-point">
         <div class="privacy-icon"><i class="fa-solid fa-share-nodes"></i></div>
-        <div>
-          <div class="privacy-content-title">Who We Share It With</div>
-          <div class="privacy-content-desc">Regulated payment processors (e.g. Alchemy Pay) for transaction processing; KYC/identity verification providers; NZ regulatory authorities where legally required (e.g. AML/CFT reporting obligations).</div>
-        </div>
+        <div><div class="privacy-content-title">Who We Share It With</div><div class="privacy-content-desc">Regulated payment processors (e.g. Alchemy Pay) for transaction processing; KYC/identity verification providers; NZ regulatory authorities where legally required (e.g. DIA for AML/CFT reporting). We do not sell personal data to third parties.</div></div>
       </div>
       <div class="privacy-point">
         <div class="privacy-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
-        <div>
-          <div class="privacy-content-title">How Long We Keep It</div>
-          <div class="privacy-content-desc">KYC and transaction records are retained for a minimum of five (5) years in accordance with NZ AML/CFT Act obligations. Other data is retained for as long as necessary to provide Platform services.</div>
-        </div>
+        <div><div class="privacy-content-title">How Long We Keep It</div><div class="privacy-content-desc">KYC and transaction records are retained for a minimum of five (5) years in accordance with NZ AML/CFT Act obligations. Other data is retained for as long as necessary to provide Platform services, then securely deleted.</div></div>
       </div>
       <div class="privacy-point">
         <div class="privacy-icon"><i class="fa-solid fa-lock"></i></div>
-        <div>
-          <div class="privacy-content-title">How We Protect It</div>
-          <div class="privacy-content-desc">Encrypted storage with access controls. KYC document
+        <div><div class="privacy-content-title">How We Protect It</div><div class="privacy-content-desc">Encrypted storage with access controls. KYC documents accessible only to authorised compliance personnel. Secure infrastructure with role-based access management.</div></div>
+      </div>
+      <div class="privacy-point" style="border-bottom:none;">
+        <div class="privacy-icon"><i class="fa-solid fa-hand-paper"></i></div>
+        <div><div class="privacy-content-title">Your Rights</div><div class="privacy-content-desc">Under the NZ Privacy Act 2020, you have the right to access personal information we hold about you, request corrections, and raise a privacy complaint. Contact privacy@legacymint.io to exercise these rights.</div></div>
+      </div>
+    </div>
+    <div style="background:rgba(246,193,91,0.04);border:1px solid rgba(246,193,91,0.12);border-radius:12px;padding:20px 24px;margin-bottom:16px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">⛓ BLOCKCHAIN DATA IS PUBLIC</div>
+      <p style="font-size:13px;color:#666;line-height:1.7;">Blockchain transactions, including wallet addresses and transaction amounts, are publicly visible on the Apertum blockchain explorer by the inherent nature of blockchain technology. This is outside LegacyMint's control and applies to all public blockchain networks.</p>
+    </div>
+    <div style="background:rgba(255,80,80,0.04);border:1px solid rgba(255,80,80,0.12);border-radius:12px;padding:20px 24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#ff8080;margin-bottom:8px;">⚠️ THIS IS NOT A FULL PRIVACY POLICY</div>
+      <p style="font-size:13px;color:#666;line-height:1.7;">This is a summary privacy statement. A comprehensive Privacy Policy compliant with the NZ Privacy Act 2020 is under preparation and will be published prior to Platform launch. For privacy enquiries: privacy@legacymint.io</p>
+    </div>
+  </div>
+ 
+  <!-- PANEL: LEGAL CONTACT -->
+  <div id="panel-contact" class="legal-panel">
+    <div class="section-label" style="margin-bottom:20px;">LEGAL CONTACT & DOCUMENT REGISTER</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:32px;">
+      <div class="legal-contact-card">
+        <div class="legal-contact-title"><i class="fa-solid fa-scale-balanced" style="margin-right:8px"></i>LEGAL ENQUIRIES</div>
+        <p style="color:#666;font-size:13px;line-height:1.7;margin-bottom:16px;">Terms of Service, NFT Purchaser Terms, or any legal matter relating to the Platform.</p>
+        <a href="mailto:legal@legacymint.io" style="display:inline-flex;align-items:center;gap:8px;color:var(--neon);font-family:'DM Mono',monospace;font-size:13px;text-decoration:none;"><i class="fa-solid fa-envelope"></i> legal@legacymint.io</a>
+      </div>
+      <div class="legal-contact-card">
+        <div class="legal-contact-title"><i class="fa-solid fa-lock" style="margin-right:8px"></i>PRIVACY ENQUIRIES</div>
+        <p style="color:#666;font-size:13px;line-height:1.7;margin-bottom:16px;">Exercise your rights under the NZ Privacy Act 2020, request access to your data, or raise a privacy concern.</p>
+        <a href="mailto:privacy@legacymint.io" style="display:inline-flex;align-items:center;gap:8px;color:var(--neon);font-family:'DM Mono',monospace;font-size:13px;text-decoration:none;"><i class="fa-solid fa-envelope"></i> privacy@legacymint.io</a>
+      </div>
+      <div class="legal-contact-card">
+        <div class="legal-contact-title"><i class="fa-solid fa-hand-holding-heart" style="margin-right:8px"></i>FOUNDATION FUND</div>
+        <p style="color:#666;font-size:13px;line-height:1.7;margin-bottom:16px;">Foundation Trust enquiries, grant applications, or Trustee matters.</p>
+        <a href="mailto:foundation@legacymint.io" style="display:inline-flex;align-items:center;gap:8px;color:var(--neon);font-family:'DM Mono',monospace;font-size:13px;text-decoration:none;"><i class="fa-solid fa-envelope"></i> foundation@legacymint.io</a>
+      </div>
+    </div>
+    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:16px;">
+      <div class="section-label" style="margin-bottom:12px;">DOCUMENT VERSION REGISTER</div>
+      <div class="legal-info-row"><span class="legal-info-label">Terms of Service</span><span class="legal-info-val">v1.0 Draft — Under Legal Review</span></div>
+      <div class="legal-info-row"><span class="legal-info-label">NFT Purchaser Terms</span><span class="legal-info-val">v1.0 Draft — Under Legal Review</span></div>
+      <div class="legal-info-row"><span class="legal-info-label">Privacy Statement</span><span class="legal-info-val">v1.0 Summary Draft — Full Policy Pending</span></div>
+      <div class="legal-info-row"><span class="legal-info-label">AML/CFT Policy</span><span class="legal-info-val">Internal Document — Not Published</span></div>
+      <div class="legal-info-row"><span class="legal-info-label">Last Updated</span><span class="legal-info-val">June 2026</span></div>
+      <div class="legal-info-row"><span class="legal-info-label">Governing Law</span><span class="legal-info-val">New Zealand</span></div>
+      <div class="legal-info-row"><span class="legal-info-label">NZ Legal Counsel</span><span class="legal-info-val">Engagement In Progress</span></div>
+    </div>
+    <div style="background:rgba(255,80,80,0.04);border:1px solid rgba(255,80,80,0.12);border-radius:12px;padding:20px 24px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#ff8080;margin-bottom:8px;">⚠️ NOT LEGAL ADVICE</div>
+      <p style="font-size:13px;color:#666;line-height:1.7;">Nothing on this page or anywhere on the LegacyMint Platform constitutes legal, financial, investment, or tax advice. LegacyMint is not a lawyer, financial adviser, broker, or dealer. Always seek independent professional advice before making any decisions based on Platform content.</p>
+    </div>
+  </div>
+</div>
+<!-- ==================== END LEGAL TAB ==================== -->
+ 
+<!-- ==================== CARD MODAL ==================== -->
+<div id="cardModal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">THOMAS ENOKA • #001</div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tabs">
+        <button class="modal-tab active" onclick="switchModalTab(0)">CARD</button>
+        <button class="modal-tab" onclick="switchModalTab(1)">STATS</button>
+        <button class="modal-tab" onclick="switchModalTab(2)">UTILITY</button>
+        <button class="modal-tab" onclick="switchModalTab(3)">MINT</button>
+      </div>
+      <div class="modal-view active" id="mv-0">
+        <img id="modalImg" src="" alt="" style="width:100%;border-radius:12px;">
+        <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+          <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> VERIFIED ATHLETE</span>
+          <span class="card-badge" id="modalCardType">STANDARD</span>
+          <span class="card-badge" id="modalStars">10★</span>
+        </div>
+      </div>
+      <div class="modal-view" id="mv-1">
+        <div class="stat-row"><span class="stat-row-label">BATTING</span><div class="stat-bar-wrap"><div class="stat-bar-fill" style="width:92%"></div></div><span class="stat-row-val">92</span></div>
+        <div class="stat-row"><span class="stat-row-label">POWER</span><div class="stat-bar-wrap"><div class="stat-bar-fill" style="width:88%"></div></div><span class="stat-row-val">88</span></div>
+        <div class="stat-row"><span class="stat-row-label">CONTACT</span><div class="stat-bar-wrap"><div class="stat-bar-fill" style="width:90%"></div></div><span class="stat-row-val">90</span></div>
+        <div class="stat-row"><span class="stat-row-label">SPEED</span><div class="stat-bar-wrap"><div class="stat-bar-fill" style="width:81%"></div></div><span class="stat-row-val">81</span></div>
+        <div class="stat-row"><span class="stat-row-label">LEADERSHIP</span><div class="stat-bar-wrap"><div class="stat-bar-fill" style="width:95%"></div></div><span class="stat-row-val">95</span></div>
+        <div class="stat-row"><span class="stat-row-label">GAME IQ</span><div class="stat-bar-wrap"><div class="stat-bar-fill" style="width:93%"></div></div><span class="stat-row-val">93</span></div>
+      </div>
+      <div class="modal-view" id="mv-2">
+        <div class="stat-row"><span class="stat-row-label">Foundation Voting Power</span><span class="stat-row-val text-neon" id="modalVotes">1 ADVISORY VOTE</span></div>
+        <div class="stat-row"><span class="stat-row-label">Grant Funding Eligible</span><span class="stat-row-val text-gold">YES</span></div>
+        <div class="stat-row"><span class="stat-row-label">Exclusive Events Access</span><span class="stat-row-val text-neon">UNLOCKED</span></div>
+        <div class="stat-row"><span class="stat-row-label">Royalty Standard</span><span class="stat-row-val">ERC-2981 • 7.5%</span></div>
+        <div class="stat-row"><span class="stat-row-label">Network</span><span class="stat-row-val">APERTUM</span></div>
+        <div class="stat-row"><span class="stat-row-label">Token Standard</span><span class="stat-row-val">ERC-1155</span></div>
+        <div style="margin-top:16px;padding:12px 16px;background:rgba(246,193,91,0.04);border:1px solid rgba(246,193,91,0.1);border-radius:8px;font-size:11px;color:#555;line-height:1.6;">
+          ⚠️ Votes are advisory only and do not grant governance control over the Foundation Fund. Grant decisions are made solely by the Trustees. <a href="#" onclick="closeModal();showTab('legal');showLegalPanel('nft-terms')" style="color:var(--gold);">Full terms →</a>
+        </div>
+      </div>
+      <div class="modal-view" id="mv-3">
+        <div class="modal-mint-section">
+          <div class="modal-price-row">
+            <div>
+              <div class="modal-price-main" id="modalPrice">150 APTM</div>
+              <div class="modal-price-sub" id="modalPriceNZD">≈ NZ$50</div>
+            </div>
+            <div><div class="vote-badge" id="modalVoteBadge">1 VOTE</div></div>
+          </div>
+          <div style="font-size:12px;color:#555;margin-bottom:16px;line-height:1.6;">
+            90% of this mint goes directly to the Foundation Fund for athlete grants. By minting you agree to our <a href="#" onclick="closeModal();showTab('legal');showLegalPanel('nft-terms')" style="color:var(--gold);">NFT Purchaser Terms</a> and <a href="#" onclick="closeModal();showTab('legal');showLegalPanel('terms')" style="color:var(--gold);">Terms of Service</a>.
+          </div>
+          <button class="modal-mint-btn" id="modalMintBtn" onclick="mintNFT()" disabled>CONNECT WALLET TO MINT</button>
+          <div id="txStatus" class="tx-status"></div>
+          <div style="margin-top:16px;font-size:11px;color:#444;text-align:center;">Mint opens on mainnet • Currently on testnet</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- ==================== BOTTOM NAV ==================== -->
+<nav class="bottom-nav">
+  <button class="nav-btn active" onclick="showTab('home')" id="bnav-home"><i class="fa-solid fa-house"></i>HOME</button>
+  <button class="nav-btn" onclick="showTab('collect')" id="bnav-collect"><i class="fa-solid fa-layer-group"></i>COLLECT</button>
+  <button class="nav-btn" onclick="showTab('foundation')" id="bnav-foundation"><i class="fa-solid fa-hand-holding-heart"></i>FUND</button>
+  <button class="nav-btn" onclick="showTab('payouts')" id="bnav-payouts"><i class="fa-solid fa-circle-dollar-to-slot"></i>PAYOUTS</button>
+  <button class="nav-btn" onclick="showTab('safety')" id="bnav-safety"><i class="fa-solid fa-shield"></i>SAFETY</button>
+  <button class="nav-btn" onclick="showTab('legal')" id="bnav-legal"><i class="fa-solid fa-scale-balanced"></i>LEGAL</button>
+</nav>
+ 
+<script>
+// ============ CONFIG ============
+const CONFIG = {
+  CONTRACT_ADDRESS: '0x7614701E34F12EE7887c557323D686e7A2f9c3B8',
+  CHAIN_ID: 89898,
+  CHAIN_NAME: 'Apertum Testnet',
+  RPC_URL: 'https://rpc-testnet.apertum.io/ext/bc/V8YHL6yZV62tx2MdLi98wjAY2Qn6sP7zdiEKX5bvxj515vhK7/rpc',
+  EXPLORER: 'https://explorer-testnet.apertum.io',
+  FUND_GOAL_NZD: 10000,
+};
+ 
+const CONTRACT_ABI = [
+  "function mint(uint256 tokenId, uint256 quantity) external payable",
+  "function createToken(uint256 supplyCap, uint8 starRating, string memory name_) external returns (uint256)",
+  "function balanceOf(address account, uint256 id) external view returns (uint256)",
+  "event TransferSingle(address indexed operator, address indexed from, address indexed to, uint256 id, uint256 value)"
+];
+ 
+let walletAddress = null;
+let provider = null;
+let signer = null;
+let currentModalCard = null;
+ 
+const CARDS = [
+  {
+    id:1, name:'THOMAS ENOKA', sub:'Black Sox Vice-Captain',
+    type:'standard', stars:10, price:'150', priceNZD:'NZ$50',
+    votes:1, supply:25,
+    img:'https://gateway.pinata.cloud/ipfs/bafybeigiu67t4k7e3zidnpj77nziqqnzi2frjgknba6zmzi3ei3vjch6dy',
+    tokenId:1
+  },
+  {
+    id:2, name:'THOMAS ENOKA HOLO', sub:'Black Sox Vice-Captain • Rare Edition',
+    type:'holo', stars:10, price:'250', priceNZD:'NZ$83',
+    votes:2, supply:10,
+    img:'https://gateway.pinata.cloud/ipfs/bafybeid33djahua3gzwj4ioy6ja46gv2lrwadh24ulvhxt2nf6bvikipfe',
+    tokenId:2
+  },
+  {
+    id:3, name:'LEGACY PIONEER #003', sub:'Emerald Action Edition',
+    type:'standard', stars:10, price:'150', priceNZD:'NZ$50',
+    votes:1, supply:15,
+    img:'https://gateway.pinata.cloud/ipfs/bafybeidorylrziwwax35ds7iuedxfoyjqvwld63tjyobnx52ypt4kd3vxq',
+    tokenId:3
+  }
+];
+ 
+// ============ COMPARISON WIDGET ============
+function switchCompTab(tab) {
+  document.querySelectorAll('.comp-tab').forEach((t, i) => {
+    t.classList.toggle('active', (i === 0 && tab === 'with') || (i === 1 && tab === 'without'));
+  });
+  document.getElementById('comp-with').classList.toggle('visible', tab === 'with');
+  document.getElementById('comp-without').classList.toggle('visible', tab === 'without');
+}
+ 
+// ============ TAB NAVIGATION ============
+function showTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  const bnav = document.getElementById('bnav-' + tabId);
+  if (bnav) bnav.classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const navLink = document.getElementById('nav-' + tabId);
+  if (navLink) navLink.classList.add('active');
+  window.scrollTo(0, 0);
+}
+ 
+// ============ LEGAL PANEL NAVIGATION ============
+const PANEL_ORDER = ['disclaimers','terms','nft-terms','privacy','contact'];
+ 
+function showLegalPanel(panelId) {
+  document.querySelectorAll('.legal-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.legal-nav-pill').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById('panel-' + panelId);
+  if (panel) panel.classList.add('active');
+  const idx = PANEL_ORDER.indexOf(panelId);
+  const pills = document.querySelectorAll('.legal-nav-pill');
+  if (idx >= 0 && pills[idx]) pills[idx].classList.add('active');
+  window.scrollTo(0, 0);
+}
+ 
+// ============ ACCORDION ============
+function toggleAccordion(headerEl) {
+  const accordion = headerEl.closest('.legal-accordion');
+  accordion.classList.toggle('open');
+}
+ 
+// ============ WALLET CONNECTION ============
+async function connectWallet() {
+  if (!window.ethereum) {
+    notify('Please install MetaMask to connect your wallet', 'error');
+    return;
+  }
+  try {
+    provider = new ethers.BrowserProvider(window.ethereum);
+    const accounts = await provider.send('eth_requestAccounts', []);
+    walletAddress = accounts[0];
+    signer = await provider.getSigner();
+    await switchToApertum();
+    const short = walletAddress.slice(0, 6) + '...' + walletAddress.slice(-4);
+    document.getElementById('walletText').textContent = short;
+    document.getElementById('connectBtn').classList.add('connected');
+    updateMintButtons();
+    notify('Wallet connected — ' + short, 'success');
+  } catch (err) {
+    notify('Connection failed: ' + err.message, 'error');
+  }
+}
+ 
+async function switchToApertum() {
+  try {
+    await window.ethereum.request({
+      method: 'wallet_switchEthereumChain',
+      params: [{ chainId: '0x' + CONFIG.CHAIN_ID.toString(16) }],
+    });
+  } catch (switchError) {
+    if (switchError.code === 4902) {
+      await window.ethereum.request({
+        method: 'wallet_addEthereumChain',
+        params: [{
+          chainId: '0x' + CONFIG.CHAIN_ID.toString(16),
+          chainName: CONFIG.CHAIN_NAME,
+          nativeCurrency: { name: 'APT', symbol: 'APT', decimals: 18 },
+          rpcUrls: [CONFIG.RPC_URL],
+          blockExplorerUrls: [CONFIG.EXPLORER],
+        }],
+      });
+    }
+  }
+}
+ 
+function updateMintButtons() {
+  const mintBtn = document.getElementById('modalMintBtn');
+  if (walletAddress && mintBtn) {
+    mintBtn.disabled = false;
+    mintBtn.textContent = 'MINT NOW';
+  }
+}
+ 
+// ============ MINT ============
+async function mintNFT() {
+  if (!walletAddress || !currentModalCard) { notify('Please connect your wallet first', 'error'); return; }
+  const txStatus = document.getElementById('txStatus');
+  const mintBtn = document.getElementById('modalMintBtn');
+  try {
+    mintBtn.disabled = true;
+    mintBtn.textContent = 'CONFIRMING...';
+    txStatus.className = 'tx-status pending';
+    txStatus.textContent = '⏳ Waiting for wallet confirmation...';
+    const contract = new ethers.Contract(CONFIG.CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+    const priceWei = ethers.parseEther(currentModalCard.price);
+    const tx = await contract.mint(currentModalCard.tokenId, 1, { value: priceWei });
+    txStatus.textContent = '⏳ Transaction submitted — waiting for confirmation...';
+    const receipt = await tx.wait();
+    txStatus.className = 'tx-status success';
+    txStatus.textContent = '✅ Mint successful! View: ' + CONFIG.EXPLORER + '/tx/' + receipt.hash;
+    mintBtn.textContent = 'MINTED!';
+    notify('🎉 NFT minted successfully!', 'success');
+    updateFundDisplay();
+  } catch (err) {
+    txStatus.className = 'tx-status error';
+    txStatus.textContent = '❌ ' + (err.reason || err.message || 'Transaction failed');
+    mintBtn.disabled = false;
+    mintBtn.textContent = 'TRY AGAIN';
+    notify('Mint failed — see details below', 'error');
+  }
+}
+ 
+// ============ COLLECTION GRID ============
+function buildCollectionGrid() {
+  const grid = document.getElementById('collectionGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  CARDS.forEach((card, i) => {
+    const div = document.createElement('div');
+    div.className = 'collection-card';
+    div.onclick = () => openModal(i);
+    div.innerHTML = `
+      <img src="${card.img}" alt="${card.name}" loading="lazy">
+      <div class="collection-card-body">
+        <div class="collection-card-name">${card.name}</div>
+        <div class="collection-card-meta">${card.sub}</div>
+        <div class="collection-card-row">
+          <span class="price-tag">${card.price} APTM</span>
+          <span class="vote-badge">${card.votes} ADVISORY VOTE${card.votes > 1 ? 'S' : ''}</span>
+        </div>
+        <div style="display:flex;gap:6px;margin-bottom:12px;">
+          <span class="card-badge ${card.type === 'holo' ? 'holo' : ''}">${card.type.toUpperCase()}</span>
+          <span class="card-badge">${card.stars}★</span>
+        </div>
+        <button class="mint-btn coming-soon" style="font-size:13px;padding:10px;" disabled>MINT OPENING SOON</button>
+      </div>`;
+    grid.appendChild(div);
+  });
+}
+ 
+// ============ MODAL ============
+function openModal(index) {
+  const card = CARDS[index];
+  currentModalCard = card;
+  document.getElementById('modalTitle').textContent = card.name + ' • #00' + (index + 1);
+  document.getElementById('modalImg').src = card.img;
+  document.getElementById('modalImg').alt = card.name;
+  document.getElementById('modalCardType').textContent = card.type.toUpperCase();
+  document.getElementById('modalCardType').className = 'card-badge ' + (card.type === 'holo' ? 'holo' : '');
+  document.getElementById('modalStars').textContent = card.stars + '★';
+  document.getElementById('modalVotes').textContent = card.votes + ' ADVISORY VOTE' + (card.votes > 1 ? 'S' : '');
+  document.getElementById('modalPrice').textContent = card.price + ' APTM';
+  document.getElementById('modalPriceNZD').textContent = '≈ ' + card.priceNZD;
+  document.getElementById('modalVoteBadge').textContent = card.votes + ' VOTE' + (card.votes > 1 ? 'S' : '');
+  const mintBtn = document.getElementById('modalMintBtn');
+  if (walletAddress) { mintBtn.disabled = false; mintBtn.textContent = 'MINT NOW — ' + card.price + ' APTM'; }
+  else { mintBtn.disabled = true; mintBtn.textContent = 'CONNECT WALLET TO MINT'; }
+  document.getElementById('txStatus').className = 'tx-status';
+  document.getElementById('txStatus').textContent = '';
+  switchModalTab(0);
+  document.getElementById('cardModal').classList.add('open');
+}
+ 
+function closeModal() {
+  document.getElementById('cardModal').classList.remove('open');
+  currentModalCard = null;
+}
+ 
+function switchModalTab(n) {
+  document.querySelectorAll('.modal-view').forEach((v, i) => v.classList.toggle('active', i === n));
+  document.querySelectorAll('.modal-tab').forEach((t, i) => t.classList.toggle('active', i === n));
+}
+ 
+// ============ FUND DISPLAY ============
+function updateFundDisplay() {
+  const fundAPTM = 0;
+  const fundNZD = 0;
+  const percent = Math.min((fundNZD / CONFIG.FUND_GOAL_NZD) * 100, 100);
+  ['fundAmount','fundAmount2'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = fundAPTM + ' APTM'; });
+  ['fundProgress','fundProgress2'].forEach(id => { const el = document.getElementById(id); if (el) el.style.width = percent + '%'; });
+  ['fundPercent','fundPercent2'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = percent.toFixed(1) + '% of goal'; });
+}
+ 
+// ============ NOTIFICATION ============
+function notify(msg, type = 'info') {
+  const el = document.getElementById('notification');
+  el.textContent = msg;
+  el.className = 'notification show ' + type;
+  setTimeout(() => el.classList.remove('show'), 4000);
+}
+ 
+// ============ EVENTS ============
+document.getElementById('cardModal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+ 
+if (window.ethereum) {
+  window.ethereum.on('accountsChanged', (accounts) => {
+    if (accounts.length === 0) {
+      walletAddress = null;
+      document.getElementById('walletText').textContent = 'CONNECT';
+      document.getElementById('connectBtn').classList.remove('connected');
+    } else {
+      walletAddress = accounts[0];
+      document.getElementById('walletText').textContent = walletAddress.slice(0,6) + '...' + walletAddress.slice(-4);
+    }
+  });
+  window.ethereum.on('chainChanged', () => window.location.reload());
+}
+ 
+// ============ INIT ============
+window.onload = function() {
+  buildCollectionGrid();
+  updateFundDisplay();
+  showTab('home');
+  console.log('%cLegacyMint v3.0 — Legal & Compliance Update', 'color:#f6c15b;font-family:monospace;font-size:14px');
+};
+</script>
+</body>
+</html>
+ 
