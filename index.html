@@ -9,7 +9,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
 :root {
   --gold: #f6c15b;
@@ -166,7 +165,7 @@ body::before {
 .safety-icon.neon{background:rgba(0,255,157,0.1);color:var(--neon);}
 .safety-title{font-weight:600;font-size:14px;margin-bottom:4px;}
 .safety-desc{font-size:12px;color:#555;line-height:1.6;}
- 
+
 /* ── LEGAL ── */
 .legal-hero {
   background:linear-gradient(135deg,rgba(246,193,91,0.06) 0%,rgba(0,255,157,0.02) 100%);
@@ -258,7 +257,7 @@ body::before {
 .privacy-icon{width:40px;height:40px;border-radius:10px;background:rgba(246,193,91,0.08);border:1px solid rgba(246,193,91,0.15);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:15px;flex-shrink:0;}
 .privacy-content-title{font-weight:600;font-size:14px;margin-bottom:4px;}
 .privacy-content-desc{font-size:13px;color:#666;line-height:1.6;}
- 
+
 /* MODAL */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);z-index:200;align-items:center;justify-content:center;padding:24px;}
 .modal-overlay.open{display:flex;}
@@ -307,13 +306,13 @@ body::before {
 .text-gold{color:var(--gold);}
 .text-neon{color:var(--neon);}
 .text-muted{color:#555;}
- 
+
 /* ── SOCIALS FOOTER ── */
 .socials-footer{background:linear-gradient(180deg,transparent 0%,rgba(8,8,8,0.98) 30%);padding:48px 24px 32px;text-align:center;border-top:1px solid var(--border);}
-.socials-footer-label{font-size:10px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:#333;margin-bottom:6px;}
+.socials-footer-label{font-size:10px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:#888;margin-bottom:6px;}
 .socials-footer-brand{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.1em;margin-bottom:4px;}
 .socials-footer-brand span{color:var(--gold);}
-.socials-footer-tagline{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#2a2a2a;margin-bottom:24px;}
+.socials-footer-tagline{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#555;margin-bottom:24px;}
 .socials-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:20px;}
 .socials-divider-line{flex:1;max-width:120px;height:1px;background:rgba(246,193,91,0.1);}
 .socials-divider-diamond{color:var(--gold);font-size:8px;opacity:0.35;}
@@ -323,15 +322,15 @@ body::before {
 .social-row.discord-row{border-color:rgba(88,101,242,0.2);}
 .social-row.discord-row:hover{background:rgba(88,101,242,0.06);border-color:rgba(88,101,242,0.4);}
 .social-icon-wrap{width:48px;height:48px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;}
-.social-divider-bar{width:1px;height:24px;background:rgba(246,193,91,0.08);flex-shrink:0;}
+.social-divider-bar{width:1px;height:24px;background:rgba(246,193,91,0.18);flex-shrink:0;}
 .discord-row .social-divider-bar{background:rgba(88,101,242,0.15);}
 .social-platform-name{font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#bbb;width:90px;text-align:left;padding-left:14px;flex-shrink:0;}
-.social-handle{font-family:'DM Mono',monospace;font-size:12px;color:#444;padding:0 14px;flex:1;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.social-handle{font-family:'DM Mono',monospace;font-size:12px;color:#aaa;padding:0 14px;flex:1;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .social-row:hover .social-handle{color:var(--gold);}
 .discord-row:hover .social-handle{color:#8b9cf4;}
-.socials-footer-bottom{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#1e1e1e;padding-top:18px;border-top:1px solid rgba(246,193,91,0.05);}
+.socials-footer-bottom{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#555;padding-top:18px;border-top:1px solid rgba(246,193,91,0.08);}
 .socials-footer-bottom span{color:var(--gold);}
- 
+
 /* ── COMPARISON WIDGET ── */
 .comparison-section{max-width:700px;margin:0 auto;padding:0 24px 56px;}
 .comparison-toggle{display:flex;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:9999px;padding:4px;width:fit-content;margin:0 auto 32px;gap:2px;}
@@ -340,7 +339,7 @@ body::before {
 .comp-flow{display:none;animation:fadeInUp 0.3s ease;}
 .comp-flow.visible{display:block;}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-.comp-flow-label{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:0.25em;text-align:center;color:#444;margin-bottom:24px;}
+.comp-flow-label{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:0.25em;text-align:center;color:#888;margin-bottom:24px;}
 .comp-steps-with{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;}
 .comp-step{display:flex;flex-direction:column;align-items:center;gap:12px;width:155px;}
 .comp-icon-box{width:76px;height:76px;border-radius:16px;background:var(--card-bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 8px 30px rgba(0,0,0,0.4);transition:transform 0.2s,box-shadow 0.2s;}
@@ -348,16 +347,16 @@ body::before {
 .comp-icon-box i{font-size:26px;color:var(--gold);}
 .comp-step-num{position:absolute;top:-9px;right:-9px;width:20px;height:20px;border-radius:50%;background:var(--gold);color:#1a1000;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;}
 .comp-step-label{font-size:12px;font-weight:500;text-align:center;color:#bbb;line-height:1.4;max-width:130px;}
-.comp-arrow{color:rgba(246,193,91,0.22);font-size:18px;margin:0 4px 16px;flex-shrink:0;}
+.comp-arrow{color:rgba(246,193,91,0.5);font-size:18px;margin:0 4px 16px;flex-shrink:0;}
 .comp-badges{display:flex;justify-content:center;gap:8px;margin-top:24px;flex-wrap:wrap;}
 .comp-badge{font-size:10px;font-weight:600;letter-spacing:0.1em;padding:5px 14px;border-radius:9999px;text-transform:uppercase;background:rgba(246,193,91,0.08);color:var(--gold);border:1px solid rgba(246,193,91,0.2);}
 .comp-badge.neon{background:rgba(0,255,157,0.08);color:var(--neon);border-color:rgba(0,255,157,0.2);}
 .comp-steps-without{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;max-width:580px;margin:0 auto;}
-.comp-without-step{background:var(--card-bg);border:1px solid rgba(255,255,255,0.05);border-radius:10px;padding:12px 13px;display:flex;align-items:center;gap:9px;transition:border-color 0.2s;}
+.comp-without-step{background:var(--card-bg);border:1px solid rgba(255,255,255,0.09);border-radius:10px;padding:12px 13px;display:flex;align-items:center;gap:9px;transition:border-color 0.2s;}
 .comp-without-step:hover{border-color:rgba(255,255,255,0.1);}
-.comp-without-step i{font-size:17px;color:#2e2e2e;flex-shrink:0;}
-.comp-ws-num{font-size:9px;font-weight:700;letter-spacing:0.1em;color:#252525;text-transform:uppercase;margin-bottom:2px;}
-.comp-ws-label{font-size:11px;color:#4a4a4a;line-height:1.3;}
+.comp-without-step i{font-size:17px;color:#555;flex-shrink:0;}
+.comp-ws-num{font-size:9px;font-weight:700;letter-spacing:0.1em;color:#666;text-transform:uppercase;margin-bottom:2px;}
+.comp-ws-label{font-size:11px;color:#aaa;line-height:1.3;}
 .comp-pain-note{text-align:center;margin-top:22px;font-size:13px;color:#555;}
 .comp-pain-note strong{color:#e05a5a;}
 @media(max-width:560px){.comp-steps-with{flex-direction:column;gap:4px;}.comp-arrow{transform:rotate(90deg);margin:0;}.comp-steps-without{grid-template-columns:1fr;}}
@@ -382,7 +381,7 @@ body::before {
     <i class="fa-solid fa-wallet"></i><span id="walletText">CONNECT</span>
   </button>
 </header>
- 
+
 <!-- ==================== HOME TAB ==================== -->
 <div id="home" class="tab-content active">
   <section class="hero">
@@ -432,40 +431,40 @@ body::before {
         <div class="step-card"><div class="step-num">04</div><div class="step-title">ATHLETES WIN</div><p class="step-desc">Funded athletes receive grants from the Foundation Fund to support their training, competition, and development goals.</p></div>
       </div>
     </div>
- 
+
     <!-- ── COMPARISON WIDGET ── -->
-    <div style="padding: 0 0 16px;">
-      <div class="section-label" style="text-align:center; margin-bottom:12px;">WHY LEGACYMINT</div>
+    <div style="padding:0 0 16px;">
+      <div class="section-label" style="text-align:center;margin-bottom:12px;">WHY LEGACYMINT</div>
       <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,48px);line-height:1;text-align:center;margin-bottom:32px;">THE SIMPLER WAY TO <span style="color:var(--gold);">OWN SPORTS HISTORY</span></h2>
       <div class="comparison-section">
         <div class="comparison-toggle">
           <button class="comp-tab active" onclick="switchCompTab('with')">With LegacyMint</button>
           <button class="comp-tab" onclick="switchCompTab('without')">Without LegacyMint</button>
         </div>
- 
+
         <!-- WITH -->
         <div class="comp-flow visible" id="comp-with">
           <div class="comp-flow-label">3 steps. Done.</div>
           <div class="comp-steps-with">
             <div class="comp-step">
               <div class="comp-icon-box">
-                <i class="ti ti-cards"></i>
+                <i class="fa-solid fa-layer-group"></i>
                 <span class="comp-step-num">1</span>
               </div>
               <span class="comp-step-label">Select your Legacy Card</span>
             </div>
-            <i class="ti ti-arrow-narrow-right comp-arrow"></i>
+            <i class="fa-solid fa-arrow-right comp-arrow"></i>
             <div class="comp-step">
               <div class="comp-icon-box">
-                <i class="ti ti-credit-card"></i>
+                <i class="fa-solid fa-credit-card"></i>
                 <span class="comp-step-num">2</span>
               </div>
               <span class="comp-step-label">Pay with card, bank, or local method</span>
             </div>
-            <i class="ti ti-arrow-narrow-right comp-arrow"></i>
+            <i class="fa-solid fa-arrow-right comp-arrow"></i>
             <div class="comp-step">
               <div class="comp-icon-box">
-                <i class="ti ti-trophy"></i>
+                <i class="fa-solid fa-trophy"></i>
                 <span class="comp-step-num">3</span>
               </div>
               <span class="comp-step-label">Receive your NFT instantly</span>
@@ -477,26 +476,26 @@ body::before {
             <span class="comp-badge neon">Instant delivery</span>
           </div>
         </div>
- 
+
         <!-- WITHOUT -->
         <div class="comp-flow" id="comp-without">
           <div class="comp-flow-label">9 steps. No guarantees.</div>
           <div class="comp-steps-without">
-            <div class="comp-without-step"><i class="ti ti-cards"></i><div><div class="comp-ws-num">Step 1</div><div class="comp-ws-label">Select NFT</div></div></div>
-            <div class="comp-without-step"><i class="ti ti-login"></i><div><div class="comp-ws-num">Step 2</div><div class="comp-ws-label">Sign into wallet</div></div></div>
-            <div class="comp-without-step"><i class="ti ti-link"></i><div><div class="comp-ws-num">Step 3</div><div class="comp-ws-label">Link wallet to site</div></div></div>
-            <div class="comp-without-step"><i class="ti ti-arrow-back"></i><div><div class="comp-ws-num">Step 4</div><div class="comp-ws-label">Return to NFT site</div></div></div>
-            <div class="comp-without-step"><i class="ti ti-building-bank"></i><div><div class="comp-ws-num">Step 5</div><div class="comp-ws-label">Use crypto on-ramp</div></div></div>
-            <div class="comp-without-step"><i class="ti ti-coin"></i><div><div class="comp-ws-num">Step 6</div><div class="comp-ws-label">Pay gas fees</div></div></div>
-            <div class="comp-without-step"><i class="ti ti-id-badge"></i><div><div class="comp-ws-num">Step 7</div><div class="comp-ws-label">Submit ID &amp; KYC docs</div></div></div>
-            <div class="comp-without-step"><i class="ti ti-clock"></i><div><div class="comp-ws-num">Step 8</div><div class="comp-ws-label">Wait for crypto</div></div></div>
-            <div class="comp-without-step"><i class="ti ti-repeat"></i><div><div class="comp-ws-num">Step 9</div><div class="comp-ws-label">Buy NFT (pay gas again)</div></div></div>
+            <div class="comp-without-step"><i class="fa-solid fa-layer-group"></i><div><div class="comp-ws-num">Step 1</div><div class="comp-ws-label">Select NFT</div></div></div>
+            <div class="comp-without-step"><i class="fa-solid fa-right-to-bracket"></i><div><div class="comp-ws-num">Step 2</div><div class="comp-ws-label">Sign into wallet</div></div></div>
+            <div class="comp-without-step"><i class="fa-solid fa-link"></i><div><div class="comp-ws-num">Step 3</div><div class="comp-ws-label">Link wallet to site</div></div></div>
+            <div class="comp-without-step"><i class="fa-solid fa-rotate-left"></i><div><div class="comp-ws-num">Step 4</div><div class="comp-ws-label">Return to NFT site</div></div></div>
+            <div class="comp-without-step"><i class="fa-solid fa-building-columns"></i><div><div class="comp-ws-num">Step 5</div><div class="comp-ws-label">Use crypto on-ramp</div></div></div>
+            <div class="comp-without-step"><i class="fa-solid fa-gas-pump"></i><div><div class="comp-ws-num">Step 6</div><div class="comp-ws-label">Pay gas fees</div></div></div>
+            <div class="comp-without-step"><i class="fa-solid fa-id-card"></i><div><div class="comp-ws-num">Step 7</div><div class="comp-ws-label">Submit ID &amp; KYC docs</div></div></div>
+            <div class="comp-without-step"><i class="fa-solid fa-clock"></i><div><div class="comp-ws-num">Step 8</div><div class="comp-ws-label">Wait for crypto</div></div></div>
+            <div class="comp-without-step"><i class="fa-solid fa-repeat"></i><div><div class="comp-ws-num">Step 9</div><div class="comp-ws-label">Buy NFT (pay gas again)</div></div></div>
           </div>
           <p class="comp-pain-note"><strong>9 friction points.</strong> Most people give up before step 5.</p>
         </div>
       </div>
     </div>
- 
+
     <!-- ── SOCIALS FOOTER ── -->
     <div class="socials-footer">
       <div class="socials-footer-label">FIND US ON</div>
@@ -536,15 +535,15 @@ body::before {
           <div class="social-icon-wrap"><i class="fa-brands fa-discord" style="color:#5865F2;"></i></div>
           <div class="social-divider-bar"></div>
           <span class="social-platform-name" style="color:#8b9cf4;">Discord</span>
-          <span class="social-handle" style="color:#3d4566;">@legacymint.club</span>
+          <span class="social-handle" style="color:#7b82c4;">@legacymint.club</span>
         </a>
       </div>
       <div class="socials-footer-bottom">Powered by <span>LEGACYMINT</span> &amp; Alchemy Pay</div>
     </div>
- 
+
   </section>
 </div>
- 
+
 <!-- ==================== COLLECT TAB ==================== -->
 <div id="collect" class="tab-content">
   <div class="section">
@@ -562,13 +561,13 @@ body::before {
     <div class="collection-grid" id="collectionGrid"></div>
   </div>
 </div>
- 
+
 <!-- ==================== FOUNDATION TAB ==================== -->
 <div id="foundation" class="tab-content">
   <div class="section">
     <div class="section-label">FOUNDATION FUND</div>
     <h2 class="section-title">ATHLETE POWERED. COMMUNITY GOVERNED.</h2>
-    <p class="section-sub">Every NFT mint contributes to the Foundation Fund. When the fund reaches Milestone targets, NFT holders cast advisory votes to which Verified Athlete or Athletes, receive a financial contribution to support them in their sporting endeavours.</p>
+    <p class="section-sub">Every NFT mint contributes 90% to the Foundation Fund. When the fund reaches NZ$10,000, NFT holders cast advisory votes on which athlete receives the grant.</p>
     <div style="background:rgba(246,193,91,0.06);border:1px solid rgba(246,193,91,0.15);border-radius:12px;padding:16px 20px;margin-bottom:32px;font-size:12px;color:#999;line-height:1.7;">
       <strong style="color:var(--gold);display:block;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:6px;">⚠️ Important — Advisory Votes Only</strong>
       NFT holder votes are advisory recommendations only. They do not constitute governance control over the Foundation Fund. All grant decisions are made solely by the Foundation Fund Trustees. <a href="#" onclick="showTab('legal');showLegalPanel('terms')" style="color:var(--gold);text-decoration:underline;">Read full terms →</a>
@@ -603,7 +602,7 @@ body::before {
     </div>
   </div>
 </div>
- 
+
 <!-- ==================== PAYOUTS TAB ==================== -->
 <div id="payouts" class="tab-content">
   <div class="section">
@@ -633,7 +632,7 @@ body::before {
     </div>
   </div>
 </div>
- 
+
 <!-- ==================== SAFETY TAB ==================== -->
 <div id="safety" class="tab-content">
   <div class="section">
@@ -655,7 +654,7 @@ body::before {
     </div>
   </div>
 </div>
- 
+
 <!-- ==================== LEGAL TAB ==================== -->
 <div id="legal" class="tab-content">
   <div class="legal-hero">
@@ -672,7 +671,7 @@ body::before {
       </div>
     </div>
   </div>
- 
+
   <div class="legal-nav">
     <button class="legal-nav-pill active" onclick="showLegalPanel('disclaimers')">Key Disclaimers</button>
     <button class="legal-nav-pill" onclick="showLegalPanel('terms')">Terms of Service</button>
@@ -680,7 +679,7 @@ body::before {
     <button class="legal-nav-pill" onclick="showLegalPanel('privacy')">Privacy</button>
     <button class="legal-nav-pill" onclick="showLegalPanel('contact')">Legal Contact</button>
   </div>
- 
+
   <!-- PANEL: DISCLAIMERS -->
   <div id="panel-disclaimers" class="legal-panel active">
     <div class="section-label" style="margin-bottom:20px;">CRITICAL DISCLAIMERS</div>
@@ -694,7 +693,7 @@ body::before {
     </div>
     <div class="disclaimer-card">
       <div class="disclaimer-card-title"><i class="fa-solid fa-circle-exclamation"></i> FOUNDATION FUND IS INDEPENDENTLY GOVERNED</div>
-      <p>The LegacyMint Foundation Trust operates as an independent non-charitable trust, legally separate from LegacyMint Ltd. Foundation Fund assets are held in a dedicated trust account and governed by appointed Trustees under the Trust Deed. LegacyMint Ltd does not control Foundation Fund assets or grant decisions.</p>
+      <p>The LegacyMint Foundation Trust operates as an independent charitable trust, legally separate from LegacyMint Ltd. Foundation Fund assets are held in a dedicated trust account and governed by appointed Trustees under the Trust Deed. LegacyMint Ltd does not control Foundation Fund assets or grant decisions.</p>
     </div>
     <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:32px;">
       <div style="padding:20px 24px;border-bottom:1px solid rgba(255,255,255,0.04);"><div class="section-label" style="margin-bottom:0;">PLATFORM AT A GLANCE</div></div>
@@ -705,18 +704,18 @@ body::before {
         <div class="legal-info-row"><span class="legal-info-label">Royalty Standard</span><span class="legal-info-val">ERC-2981 • 7.5%</span></div>
         <div class="legal-info-row"><span class="legal-info-label">Payment Processing</span><span class="legal-info-val">Alchemy Pay (regulated)</span></div>
         <div class="legal-info-row"><span class="legal-info-label">Governing Law</span><span class="legal-info-val">New Zealand</span></div>
-        <div class="legal-info-row"><span class="legal-info-label">Legal Contact</span><span class="legal-info-val">NFT@legacymint.club</span></div>
+        <div class="legal-info-row"><span class="legal-info-label">Legal Contact</span><span class="legal-info-val">legal@legacymint.io</span></div>
         <div class="legal-info-row"><span class="legal-info-label">Document Status</span><span class="legal-info-val">Draft — Under Legal Review</span></div>
       </div>
     </div>
   </div>
- 
+
   <!-- PANEL: TERMS OF SERVICE -->
   <div id="panel-terms" class="legal-panel">
     <div class="section-label" style="margin-bottom:6px;">TERMS OF SERVICE</div>
     <h3 style="font-family:'Bebas Neue',sans-serif;font-size:36px;margin-bottom:8px;">LEGACYMINT TERMS OF SERVICE</h3>
     <p style="color:#555;font-size:12px;margin-bottom:32px;">Version 1.0 — Draft | New Zealand | Requires Legal Review Before Publication</p>
- 
+
     <div class="legal-accordion open">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">1. Introduction & Acceptance of Terms</span>
@@ -728,7 +727,7 @@ body::before {
         <p>By accessing or using the Platform, you confirm that you have read, understood, and agree to be bound by these Terms. If you do not agree, you must not access or use the Platform. These Terms constitute a legally binding agreement between you and LegacyMint Ltd.</p>
       </div>
     </div>
- 
+
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">2. Platform Overview</span>
@@ -745,7 +744,7 @@ body::before {
         </ul>
       </div>
     </div>
- 
+
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">3. Eligibility</span>
@@ -764,7 +763,7 @@ body::before {
         <p>LegacyMint reserves the right to refuse access to the Platform to any person at its sole discretion.</p>
       </div>
     </div>
- 
+
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">4. NFTs — Nature, Purchase & Important Disclaimers</span>
@@ -778,7 +777,7 @@ body::before {
         <p>Purchase of a LegacyMint NFT grants you a limited, personal, non-commercial licence to display the associated digital artwork for personal use. You do not acquire copyright or other intellectual property rights in the underlying artwork.</p>
       </div>
     </div>
- 
+
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">5. Foundation Fund — Grant Process</span>
@@ -791,7 +790,7 @@ body::before {
         <p>LegacyMint makes no guarantee that any specific individual or organisation will receive a grant. The Foundation Fund Trustees have sole discretion over all grant decisions.</p>
       </div>
     </div>
- 
+
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">6. Fees & Payments</span>
@@ -809,7 +808,7 @@ body::before {
         <p>Goods and Services Tax (GST) may apply to New Zealand residents in accordance with the Goods and Services Tax Act 1985.</p>
       </div>
     </div>
- 
+
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">7. Prohibited Activities</span>
@@ -831,7 +830,7 @@ body::before {
         <p>Breach of this section may result in immediate account suspension, termination, reporting to relevant authorities, and/or legal action.</p>
       </div>
     </div>
- 
+
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">8. Disclaimers & Limitation of Liability</span>
@@ -845,7 +844,7 @@ body::before {
         <p>You acknowledge the inherent risks of blockchain technology, including smart contract vulnerabilities, network failures, regulatory changes, and irreversible transactions.</p>
       </div>
     </div>
- 
+
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">9. AML/CFT Compliance</span>
@@ -857,7 +856,7 @@ body::before {
         <p>Identity verification (KYC) may be required before accessing certain Platform features or receiving Foundation Fund grants. Failure to complete KYC may result in restricted access.</p>
       </div>
     </div>
- 
+
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">10. Governing Law & Dispute Resolution</span>
@@ -871,7 +870,7 @@ body::before {
       </div>
     </div>
   </div>
- 
+
   <!-- PANEL: NFT PURCHASER TERMS -->
   <div id="panel-nft-terms" class="legal-panel">
     <div class="section-label" style="margin-bottom:6px;">NFT PURCHASER TERMS</div>
@@ -881,7 +880,7 @@ body::before {
       <div class="disclaimer-card-title"><i class="fa-solid fa-circle-exclamation"></i> PLEASE READ CAREFULLY BEFORE PURCHASING</div>
       <p>A LegacyMint NFT is a unique digital collectible and supporter pass. It is NOT an investment product, security, share, governance token, or profit-sharing arrangement of any kind. NFT values may fall to zero. Only purchase what you can afford to lose entirely.</p>
     </div>
- 
+
     <div class="legal-accordion open">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">What You Receive When You Purchase</span>
@@ -898,7 +897,7 @@ body::before {
         <p>You do NOT acquire: investment returns or profit expectations; equity, shares, or ownership interest in LegacyMint Ltd or the Foundation Fund; governance control over any aspect of the Platform or Foundation Fund; copyright or intellectual property rights in the underlying artwork; any right to receive financial distributions.</p>
       </div>
     </div>
- 
+
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">What Advisory Voting Means</span>
@@ -916,7 +915,7 @@ body::before {
         </ul>
       </div>
     </div>
- 
+
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">Intellectual Property Rights</span>
@@ -928,7 +927,7 @@ body::before {
         <p>You may NOT: reproduce, modify, or create derivative works of the NFT artwork; use the NFT artwork or any athlete's name, likeness, or image for commercial purposes without written consent; claim authorship or ownership of the underlying artwork. If you sell your NFT, the licence transfers to the new owner and terminates for you.</p>
       </div>
     </div>
- 
+
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">Risks — You Must Read This</span>
@@ -948,7 +947,7 @@ body::before {
         </ul>
       </div>
     </div>
- 
+
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">Purchase Process & Refunds</span>
@@ -960,7 +959,7 @@ body::before {
         <p>Secondary market royalties of 7.5% (ERC-2981) are automatically applied on resales through compatible marketplaces.</p>
       </div>
     </div>
- 
+
     <div class="legal-accordion">
       <button class="legal-accordion-header" onclick="toggleAccordion(this)">
         <span class="legal-accordion-title">Jurisdiction Restrictions</span>
@@ -973,7 +972,7 @@ body::before {
       </div>
     </div>
   </div>
- 
+
   <!-- PANEL: PRIVACY -->
   <div id="panel-privacy" class="legal-panel">
     <div class="section-label" style="margin-bottom:6px;">PRIVACY STATEMENT</div>
@@ -1014,7 +1013,7 @@ body::before {
       <p style="font-size:13px;color:#666;line-height:1.7;">This is a summary privacy statement. A comprehensive Privacy Policy compliant with the NZ Privacy Act 2020 is under preparation and will be published prior to Platform launch. For privacy enquiries: privacy@legacymint.io</p>
     </div>
   </div>
- 
+
   <!-- PANEL: LEGAL CONTACT -->
   <div id="panel-contact" class="legal-panel">
     <div class="section-label" style="margin-bottom:20px;">LEGAL CONTACT & DOCUMENT REGISTER</div>
@@ -1052,7 +1051,7 @@ body::before {
   </div>
 </div>
 <!-- ==================== END LEGAL TAB ==================== -->
- 
+
 <!-- ==================== CARD MODAL ==================== -->
 <div id="cardModal" class="modal-overlay">
   <div class="modal-box">
@@ -1114,7 +1113,7 @@ body::before {
     </div>
   </div>
 </div>
- 
+
 <!-- ==================== BOTTOM NAV ==================== -->
 <nav class="bottom-nav">
   <button class="nav-btn active" onclick="showTab('home')" id="bnav-home"><i class="fa-solid fa-house"></i>HOME</button>
@@ -1124,7 +1123,7 @@ body::before {
   <button class="nav-btn" onclick="showTab('safety')" id="bnav-safety"><i class="fa-solid fa-shield"></i>SAFETY</button>
   <button class="nav-btn" onclick="showTab('legal')" id="bnav-legal"><i class="fa-solid fa-scale-balanced"></i>LEGAL</button>
 </nav>
- 
+
 <script>
 // ============ CONFIG ============
 const CONFIG = {
@@ -1135,19 +1134,19 @@ const CONFIG = {
   EXPLORER: 'https://explorer-testnet.apertum.io',
   FUND_GOAL_NZD: 10000,
 };
- 
+
 const CONTRACT_ABI = [
   "function mint(uint256 tokenId, uint256 quantity) external payable",
   "function createToken(uint256 supplyCap, uint8 starRating, string memory name_) external returns (uint256)",
   "function balanceOf(address account, uint256 id) external view returns (uint256)",
   "event TransferSingle(address indexed operator, address indexed from, address indexed to, uint256 id, uint256 value)"
 ];
- 
+
 let walletAddress = null;
 let provider = null;
 let signer = null;
 let currentModalCard = null;
- 
+
 const CARDS = [
   {
     id:1, name:'THOMAS ENOKA', sub:'Black Sox Vice-Captain',
@@ -1171,7 +1170,7 @@ const CARDS = [
     tokenId:3
   }
 ];
- 
+
 // ============ COMPARISON WIDGET ============
 function switchCompTab(tab) {
   document.querySelectorAll('.comp-tab').forEach((t, i) => {
@@ -1180,7 +1179,7 @@ function switchCompTab(tab) {
   document.getElementById('comp-with').classList.toggle('visible', tab === 'with');
   document.getElementById('comp-without').classList.toggle('visible', tab === 'without');
 }
- 
+
 // ============ TAB NAVIGATION ============
 function showTab(tabId) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -1193,10 +1192,10 @@ function showTab(tabId) {
   if (navLink) navLink.classList.add('active');
   window.scrollTo(0, 0);
 }
- 
+
 // ============ LEGAL PANEL NAVIGATION ============
 const PANEL_ORDER = ['disclaimers','terms','nft-terms','privacy','contact'];
- 
+
 function showLegalPanel(panelId) {
   document.querySelectorAll('.legal-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.legal-nav-pill').forEach(p => p.classList.remove('active'));
@@ -1207,13 +1206,13 @@ function showLegalPanel(panelId) {
   if (idx >= 0 && pills[idx]) pills[idx].classList.add('active');
   window.scrollTo(0, 0);
 }
- 
+
 // ============ ACCORDION ============
 function toggleAccordion(headerEl) {
   const accordion = headerEl.closest('.legal-accordion');
   accordion.classList.toggle('open');
 }
- 
+
 // ============ WALLET CONNECTION ============
 async function connectWallet() {
   if (!window.ethereum) {
@@ -1235,7 +1234,7 @@ async function connectWallet() {
     notify('Connection failed: ' + err.message, 'error');
   }
 }
- 
+
 async function switchToApertum() {
   try {
     await window.ethereum.request({
@@ -1257,7 +1256,7 @@ async function switchToApertum() {
     }
   }
 }
- 
+
 function updateMintButtons() {
   const mintBtn = document.getElementById('modalMintBtn');
   if (walletAddress && mintBtn) {
@@ -1265,7 +1264,7 @@ function updateMintButtons() {
     mintBtn.textContent = 'MINT NOW';
   }
 }
- 
+
 // ============ MINT ============
 async function mintNFT() {
   if (!walletAddress || !currentModalCard) { notify('Please connect your wallet first', 'error'); return; }
@@ -1294,7 +1293,7 @@ async function mintNFT() {
     notify('Mint failed — see details below', 'error');
   }
 }
- 
+
 // ============ COLLECTION GRID ============
 function buildCollectionGrid() {
   const grid = document.getElementById('collectionGrid');
@@ -1322,7 +1321,7 @@ function buildCollectionGrid() {
     grid.appendChild(div);
   });
 }
- 
+
 // ============ MODAL ============
 function openModal(index) {
   const card = CARDS[index];
@@ -1345,17 +1344,17 @@ function openModal(index) {
   switchModalTab(0);
   document.getElementById('cardModal').classList.add('open');
 }
- 
+
 function closeModal() {
   document.getElementById('cardModal').classList.remove('open');
   currentModalCard = null;
 }
- 
+
 function switchModalTab(n) {
   document.querySelectorAll('.modal-view').forEach((v, i) => v.classList.toggle('active', i === n));
   document.querySelectorAll('.modal-tab').forEach((t, i) => t.classList.toggle('active', i === n));
 }
- 
+
 // ============ FUND DISPLAY ============
 function updateFundDisplay() {
   const fundAPTM = 0;
@@ -1365,7 +1364,7 @@ function updateFundDisplay() {
   ['fundProgress','fundProgress2'].forEach(id => { const el = document.getElementById(id); if (el) el.style.width = percent + '%'; });
   ['fundPercent','fundPercent2'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = percent.toFixed(1) + '% of goal'; });
 }
- 
+
 // ============ NOTIFICATION ============
 function notify(msg, type = 'info') {
   const el = document.getElementById('notification');
@@ -1373,10 +1372,10 @@ function notify(msg, type = 'info') {
   el.className = 'notification show ' + type;
   setTimeout(() => el.classList.remove('show'), 4000);
 }
- 
+
 // ============ EVENTS ============
 document.getElementById('cardModal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
- 
+
 if (window.ethereum) {
   window.ethereum.on('accountsChanged', (accounts) => {
     if (accounts.length === 0) {
@@ -1390,7 +1389,7 @@ if (window.ethereum) {
   });
   window.ethereum.on('chainChanged', () => window.location.reload());
 }
- 
+
 // ============ INIT ============
 window.onload = function() {
   buildCollectionGrid();
@@ -1401,4 +1400,3 @@ window.onload = function() {
 </script>
 </body>
 </html>
- 
